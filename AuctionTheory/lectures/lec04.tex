@@ -1,0 +1,69 @@
+So far we've assumed signals to be private and independent of what signals other bidders have drawn. There are two ways in which we will relax this assumption, 1) we can allow for only partial information about the value of an item and 2) we can allow for interdependence between bidders values.
+
+In this setting it is important to distinguish between the \textit{value} of an item, which is the actual "true" value of the item for sale, and the \textit{valuation} which is the bidders best estimate of the value.
+
+In this setup we have that bidders draw an unknown value $v_i$ from $V_i$, and a known signal $x_i$ from $X_i$. The ex post value of an item to bidder $i$, is the expecation of $V_i$ conditional on all of the signals, so
+\begin{equation}
+  v_i(x_1, ..., x_N) = E[V_i | X_1 = x_1, ..., X_N = x_N]
+\end{equation}
+Which we can interpret as the bidders estimate of $v_i$ given all common knowledge and any knowledge gained when the other bidders signals are revealed. Bidders payoffs are $v_i - p_i$ where $p_i$ is whatever price is paid. In this framework we can get back to the private value setting by assuming $v_i(X) = X_i$ and as another extreme have \textit{common value} auction in which $v=v(X_1, ...,X_N)$ where the value only depends on the signals of all other bidders.
+
+
+\subsection{Interdependent common value with independent signals}
+Let us consider a simple model where the signals are independent, but the value is common. Let $X_1,...X_N$ be independently distributed signals, their distribution known to all bidders. Assume that each $X_i$ provides an unbiased estimate of $V$, so $E[X_i |V = v] =v$. Turning this definition around we should be able to estimate $v$ by
+\begin{equation}
+v = \frac{1}{N} \sum_{i=1}^N x_i
+\end{equation}
+Now of course bidders signals are initially private but if bids are revealed throughout the auction they can update their estimate of $v$ continously. If the auction is sealed-bid other bidders bids (and implicitly signals) are revealed when the auction is over, leading to the \textit{winners curse}.
+
+\subsubsection{Winners curse}
+Consider a sealed bid auction with common value and independent signals. If bidder $i$ bids $E[V|X_i = x_i]$ and wins the auction this implies $x_i>x_j$ for any $j\neq i$, and consequently bidder $i$'s estimate of $V$ should drop. Essentially winning reveals to bidder $i$ that his estimate of $V$ was to high. Mathematically winning implies
+\begin{equation}
+  E[V|X_i = x_i, Y_1 < x] < E[V|X_i = x_i]
+\end{equation}
+so bidder $i$ regrets winning. Note \textbf{this is purely an out-of-equilibirum effect} as bidders will take into account this effect when forming their bid, to bid according to $E[V|X_i = x_i, Y_1 < x]$ not $E[V|X_i = x_i]$.
+\\ \\
+Notice that this is also true in the second price auction, as the private-value equilibrium was derived using that bidders know exactly what value they assign to the item. Now it is optimal to shade both in first- and second price auctions. Furthermore the strategic equivalence between the second price sealed bid auction and the English auction is lost, because the gradual revealing of when bidders drop out in the English auction carries information about $v$.
+
+
+\subsection{Affiliated signals}
+Above we made some simplifying assumptions. For example we assumed that signal distributions were common knowledge. This in turn would imply that drawing the minimum value in the case of uniform signals would very clearly signal something about the relative signals of other bidders. We also assumed intdependence of signals, so in an English auction a bidder exiting the auction should only affect the remaining bidders estimate of the true value, but not their idea about which valuations other bidders have drawn. Often we would think that the valuations bidders draw are also in some way related.
+\\ \\
+Affiliation implements exactly this. Bidders will not know if their bid is high or low, as their signals are no longer independent. What we allow for now is that signals are not independent, so
+\begin{equation}
+  f(X) \neq \prod_{i=1}^N f_i(x_i)
+\end{equation}
+The way we allow for this is through \textit{affiliation}, this is a form of strong relation where if a subset of $X_i$'s turn out large, this implies a high probability of the remaining $X_j$'s also being large. We wont show a formal definition of affiliation but note some implications of affiliated signals:
+
+\begin{itemize}
+  \item If $X_1, ..., X_N$ are affiliated, then $X_1, Y_1, ..., Y_{N-1}$ are also affiliated. (Intuitively: the winning signal is affiliated with loosing bidders signals)
+  \item if $x>x'$ then $G(\cdot|x)$ dominates $G(\cdot|x')$ in terms of the inverse hazard rate, that is
+  \begin{equation}
+    \forall y: \quad \frac{g(y|x)}{G(y|x)} \geq \frac{g(y|x')}{G(y|x')}
+  \end{equation}
+  (intuitively: for any given $y$ a higher signal $x>x'$ implies it is less likely that $y$ is the second highest signal.)
+  \item For any increasing function(strategy) $\gamma$ and $x>x'$ we have
+  \begin{equation}
+    E[\gamma(Y_1)|X_1 = x] \geq E[\gamma(Y_1)|X_1 = x']
+  \end{equation}
+  (Intuitively: Drawing a higher $x>x'$ implies expecting higher bids.)
+\end{itemize}
+
+\subsection{Symmetric model with affiliated signals}
+Let us consider the case with symmetric valuations, so all signals are drawn on $[0,\omega]$ and for all bidders the valuations are symmetric in the signals of all other bidders except for themselves:
+\begin{equation}
+  v_i(X) = u(X_i, X{-i})
+\end{equation}
+We also assume that the joint distribution of signals $f(\cdot)$ is symmetric in its arguments, and that signals are affiliated.
+
+\subsubsection{Second price auction with affiliated signals}
+In the second price auction with affiliated signals the symmetric equilibrium is given by $\beta^{II}(x)=v(x,x)$ where $v$ is defined as the expected value of the ex ante true value $V_1$, conditional on $X_i = x$ and $Y_1 = y$, that is from the perspective of bidder 1
+\begin{equation}
+  v(x,y) = E[V_1 | X_1=x, Y_1 = y]
+\end{equation}
+The equilibrium is then to bid as if the second highest bid $y=x$, i.e. you are just tied with the second highest bidder. \textcolor{red}{The intuition in this result is that ...} (Slide 24).
+
+One technque for solving these, often complicated models, is to assume a diffuse prior on the signals, in particular we typically assume that $X_i \sim U(0.75\cdot v, 1.25\cdot v)$ giving some bound on the distance from $x$ to $v$.
+
+\subsubsection{English auction with affiliated signals}
+In the english auction with affiliated signals bidders should remain in the auction until the prices reaches the bidders valuation, but with the added twist that the valuation changes whenever another bidder exits the auction.
