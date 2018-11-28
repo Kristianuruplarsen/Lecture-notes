@@ -1,0 +1,96 @@
+Binary response models are designed to be useful whenever the outcome of interest can take only one of two values, i.e. $y_i \in \{0,1\}$, where $y_i=0$ happens with probability $1-p_i$ and conversely $\textrm{Pr}(y_i = 1)=p_i$. To include observable characteristics we parametrize the probability by a linear relation of dependents and a link function $F(\cdot)$ such that
+\begin{equation}
+p_i \equiv \textrm{Pr}(y_i = 1 | x_i) = F(x_i'\beta)
+\end{equation}
+Since $F(\cdot)$ must be confined in the interval $[0,1]$ and represents a probability, we will usually select $F(\cdot)$ to be a CDF. Common choices are the logistic CDF $\Lambda(\cdot)$ and the normal CDF $\Phi(\cdot)$.
+
+\begin{align*}
+\Lambda(z) &= \frac{\exp(z)}{1 + \exp{z}} \\
+\Phi(z) &= \int_{-\infty}^{z} \phi(w) \textrm{d}w
+\end{align*}
+with $\phi(\cdot)$ begin the density of a gausian variable with mean 0 and variance 1.
+
+\subsection{Maximum Likelihood estimation}
+Notice that conditional on $x_i$ the outcome of $y_i$ is essentially a bernoulli trial, so the density of $y_i$ will be
+\begin{equation}
+f(y_i|\theta) = p_i^{y_i}(1-p_i)^{1-y_i}
+\end{equation}
+Inserting the link function and assuming independence of observations allow us to construct a full sample likelihood given by
+\begin{equation*}
+L_N(\theta) = \prod_{i=1}^N   F(x_i' \beta)^{y_i}(1-F(x_i'\beta))^{1-y_i}
+\end{equation*}
+The log likelihood function is then easily derived by taking the log, which transforms the product into a sum, draws down the exponents,
+\begin{equation}
+\mathcal{L}(\theta) = \sum_{i=1}^N \log L_i(\theta|x_i, y_i)
+\end{equation}
+From here it's possible to derive the scores $s_N(\theta)$ by taking the first derivative, and with a lot of work the hessian is also analytically derivable. The equation system $s_N(\theta)=0$ is however not analytically solveable but requires numerical methods.
+
+\subsection{Latent variable representation}
+An alternative to the derivations above is to assume the existence of a latent, unobservable variable. This variable $y^*$ acts as an underlying continous variable, which indirectly determines $y$ through a cutoff value, that is
+\begin{equation}
+y_i = \begin{cases}
+1, \quad y_i^* > 0 \\
+0, \quad y_i^* \leq 0
+\end{cases}
+\end{equation}
+Where we assume $y_i*$ to be linear, i.e.
+\begin{equation}
+y_i^* = x_i' \beta + \epsilon_i
+\end{equation}
+The interpretation of $y_i^*$ can be as a utility variable, where individuals gaining more than $y_i^* = 0$ utility will make a certain choice, which we record as $y_i = 1$. Now instead of assuming a certain link function, we will make a distributional assumption on the error term $\epsilon_i$. In the following we assume that $\epsilon_i \sim \mathcal{N}(\mu, \sigma^2)$ to derive the probit model. First of calculate the probability of observing $y_i = 1$
+\begin{align*}
+p_i \equiv \textrm{P}(y_i = 1| x_i) &= \textrm{P}(y_i^* > 0 | x_i) \\
+& = \textrm(P)(x_i'\beta + \epsilon_i > 0 | x_i)
+\\
+& = 1-\textrm{P}(\epsilon_i \leq -x_i'\beta | x_i)
+\end{align*}
+To finalize this we first need to normalize $\epsilon_i$ to be drawn from a standard normal distribution
+\begin{align*}
+p_i&=1-\textrm{P}\left(\frac{\epsilon_i - \mu}{\sigma} \leq  -\frac{x_i'\beta + \mu}{\sigma} | x_i \right)
+\end{align*}
+Which then is rewriteable into the final expression, by using that $\epsilon_i$ is normally distributed, and that this distribution is symmetric meaning $1-\Phi(-z)=\Phi(z)$
+\begin{equation}
+p_i = \Phi\left(\frac{x_i'\beta + \mu}{\sigma} \right)
+\end{equation}
+This $p_i$ is the same one defined and parametrized as $F(\cdot)$ in the non-latent interpretation, showing us that whether we choose a latent-variable aproach to the model or not, we end up with the same conclusions. From the expression of $p_i$ it's clear that neither $\beta$ or $\mu$ are going to be present on their own in the likelihood function, as they are always divided by $\sigma$. Thus identification requires fixing $\sigma$. Usually we set $\sigma = 1$ to get the simplest expression of $\beta$'s $\Phi(x_i'\beta + \mu)$ with $\mu=0$ usually also implemented as the intercept of the model is otherwise not identified. The logit model has a natural scale of $\mu=0$ and $\sigma^2 = \pi^2/3$, so results between the two models are not directly comparable.
+
+\subsection{Marginal effects}
+The regression coefficients in the probit and logit model are uninformative as they depend on the scale of errors, and are not in any simple way related to the observed $y_i$'s. Instead one may study the marginal effects of changing a covariate $x_{ij}$ on the probability that $y=1$, that is
+\begin{equation}
+  \frac{\partial \textrm{Pr}(y_i = 1 | x_i)}{\partial x_{ij}} = F'(x_i'\beta)\beta_j
+\end{equation}
+Often this partial derivative is denoted $\delta_j(x_i)$. In the case of dummy variables, $\delta_j$ is simply calculated as the difference in probability with the dummy on and off, keeping all other covariates constant. Marginal effects depend nonlinearly on $x_i$, and thus change depending on the observation for which they are calculated. In practise there are a number of ways to handle this. Some researchers choose a specific individual $i$ (i.e. the median individual) and compute marginal effects only for this observation, or for the 'mean' individual where $\bar{x}=\frac{1}{N}\sum_{i}x_i$ is used as covariates. Others compute marginal effects for all observations and report their average.
+
+\subsubsection{The Delta method}
+One issue with the marginal effects derived above is that while they depend on $\beta$, and so in practice also on $\hat{\beta}$, we cannot derive an expression for their standard errors. To get an estimate of these one option is the Delta method, which in general derives approximate standard errors for function of variables with known errors. An alternative approach is to bootstrap sample from the dataset, which is covered later in this note. In the most general case the delta method can be used to show that
+\begin{equation}
+  V[h(\hat{\beta})] \approx \frac{\partial h(\hat{\beta})}{\partial \beta'}V[\hat{\beta}]\frac{\partial h(\hat{\beta})}{\partial \beta}
+\end{equation}
+where $h(\cdot)$ is any function of $\beta$.
+
+In the case of the probit model begin by noting that the the marginal effects are rewriteable as
+\begin{equation}
+\delta_k(x_i) = F'(x_i'\beta)|_{x_i = x^0}\beta_k = g(x^0\beta)\beta_k
+\end{equation}
+where $g(\cdot)$ is simply shorthand for $F'$ evaluated in $x^0$. $\delta_k$ is a function of parameters which we will denote $d_k(\beta)$ and the estimates partial effects are $\hat{\delta}_k = d_k(\hat{\beta})$. Stacking these in a column vector $\textbf{d}(\hat{\beta})$ gives is a $K\times 1$ column, for which we can do the following Taylor expansion around $\beta$
+\begin{equation}
+  \textbf{d}(\hat{\beta}) \approx \textbf{d}(\beta) + \nabla_{\beta}   \textbf{d}(\beta)(\beta - \hat{\beta})
+\end{equation}
+Rewriting that $\textbf{d}(\hat{\beta}) = \hat{\delta}$ we get that
+\begin{equation}
+  \hat{\delta} - \delta \approx \nabla_{\beta}   \textbf{d}(\beta)(\beta - \hat{\beta})
+\end{equation}
+Multiplying by $\sqrt{N}$ on both sides, and noting that $\hat{\beta}\sim \mathcal{N}(0,V[\beta])$ we get that
+\begin{equation}
+  \hat{\delta} \overset{a}{\sim} \mathcal{N}(0, [\nabla_{\beta}   \textbf{d}(\beta)]V[\beta][\nabla_{\beta}   \textbf{d}(\beta)]')
+\end{equation}
+Now we dont know $\nabla_{\beta} \textbf{d}(\beta)$ yet, but it is easily derived. Use the definition of $\delta_k$ from above and we have that
+\begin{align*}
+  \nabla_{\beta} \textbf{d}(\beta) &= \frac{\partial}{\partial \beta} g(x^0\beta) \beta \\
+  & = \beta \frac{\partial}{\partial \beta} \left[
+g(x_0\beta)
+  \right] +
+I_k  g(x^0\beta) \\
+  &= \beta g'(x^0\beta)x^0 + I_k g(x^0)
+\end{align*}
+where $I_k$ is the identity matrix. This is as far as we can get without further assumptions, but in the probit case we can utilize that $g(\cdot)$ is the normal pdf $\phi(\cdot)$, for which it holds that $\phi'(z)=-z\phi(z)$\footnote{\textbf{Proof}: let $\phi(z)=(2\pi)^{-1/2}\exp(\frac{-z^2}{2} )$, then by differentiating $\phi'(z)= (2\pi)^{-1/2}\exp(\frac{-z^2}{2})\cdot \left(\frac{-2}{2}\cdot z \right)$ which clearly reduces to $\phi'(z)=-z\phi(z)$}. When this is the case simply inserting $\phi'(x^0\beta)=-(x^0\beta)'\phi(x^0\beta)'$ and factoring out will give the desired result shown in the lecture.

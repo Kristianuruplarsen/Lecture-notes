@@ -1,0 +1,25 @@
+The motivation behind numerical optimization is simple: often we come across functions that are difficult to optimize analytically, and in any case computers are not very good at analytical math. Instead of solving problems exactly, we would like to have methods which come close to the true solution without being to computationally intensive.
+
+In the lectures a host of topics including steepest descent optimization and non-gradient based methods were covered, but here we'll only give a brief overview of the Newton Rhapson algorithm.
+
+\subsection{The Newton Rhapson algorithm}
+The idea of the Newton Rhapson algorithm is to intiate the maximization of a function $f(x)$ at some starting guess $x_0$, where a second order Taylor polynomial $p(x_0)$ is constructed. The next point in the procedure will then be the $x=x^1$ where $p(x_1)$ is minimized. The algorithm is generalized to the multivariate case, but the intuition nonetheless remains the same. Let $x_o \in \mathbb{R}^p$ then the second order Taylor approximation of $f(\cdot)$ around $x_0$ is
+\begin{multline}
+p(x) = f(x_0) + \nabla f(x_0) (x- x_0) \\+ (x-x_0)'\frac{\nabla^2 f(x_0)}{2}(x-x_0)
+\end{multline}
+for which there is naturally only one solution when solving $p'(x) = 0$, which is the one where
+\begin{equation}
+x = x_0 - [\nabla^2 f(x_0)]^{-1} \nabla f(x_0)
+\end{equation}
+This equation gives the next point $x$ to approximate as a function of the current point of approximation $x_0$. It should be noted that the second term is essentially \textit{slope over curvature}. Generalizing the above equation to an iterative algorithm leads to the Newton Rhapson equation
+\begin{equation}
+x_{n+1} = x_n - s_n [\nabla^2 f(x_n)]^{-1} \nabla f(x_n)
+\end{equation}
+where $s_n$ is some arbitrarily chosen step size, which ensures the algorithm doesn't get stuck in a steady state, where it jumps back and forth between two suboptimal points.
+
+\subsubsection{Berndt-Hall-Hall-Hausman (BHHH)}
+Computationally estimating the hessian at every step might be to costly, so as an alternative the BHHH algorithm utilizes the results derived for ML estimators above, and estimates the hessian as a product of gradients, that is
+\begin{equation}
+\frac{\partial^2 Q_N(x)}{\partial x \partial x'} \approx \sum_{i=1}^N \frac{\partial q_i(x)}{\partial x} \frac{\partial q_i(x)}{\partial x'}
+\end{equation}
+with this procedure it is only neccesary to estimate the gradient, which is much less costly than computing the hessian. On the other hand, if the model is wrongly specified, or the sample is small BHHH will perform poorly.

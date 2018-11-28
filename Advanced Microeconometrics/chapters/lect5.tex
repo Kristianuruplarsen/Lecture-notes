@@ -1,0 +1,59 @@
+The Tobit model is designed to handle data with unnatural cutoffs, either due to censoring or traits of the DGP. An important distinction to make is between \textit{censoring}, which keeps all observations, but censors certain of them to an arbitrary value and \textit{truncation} which remove all observations at or below a certain threshold from the dataset. The Tobit model is formulated in terms of a latent variable $y^*$, so to begin with let
+\begin{equation}
+y_i^* = x_i'\beta + \epsilon_i, \quad \epsilon_i \sim \mathcal{N}(0, \sigma^2)
+\end{equation}
+The observational rule is slightly modified compared to the binary case, as we now have $y_i = \max\{0, y_i^*\}$.
+
+\subsection{Maximum Likelihood estimation}
+In the case of the Tobit model the likelihood is multiplicatively separable into the likelihood from observations where $y_i=0$ and the likelihood from observations where $y_i >0$, that is
+\begin{equation}
+  f(y_i|x_i) =
+   \begin{cases}
+     f_0(y_i|x_i), \quad \textrm{if }y_i = 0 \\
+     f_1(y_i|x_i), \quad \textrm{if }y_i > 0
+   \end{cases}
+\end{equation}
+Which, as will later come in handy, can be condensed to a product of factors raised to indicators for the case. In the face of $f_0(\cdot)$ this is equal to the probability that $y_i=0$. Following the same steps as in the probit example, inserting $y^*_i$ and isolating $\epsilon_i$ will provide that
+\begin{equation}
+  f_0(y_i|x_i) = 1 - \Phi \left(\frac{x_i'\beta}{\sigma}\right)
+\end{equation}
+On the other hand when $y_i>0$ we know that we're observing the actual latent variable $y^*$, and from the definition of this variable it's clear that $y^*_i|x_i \sim \mathcal{N}(x_i'\beta, \sigma^2)$. Thus\footnote{the expression of $f_1$ is simply a clever way to write a non-standard normal distribution without having to write the entire pdf. Be aware that $\phi(z)$ is always the pdf of a standard normal.}
+\begin{equation}
+  f_1(y_i|x_i) = \frac{1}{\sigma} \phi\left( \frac{y_i - x_i'\beta}{\sigma}
+  \right)
+\end{equation}
+Now these expression can be joined as follows
+\begin{multline}
+f(y_i| x_i) =
+\left[
+1 - \Phi \left(\frac{x_i'\beta}{\sigma}\right)
+\right]^{\mathds{1}_{(y_i = 0)}}  \\
+\times
+\left[\frac{1}{\sigma} \phi\left( \frac{y_i - x_i'\beta}{\sigma}
+\right)\right]^{\mathds{1}_{y_i > 0}}
+\end{multline}
+The indvidual (log) likelihood contributions as well as the overall (log) likelihood function are then easy to derive. The score is difficult to find, and the first order condition has no analytical solution, so numerical methods must be used. Notice there are a number of ways to answer questions about the expected value of our model, specifically we might be interested in $E[y^*|x]$, $E[y|x]$ or $E[y| y>0, x]$. The first one is simple, $E[y^*|x]= x'\beta$, but the other two are slightly less straight forward. In all cases the same method is applied, namely substituting in $y^* = x'\beta + \epsilon$ and isolating stochastic terms. For example
+\begin{equation}
+\begin{split}
+E[y| y>0, x] &= E[x'\beta + \epsilon |x'\beta + \epsilon > 0 , x] \\
+& = x'\beta + E[\epsilon| \epsilon > -x'\beta, x] \\
+& = x'\beta + \sigma E\left[\frac{\epsilon}{\sigma}| \frac{\epsilon}{\sigma}> \frac{x'\beta}{\sigma}, x\right] \\
+& = x'\beta + \sigma \lambda \left(\frac{x'\beta}{\sigma}\right)
+\end{split}
+\end{equation}
+Where a number of tricks are used. In line 3 we multiply and divide by $\sigma$ to get a standard normal in the expectation, and below in line 4 that for any $X\sim\mathcal{N}(\mu,\sigma)$ we have that the inverse Mills ratio $\lambda(z)$ is  $E[X|X>\alpha]=\frac{\phi(z)}{1- \Phi(z)}$ where $z = \frac{\alpha-\mu }{\sigma}$. To derive $E[y|x]$ first notice that this must be $\textrm{Pr}(y=0)\cdot 0 + \textrm{Pr}(y>0)\cdot E[y|y>0, x]$ and $\textrm{Pr}(y>0)$ is
+\begin{equation}
+\begin{split}
+\textrm{Pr}(y>0) &= \textrm{Pr}(x'\beta + \epsilon>0) \\
+& = \textrm{Pr}(\epsilon > - x'\beta) \\
+& =1 - \textrm{Pr}\left(\frac{\epsilon}{\sigma} \leq \frac{-x'\beta}{\sigma}\right) \\
+& = 1- \Phi \left(\frac{-x'\beta}{\sigma}\right) \\
+& = \Phi \left(\frac{x'\beta}{\sigma}\right)
+\end{split}
+\end{equation}
+Since $\lambda(z) \equiv \frac{\phi(z)}{\Phi(z)}$ is is then clear how
+\begin{equation}
+E[y|x] = x'\beta \Phi \left(\frac{x'\beta}{\sigma}\right) + \sigma \phi \left(\frac{x'\beta}{\sigma}\right)
+\end{equation}
+
+Marginal effects are ususally calculated on these quantities, and should be straight forward to derive, simply by calculating $\frac{\partial}{\partial x}$ in one of the above expectations or probabilities.

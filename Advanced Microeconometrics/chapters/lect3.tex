@@ -1,0 +1,26 @@
+Nonlinear least squares is, as the name suggests similar to OLS, but with the added ability to handle nonlinear relations. Before jumping to use NLS, it should however be considered if the relationship of interest is nonlinear even when considering variable transformations. If this not is the case, NLS might be the right choice of estimator. We begin by defining the model, noting that NLS is a M-estimator, due to the form of it's criterion function.
+
+\begin{equation}
+y_i = g(x_i, \beta) + u_i, \qquad E[y_i | x_i] = g(x_i, \beta)
+\end{equation}
+This is very similiar to OLS, but with the addition of a link function $g(\cdot)$, which alters the estimation problem to
+\begin{equation}
+\hat{\beta}_{NLS} = \underset{\beta}{\textrm{arg max }} \sum_{i=1}^N (y_i - g(x_i, \beta))^2
+\end{equation}
+Taking the first order conditions is straight forward from here, simply solve $\frac{\partial Q_N(\beta)}{\partial \beta} = 0$. Results on the asymptotic distribution of $\hat{\beta}_{NLS}$ follows from theory on M-estimators.
+
+It can be shown that NLS will be consistent, but not nessecarily efficient if $E[u_i | x_i]=0$, as this assumption alone doesn't account for heteroscedasticity. To account for this, the idea is to implement a weight in the optimization problem. We can show that the optimal weight is the actual variance-covariance matrix $\Omega_0$
+\begin{equation}
+V[y_i | x_i] = V[u_i|x_i] = E[uu'|x] = \Omega_0
+\end{equation}
+Of course $\Omega_0$ is unknown, so instead of using this, we begin by simply guessing a matrix $\Sigma$ and estimating $\hat{\beta}_{WNLS}$ as
+\begin{equation}
+\underset{\beta}{\textrm{arg min }} (y-g(x,\beta))'\Sigma^{-1}(y-g(x,\beta))
+\end{equation}
+One way to select $\Sigma$ is then to assume that it depends on a set of parameters $\gamma$ and estimate $\hat{\Sigma}=\Sigma(\hat{\gamma})$. In practise this is implemented in steps
+\begin{itemize}
+\item[1.] Do regular NLS to estimate $\hat{\beta}_{NLS}$
+\item[2.] compute the residuals $\hat{u}_i = y_i - g(x_i, \hat{\beta}_{NLS})$ and regress their square on a guessed variance matrix structure and covariates $\gamma$ to get $\hat{\Sigma}$.
+\item[3.] Implement the estimated $\hat{\Sigma}$ and conpute the WNLS estimator.
+\end{itemize}
+This procedure can theoretically be iterated over multiple times, each time refining the estimate of $\hat{\gamma}$ and thus of $\hat{\Sigma}$.

@@ -1,0 +1,16 @@
+In this lecture we study an alternative interpretation of the OLS estimator. This means all of the content is already known, but the presentation should hopefully broaden the intuitive understanding of what OLS really is. Note that we could call $E[Y_i|X_i]$ the \textit{conditional expectation function} (CEF), as it models the conditional expectation of the outcome $Y_i$ given $X_i$. Mathematically this expectation is defined as
+\begin{equation}
+E[Y_i|X_i] = \int t f_y(t|X_i = x) \textrm{d} t
+\end{equation}
+where $t$ is simply a value of $Y_i$ and $f_y$ is the density of $Y_i$ conditional on $X_i = x$. Naturally this has a discrete counterpart where $E[Y_i |X_i] = \sum_t t P(Y_i = t|X_i = x)$. Notice also that the unconditional expectation is simply the unconditional expectation of this, so
+\begin{equation}
+E[Y_i] = E[E[Y_i|X_i]]
+\end{equation}
+Another way of rewriting the equation is to formulate it with an error term as (formally we invoke the law of iterated expectations here)
+\begin{equation}
+Y_i = E[Y_i|X_i] + \varepsilon_i
+\end{equation}
+Where $\varepsilon$ is orthogonal to $X_i$ by construction (this is the independence assumption). So intuitively, linear regression is simply a way of implementing that the CEF is linear in the dependent variable. Consequently if the CEF is truely linear, we will estimate it precisely with linear regression.
+
+\subsection{Saturated regression}
+Imagine a variable $X$ which is discrete. We can then create dummy variables for \textit{every} level of $X$, possibly constructing a dummy for any $x>n$ to get a finite number of dummies. Now running a regression with all of these regressors (either restricting the constant or a parameter) we get a \textit{saturated regression equation} where there is one free parameter for each possible value of $X$. This regression will perfectly fit the CEF at every value of $X$ as it estimates the mean of $Y$ at each level of $X$. \textit{In fact a regular linear regression on the conditional means produced by the saturated model gives exactly the same coefficients as OLS on the whole dataset.}

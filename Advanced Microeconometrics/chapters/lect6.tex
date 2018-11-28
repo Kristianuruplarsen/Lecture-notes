@@ -1,0 +1,87 @@
+Multinomial choice models are models concerned with ordered or unordered choices, i.e. the choice of education, which car to buy or similar. The common trait of all problems which can be modelled by multinomial models is the discrete choice levels available. The following models are all concerned with unordered choices, (i.e. not education, which is a 'ladder-choice'). Our goal is to specify and estimate a utility function $u: (x_{ij}, \theta)\mapsto \mathbb{R}$ and estimate this mapping such that $\forall j, \theta' : u(x_{ij}, \theta)>u(x_{ij}, \theta')$. In the following we will study three variations of the model class \textit{Random Utility Models} (RAM), which is generally defined by the following construct of $u_i$
+\begin{equation}
+y_i = \underset{j \in \{1,2,...,J \} }{\textrm{arg max}} u_{ij}
+\end{equation}
+where $u_{ij}=v_{ij}+\epsilon{ij}$ consists of a deterministic/observable term $v$ and a stochastic/unobservable term $\epsilon$. The parametrization of $v$ will determine the type of RAM estimated amongst the conditional- (CL) multinnomial (MNL) and mixed logit models.
+\begin{itemize}
+\item[]\textbf{CL:}   \qquad     $v_{ij} =x_{ij}\beta $
+\item[]\textbf{MNL:}    \quad   $v_{ij} = x_{i}\beta_j$
+\item[]\textbf{Mixed:}  \  \  $v_{ij} = x_{ij}\beta + w_{i} \gamma_j $
+\end{itemize}
+In the conditional logit $x$ will contain information on the alternatives in $J$, while in the multinomial it will contain information on the individual $i$. To determine if all models are identified we need to first specify the likelihood function.
+
+\subsection{Maximum Likelihood estimation}
+Each individual makes only one choice, and so each individual will only contribute likelihood for this choice. To capture this idea define $d_{ij}=\mathds{1}_{(y_i = j)}$, which will be 1 for individual $i$ only if individual i made choice $j$, and 0 otherwise. To ensure that each individual cannot choose multiple values in $J$ we will require
+\begin{equation}
+\forall i: \sum_{j=1}^J d_{ij} = 1
+\end{equation}
+With this notation we can define the probability that $i$ chooses $j$ as
+\begin{equation}
+p_{ij}\equiv \textrm{Pr}(d_{ij}=1, d_{ik} = 0 \ \forall k\neq j)
+\end{equation}
+The individuals likelihood contribution will then be the product of these $p_{ij}$'s, but only counting the one for the exact value of $j$ what individual $i$ actually chose, so
+\begin{equation}
+\begin{split}
+&\ell_i(\theta) = \prod_{j=1}^J p_{ij}^{d_{ij}} \\
+& \log \ell(\theta) = \sum_{j=1}^J d_{ij} \log(p_{ij})
+\end{split}
+\end{equation}
+
+
+\subsubsection{Specifying $p_{ij}$}
+To finish we need an expression for $p_{ij}$, it can be shown that it's distribution will depend on the difference $\epsilon_{ij}-\epsilon_{ik}$ and further that assuming $\epsilon \sim \textrm{Gumbel}$ will result in the difference of two epsilons being logistically distributed. Thus we assume
+\begin{equation}
+\begin{split}
+&F(\epsilon) = \exp(-\exp(-\epsilon)) \\
+& f(\epsilon) = \exp(-\epsilon -\exp(-\epsilon))
+\end{split}
+\end{equation}
+This assumption implies that
+\begin{equation}
+p_{ij} = \frac{\exp(v_{ij})}{ \sum_{k=1}^J \exp(v_{ik})}
+\end{equation}
+where $v_{ij}$ will vary depending on the model specification.
+\\ \\
+With this information we can complete the likelihood, by taking the product over the individual likelihood contributions, or equivalent in log-likelihood terms
+\begin{equation*}
+\log \mathcal{L}_N(\theta) = \sum_{i=1}^N \sum_{j=1}^J d_{ij} \log \left( \frac{\exp(v_{ij})}{ \sum_{k=1}^J \exp(v_{ik})}
+\right)
+\end{equation*}
+By inserting the relevant specification of $v_{ij}$ and rewriting the log-term this expression simplifies slightly.
+
+\subsection{Identification}
+The derived expression of $p_{ij}$ implies specific requirements must be fulfilled to properly identify parameters in the model. What requirements exactly will depend on the specification of $v_{ij}$. In the conditional logit model adding an intercept $\beta_0$ to the model is problematic since
+\begin{equation}
+\frac{\beta_0 + \exp(v_{ij})}{ \sum_{k=1}^J  \exp(\beta_0 +v_{ik})} =
+\frac{\exp(v_{ij})}{ \sum_{k=1}^J \exp(v_{ik})}
+\end{equation}
+so to identify the CL model the intercept needs to be fixed to 0. In the MNL model a constant $\delta$ can be added to $\beta_j$ in a similar fashion. The solution is then to fix the $\beta_j$ of one alternative as 1, making the specific alternative a baseline, against which other $\beta$'s should be compared. Naturally in the mixed model, both problems are present, and both restrictions need to be implemented.
+
+\subsection{Marginal effects}
+Marginal effects will depend on the model specification, beginning with the conditional logit, we have to consider two cases, namely that we take the derivative w.r.t the $x$ such that $j=k$ as well as the alaternative $j\neq k$. Beginning with the case of $j=k$ we calculate
+\begin{equation}
+\begin{split}
+\frac{\partial \textrm{Pr}(y_i = j|x)}{\partial x_k} &= \frac{\partial}{\partial x_k} \frac{\exp(x_{ij}\beta )}{ \sum_{k=1}^J \exp(x_{ik}\beta)} \\
+& = p_{ij}(1-p_{ik})\beta
+\end{split}
+\end{equation}
+To get this result simply apply the derivative-of-a-fraction rule naively and compare the nominator and denominator in the resulting expression. You should be able to rewrite parts of the derivative as $p_{ik}$ and $p_{ij}$'s. The only tricky part is that although $j=k$ we need to keep the notation distinct to later accommodate the case where $j\neq k$. When this is the case the derivative changes slightly as the nominators derivative w.r.t $x_k$ is now 0, and there's an actual difference between differentiating w.r.t $x_k$ or $x_j$. Applying the derivate-of-a-fraction rule will now yield
+\begin{equation}
+\frac{\partial \textrm{Pr}(y_i = j|x)}{\partial x_k} = -p_{ij}p_{ik}\beta
+\end{equation}
+Combining these two expression is easily done with an indicator function, giving the final derivative
+\begin{equation}
+\frac{\partial \textrm{Pr}(y_i = j|x)}{\partial x_k}= p_{ij}(\mathds{1}_{(j=k)}-p_{ik})\beta
+\end{equation}
+
+In the case of the multinomial logit model the expression of $v_{ij}$ is different, and what's more important $x_{ij}$ is now constant across all alternatives $j$ so $x_{ij}=x_i$. Because of this, taking the derivative w.r.t some "$x_j$" is now meaningless, as there is no variation. A result is that as the sum in the denominator loops over $\beta_j$'s, each iteration will produce a non-0 result under differentiation. Again simply apply the same rule of differentiation to get the desired result, keeping in mind that $x$ is fixed across all alternatives, resulting in
+\begin{equation}
+\frac{\partial \textrm{Pr}(y_i = j|x)}{\partial x} = p_{ij}\left(
+\beta_j - \sum_{l=1}^J p_{il}\beta_l
+\right)
+\end{equation}
+
+Since the marginal effects are quite complicated and potentially non-linear, the log-odds ratio is often considered as an alternative. Defined simply as $\log(p_{ij}/p_{i1})$ where $p_{i1}$ is the probability of the baseline alternative, it is rather eqasy to show that this is equal to $x'_i \beta_j$ in the MNL case.
+
+\subsubsection{Independence of irrelative alternatives}
+A major drawback of the above models is that the relative probability of two choices $p_{ij}/p_{ik}$ does not depend on any other alternatives than $j$ and $k$, severely restricting how individuals can substitute between alternatives in this setup. 

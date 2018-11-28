@@ -1,0 +1,19 @@
+The counterfactual setup is a framework for understanding causality in regression frameworks. The setup assumes there exists a counterfactual outcome for each individual. Let $Y_1$ be the outcome with treatment, $Y_0$ the outcome without treatment and as before $D = \mathds{1}_{(treatment)}$. The size of interest is naturally the difference between the outcomes with and without treatment on an individual level. More formally there are two sizes to be interested in, the average treatment effect (ATE) and the average treatment effect on the treated (ATT), defined as
+\begin{equation}
+\begin{split}
+ATE &= E[Y_1 - Y_0] \\
+ATT &= E[Y_1 - Y_0| D = 1]
+\end{split}
+\end{equation}
+Note that the ATE is in many cases meaningless, as it includes the effect on those who were not treated, meaning it will not take into account selection effects. Two technical assumptions must be made for these to hold, namely that all variables are random draws, and that the treatment of one individual does not affect the probability of treatment for another individual.
+\\ \\
+We can write the actual effect as
+\begin{equation}
+\begin{split}
+Y &= (1-D)Y_0 + D Y_1 \\
+& = Y_0 + D(Y_1 - Y_0)
+\end{split}
+\end{equation}
+Using this equation it is clear that assuming that $D$ is independent of $Y_0, Y_1$ gives us that $E[Y|D=1] = E[Y_1]$, and similarly $E[Y|D = 0] = E[Y_0]$. With these results we can then show that when outcomes are independent of treatment status $ATE = ATT$. Intuitively this is simply because when $D$ is independent of $Y$'s, treatment is essentially random in the population meaning the treated are affected in the same way by treatment as the untreated would be.
+\\ \\
+The ATT is identified under less restrictive assumption, 

@@ -1,0 +1,24 @@
+As the name suggest non- and semiparametric estimation is a branch of econometrics concerned with estimating curves, densities etc. without assuming parametric functions for the relationships. Common for the nonarametric methods covered is that they essentially all are based off of generalizations of discrete counting estimators either in the form of histograms or binned scatterplots.
+
+\subsection{Kernel Density estimators}
+Begin by observing that a histogram can be constructed by counting the number of observations within a fixed distance from each $x_0$, so we can mathematically describe the value of a histogram at $x_0$ as
+\begin{equation}
+  \begin{split}
+  \hat{f}_{\textsf{hist}}(x_0) &= \frac{1}{N} \sum_{i=1}^N \frac{\mathds{1}_{(x_0 - h \leq x_i \leq x_0 + h)}}{2h} \\
+  & = \frac{1}{N\cdot h} \sum_{i=1}^N \mathds{1}_{\left(-1 \leq \frac{x_i - x_0}{h} \leq 1 \right)}
+\end{split}
+\end{equation}
+where $2h$ (later respecified simply as $h$) is the bandwidth, i.e. the left-right distance from $x_0$ within which we count each $x_i$. The reason we divide with $2h$ and not just $h$ is that we count within a distance of $h$ on both the left and right side of $x_0$. Generalizing this to a kernel density estimator (KDE) is then as simple as moving from counting observations with the $\mathds{1}$-function, to computing a weighted sum using a kernel $K(z)$, thus in general we have
+\begin{equation}
+  \hat{f}(x_0) = \frac{1}{Nh} \sum_{i=1}^N K\left( \frac{x_i - x_0}{h} \right)
+\end{equation}
+where $K(z)$
+\begin{itemize}
+  \item[A)] Is continuous and symmetric around 0, i.e. $K(z)=K(-z)$.
+  \item[B)] Integrates to one: $\int K(z) \textrm{d}z = 1$ and is mean zero: $\int z K(z) \textrm{d}z= 0$ (this is already given by the symmetry requirement).
+  \item[C)] Is at least convergent to 0, for $|z|\rightarrow \infty$.
+  \item[D)] Has non-infinite variance and constant, $\int z^2 K(z)\textrm{d}z = \kappa$, where $\kappa$ is some constant in $\mathbb{R}$.
+\end{itemize}
+The choice of kernel is not trivial, and several options exist. Often a regular gaussian distribution is used, but this has the disadvantage of assigning non-zero weight to all observations, meaning computations increase drastically with the number of observations. As alternatives triangle, uniform or Epanechnikov kernels might be used.
+
+\subsubsection{Bias of the KDE estimator}
