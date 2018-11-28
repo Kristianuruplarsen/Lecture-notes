@@ -1,0 +1,129 @@
+\paragraph{A brief motivation:} Auctions are widely used to sell items, both in ordinary auctions for antiques, but more importantly theory on auction design is widely used when designing tenders for public projects ranging from construction to medicine prices. Additionally auctions are used as a market mechanism in the advertising market, energy market etc.
+\\ \\
+Such markets are typically characterized by having only one or few sellers (or buyers in the case of tenders) with many potential buyers interested in winning any given item for sale. In general we can think of auctions as games of incomplete information because bidders valuations or the true value of the sold item is often unknown to participants.
+
+\subsection{Bayesian Nash equilibria in the auction setting}
+Consider a game featuring $N$ bidders, each of which must decide a strategy from their set of potential bids $B_i$. Each bidder draws a signal $x_i$ from the stochastic variable $X_i$ which distributed according to some density $F_i$. From this each bidder must choose a strategy $\beta_i: X_i \rightarrow B_i$ which gives a complete map from any possible signal to a bid in the set of possible bids $B_i$. Of course each bidder chooses this strategy with respect to the payoff function $\Pi_i(\bm B, \bm X) \rightarrow \mathbb{R}$.
+
+
+\begin{definition}{(Pure strategy) Nash Equilibrium:}
+  A pure strategy Nash equilibrium is a vector $\bm\beta^*$ such that for all bids $b_i \in B_i$ and for all players $i$:
+  \begin{equation}
+    E[\Pi_i(\bm\beta^*(X), X)] \geq E[\Pi_i(\beta_i(X_i), \bm\beta^*_{-i}(X_{-i}),X )]
+  \end{equation}
+  That is it is for no players a priori optimal to deviate from $\bm\beta$.
+\end{definition}
+
+Naturally an equilibrium like this does not have to be ex post optimal for all bidders, however if this is the case we can write
+\begin{equation}
+      E[\Pi_i(\bm\beta^*(x), x)] \geq E[\Pi_i(\beta_i(x_i), \bm\beta^*_{-i}(x_{-i}),x )]
+\end{equation}
+implying such a strategy will not be suboptimal to follow even when knowing the signals of all auction participants.
+\\ \\
+An important thing to note about nash equilibria is that they dont express anything about the optimality of $\bm\beta^*$ in situations where all other players are not already following it. The equilibrium concept simply states that assuming everybody follows $\bm\beta^*$ nobody would gain anything from deviating.
+
+\subsection{Simple private value auctions}
+Consider an auction in which a single unit of some item is to be sold. Assume there are $N$ bidders who each draw \textit{private} values $x_i$ from $X_i \sim F_i$. Assume further that all bidders are risk neutral and face no liquidity or budget constraints.
+\\ \\
+There are four obvious way such an auction could be run; either one of the two open auction formats
+\begin{enumerate}[align=left]
+  \item[\textit{English auctions:}] An open ascending auction in which the seller repeatedly raises the price until only one bidder is left. The price paid will be the price at which the second last bidder dropped out.
+  \item[\textit{Dutch auction:}] An open decending auction in which the seller initially sets a high price and then lowers it until the first bidder raises a hand to signal willingness to buy, at which point the item is sold.
+\end{enumerate}
+Or one of the sealed auction formats
+\begin{enumerate}[align=left]
+  \item[\textit{Sealed bid first price:}] in which all bidders submit an envelope containing their bid. The seller then ranks bids from highest to lowest and sells the item to the highest bidder at the price this individual bid.
+  \item[\textit{Sealed bid second price:}] which is similar to the first price model as the highest bid will still win the auction, but only pay the price of the second highest bid.
+\end{enumerate}
+
+\subsubsection{Strategic equivalence}
+It turns out these four formats pairs up nicely in terms of strategic equivalence, specifically we have
+\begin{align*}
+  &\textrm{Dutch auction} \approx \textrm{Sealed first price} && \textrm{(Strongly equivalent)}  \\
+  &\textrm{English auction} \approx \textrm{Sealed second price} && \textrm{(Weakly equivalent)}
+\end{align*}
+For the equivalence of Dutch and first price auctions, notice that in both cases the auction will be over before any meaningful information about other bidders have been revealed, and that the pricing is the same in both auctions - if you win you pay your bid. Thus either of these should entail the same bidding behaviour by auction participants.
+
+Similarly the English auction ends at the price bid by the second highest bidder (there's no reason to bid against oneself) so the pricing mechanism is the same. This equivalence is however weak in the sense that if signals $x_i$ are not independent the open bidding of the English auction reveals information about the distribution of signals through the auction.
+\\ \\
+As long as we are dealing with the simple symmetic private value auction this however means we can stick to finding equilibria in one of the two equivalent formats as equilibrium strategies will transfer from one to another.
+
+\subsubsection{Symmetric equilibrium strategy in the second price sealed bid auction}
+In a second price auction the payoff of participating in the auction is either a) ones own private value less the second highest bid, or b) zero, depending on who wins the auction, that is
+\begin{equation}
+  \Pi_i =
+  \begin{cases}
+  x_i - {\max}_{j\neq i} & \textrm{if } b_i > \max_{j\neq i} b_j \\
+ 0 & \textrm{otherwise}
+\end{cases}
+\end{equation}
+It turns out a symmetric equilibrium in this setting is simply $\beta(x) = x$, i.e. ``bid your valuation''. The proof is a quite simple argument:
+\begin{proof}{Symmetric eq. in second price auctions:}
+Assume all bidders are following $\beta(x)=x$. Now for some bidder $i$ this might result in winning the auction. In this case having bid even higher would not matter as the price is fixed at the second highest bid. Had $i$ bid lower it could likewise either result in still winning and still paying the same price, or loosing by bidding to low, in which case $i$ would forego a profit. Thus if $i$ wins the auction by following $\beta(x)=x$ there is no incentive to deviate. Alternatively bidder $i$ might loose the auction when bidding according to $\beta$. In this case $i$ could increase the price, but either $i$ would still loose and get 0, or $i$ would win but at a price $p>x_i$ resulting in a negative profit. $i$ could also consider lowering the price, but this wouldn't affect the payout which would still be 0.
+\\ \\
+In summary there is no situation in which bidders have an incentive to deviate from $\beta(x)=x$, so this is a symmetric Nash equilibrium.
+\end{proof}
+This result extends to the English auction.
+
+\paragraph{Note:} This is a very strong proof as it is independent of
+\begin{itemize}
+  \item Other bidders strategies
+  \item Realized valuations
+  \item Number of other bidders
+  \item Risk preferences
+  \item Whether other bidders act rationally
+\end{itemize}
+On top of this the format is extremely simple to implement.
+
+\subsubsection{Symmetric equilibrium strategy in the first price sealed bid auction}
+In the first price auctions things get a little bit more complicated. This is because bidders in first price auctions directly affect the price they will pay if they win the auction, giving them an incentive to bid lower than their true valuation, if they expect other bidders to have lower valuations than their own. In the first price auction the payoff of a bidder is
+\begin{equation}
+  \Pi_i = \begin{cases}
+  x_i - b_i & \textrm{if } b_i > max_{j \neq i} b_j \\
+  0 & \textrm{otherwise}
+\end{cases}
+\end{equation}
+Clearly bidding above $x_i$ is still suboptimal, but so is bidding $b_i=x_i$ as this is no better than loosing the auction.
+
+\begin{proof}{Symmetric equilibrium in the first price auction:}
+To derive a symmetric equilibrium strategy we will introduce some structure. We do this from the perspective of bidder 1 without loss of generality. Assume all valuations are IID so that $X_i \sim U(0,\omega)$. Define further a stochastic variable $Y_1=\max\{X_2,X_3,...,X_{N}\}$ as the maximum of all the other bidders valuations. We denote the CDF of $Y_1$ by $G(y)$, and due to identicallity and independence we have
+\begin{equation}
+  G(y) = \prod_{j \neq i} F_j(y) = (F(y))^{N-1}
+\end{equation}
+Assuming all other bidders follow some equilibrium strategy $\beta(x)$, bidder 1 only wins when $b_1 > \beta(Y_1) \Rightarrow Y_1 < \beta^{-1}(b_1)$ which occurs with probability $G(\beta^{-1}(b_1))$. Because the payoff from not winning is 0 bidder 1's expected payoff is therefore
+\begin{equation}
+  E[\Pi_i|x_1] = G(\beta^{-1}(b_1))(x_1 - b_1)
+\end{equation}
+Now taking the derivative w.r.t $b_1$ will yield the following optimality condition\footnote{Using that the derivative of $f^{-1}(x)$ is $1/f'(f^{-1}(x))$}
+\begin{equation}
+  \frac{g(\beta^{-1}(b_1))}{\beta'(\beta^{-1}(b_1))}(x_1 - b_1) = G(\beta^{-1}(b_1))
+\end{equation}
+We then impose that the equilibrium must be symmetric so that $b_1 = \beta(x_1)$, whereby we get
+\begin{equation}
+  \begin{split}
+  &\frac{g(x_1)}{\beta'(x_1)}(x_1-\beta(x_1)) = G(x_1) \qquad   \Leftrightarrow \\
+  &G(x_1) \beta'(x_1) + \beta(x_1)g(x_1) = g(x_1)x_1   \qquad \Leftrightarrow \\
+  & \frac{\partial}{\partial x_1}(G(x_1) \beta(x_1)) = g(x_1) x_1
+\end{split}
+\end{equation}
+Now use that $\beta(0)=0$ by assumption to write
+\begin{equation}
+  \begin{split}
+  \beta(x) &= \frac{1}{G(x)} \int_0^{x} y g(y) \ dy \\
+  &=E[Y_1 | Y_1 < x]
+\end{split}
+\end{equation}
+where i have omitted the subscript 1 to emphasise that this is a mapping for any draw of $x_1$.
+\end{proof}
+This result does not show us that there is a symmetric equilibrium strategy in the first price auction (we've assumed it), but that if one exists it would be to bid ones expectation of the second highest bid. The intuition is that this strategy balances the risk of loosing by bidding lower with the benefit of winning at a lower price.
+\\ \\
+Krishna also shows a proof which verifies that this is indeed a symmetric equilibrium in Chapter 2.
+
+\paragraph{Note:} this result is weaker than for the second price auctions. It is not ex-post optimal as bidders might regret their bids when they realize what others have bid. It also requires assumptions on distributions of other bidders valuations etc.
+
+
+\begin{definition}{Expected $k$-th highest draw from a uniform distribution:} Consider $N$ independent stochastic variables $X_i\sim U(\underbar{x}, \bar{x})$. The exptected value of the $k$-th highest draw of these $N$ variables is
+  \begin{equation}
+    \underbar{x} + \frac{N-k+1}{N+1}(\bar{x} - \underbar{x})
+  \end{equation}
+\end{definition}

@@ -1,0 +1,98 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{marginnote}
+\usepackage[top=2.5cm, bottom=2.5cm, left=3.3cm, right=3.3cm, marginparwidth = 2.8cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{gauss}
+\usepackage{xfrac}
+\usepackage[page]{totalcount}
+\usepackage{caption}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{placeins}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{bm}
+\setlength{\headheight}{15pt}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+\newtheorem{proposition}{Proposition}[section]
+
+% patch gauss macros for doing their work in `align'
+% and other amsmath environments; see
+% http://tex.stackexchange.com/questions/146532/
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\g@matrix
+ {\vbox\bgroup}
+ {\vbox\bgroup\normalbaselines}% restore the standard baselineskip
+ {}{}
+\makeatother
+\newcommand{\BAR}{%
+  \hspace{-\arraycolsep}%
+  \strut\vrule % the `\vrule` is as high and deep as a strut
+  \hspace{-\arraycolsep}%
+}
+
+\pagestyle{fancy}
+
+%subsections get indexed with letters
+%\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+%Navn og dato
+\lhead{Auctions - theory and practice}
+
+\rhead{\today}
+
+\cfoot{Page \thepage\ of \totalpages}
+
+
+%begynd dokumentet
+\begin{document}
+\begin{spacing}{1.213}
+
+\title{ Auctions - theory and practice  \\ \Large Winter 2018/2018 exam notes \\ \large \textit{University of Copenhagen - Department of Economics}  \\
+\normalsize Kristian Urup Olesen Larsen \\
+\normalsize Last updated \today  } % Supply information
+%\author{} % for the title page.
+\date{} % Use current date.
+\maketitle % Print title page.
+%\pagenumbering{roman} % Roman page number for toc
+\setcounter{page}{1} % Make it start with "ii"
+
+%\chapter{A Main Heading} % Make a "chapter" heading
+\pagenumbering{arabic} % Start text with arabic 1
+
+%--------------------------------------------------------------
+%-------SKRIV HERUNDER----------------------------------------
+%--------------------------------------------------------------
+\pagebreak
+
+\tableofcontents
+\newpage
+
+\section{Lecture 1 - Simple private value auctions}
+\input{lectures/lec01}
+
+\section{Lecture 2 - Private value auctions, equilibria and revenue equivalence}
+\input{lectures/lec02}
+
+\section{Lecture 3 - Extensions and exceptions to the simple auctions}
+\input{lectures/lec03}
+
+\section{Lecture 4 - Interdependent common value auctions}
+\input{lectures/lec04}
+
+\end{spacing}
+\end{document}

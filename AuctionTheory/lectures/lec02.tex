@@ -1,0 +1,154 @@
+
+In lecture 1 we have shown how the following two strategies each constitute equilibrium strategies in respectively first- and second price auctions
+\begin{equation}
+  \begin{split}
+    &\beta^{I*}(x) = E[Y_1 | Y_1 < x] \\
+    &\beta^{II*}(x) = x
+  \end{split}
+\end{equation}
+We also noted that the Dutch auction is a strong strategic equivalent of the first price auction, while the English auction is a weak equivalent of the second price auction. This implies that the derived equilibrium strategies are also equilibria in the Dutch/English auctions. So in an English price auction it is optimal to stay in the auction until the price reaches $x$, while in the Dutch auction one should submit a bid when the price has decended to exactly $E[Y_1 | Y_1 < x]$.
+
+\subsection{Verifying the equilibrium of first price auctions}
+When we showed in lecture 1 that the optimal strategy in a first price auction is to bid ones expectation of the second highest value given that one self has the highest valuation, we implicitly assumed that a symmetic equilibrium existed. Instead we only proved that if such an equilibrium existed, $\beta^{I*}(x)= E[Y_1|Y_1 < x]$ would be it. To show that this is indeed an equilibrium we need to show \textit{no incentive to deviate} when everybody is following the strategy.
+
+To show this first note that any alternative strategy $\alpha(x)$ can be represented as "pretending" to have valuation $z$ while playing $\beta$ as all strategies are rationally bounded by $\beta(0), \beta(\omega)$ when all other players are following $\beta$. In other words it would never be optimal in the first price setting to bid higher than the highest possible bid from other bidders, nor to bid lower than the lowest possible bid from other bidders. With this information we can then proceed
+
+\begin{proof}{No incentive to deviate under $\beta^{I*}(x)$:} From bidder 1's perspective, lets consider a situation where bidder 1 draws a valuation $x$, but pretends to have valuation $z$ when bidding (so $b = \beta(z)$), thus deviating from the proposed equilibrium, in this case
+  \begin{equation}
+    \begin{split}
+      \Pi(x, b) &= \underbrace{G(z)}_{P(win)} \cdot \underbrace{(x - \beta(z))}^{x - b} \\
+      &= G(z) x - G(z)E[Y_1 | Y_1 < z] \\
+      &= G(z) x - \int_0^z yg(y) \ dy \\
+      &= G(z) x - G(z) z + \int_0^z G(y) \ dy \qquad (\textrm{integrate by parts}) \\
+      &= G(z)(x-z) + \int_0^z G(y) \ dy
+    \end{split}
+  \end{equation}
+Now consider the difference in profits when following either $\beta(x)$ or $\beta(z)$ for any $z$:
+\begin{equation}
+  \begin{split}
+    \Pi(\beta(x), x) - \Pi(\beta(z), x) &= \int_0^x G(y) \ dy - G(z)(x-z) - \int_0^z G(y) \ dy \\
+    &= G(z)(z-x) - \int_x^z G(y) \ dy
+  \end{split}
+\end{equation}
+where the integral is joined according to $\int_a^b f(x) dx - \int_a^c f(x) dx = F(b)-F(a)-F(c)+F(a)$. Now all that is left is to convince oneself that this expression is always non-negative. If $z>x$ then $G(z)(z-x)$ is larger than $\int_x^z G(y) dy$ because $G(\cdot)$ is a CDF and thus increasing on the interval $[x,z]$. Likewise for $z<x$: because $G(\cdot)$ is increasing from $z$ to $x$ the integral of it will be larger than $G(z)(z-x)$.
+\end{proof}
+
+\subsection{Expected revenues in the first and second price auctions}
+\subsubsection{Expected revenue in the second price auction}
+The expected revenue is naturally of great interest to the seller of the item. To derive the expected revenue we follow a cookbook approach:
+\begin{itemize}
+  \item[1.] Find expected payment $E[m(x)]$ for a bidder with a given $x$
+  \item[2.] Find the ex ante expected payment before drawing $x$, $E[m(X)]$ by integrating over the support of $x$.
+  \item[3.] Find expected revenue by multiplying this ex ante expected payment with the number of bidders $N$ (if bidders are not identical this needs to be weighted.)
+\end{itemize}
+
+\begin{proof}{Revenue in the second price auction:}
+\paragraph{Step 1:} The ex-post expected payment of a bidder is simply the probability of winning $G(x)$ times the expected second highest price, given that bidder 1 wins:
+\begin{equation}
+  E[m^{II}(x)] = G(x)E[Y_1|Y_1 < x]
+\end{equation}
+\paragraph{Step 2:} Now integrating this over the support $[0, \omega]$ of $x$ yields
+\begin{equation}
+  E[m^{II}(X)] = \int_0^w m^{II}(x)f(x) \ dx
+\end{equation}
+By a bit of algebra this can be rewritten as
+\begin{equation}
+  E[m^{II}(X)] = \int_0^\omega y(1-F(y))g(y) \ dy
+\end{equation}
+\paragraph{Step 3:} Now finally multiplying this by $N$ yields
+\begin{equation}
+  \begin{split}
+    E[R^{II}] &= N \cdot E[m^{II}(X)] \\
+    &= N \cdot  \int_0^\omega y(1-F(y))g(y) \ dy \\
+    & E[Y_2^{(N)}]
+  \end{split}
+\end{equation}
+where $Y_2^{(N)}$ is simply the second highest of the $N$ draws (formerly written $Y_1$). Showing the last equality completely requires a bit of algebra (see Krishna p. 19).
+\end{proof}
+
+\subsubsection{Expected revenue in the first price auction}
+Now in the first price auction the ex-post expected payment will simply be the equilibrium bid (pay your bid) times the probability of winning, so
+\begin{equation}
+  E[m^I(x)] = G(x) E[Y_1|Y_1 < x]
+\end{equation}
+This is exactly identical to the expression from the second price auction, so the next steps will be identical to the ones above, and expected revenue will also be identical between the two formats. (This of course hints at a broader concept of \textit{revenue equivalence}).
+
+
+\subsubsection{Variation in realized revenue}
+Altough expected revenue is identical between the first and second price auctions, the realizations will not follow the same distributions (theyre only mean-identical). One way of seeing this is by noticing that in the second price auctions $\beta^{II}(x)=x$ so $\beta^{II}: [0, \omega] \rightarrow [0, \omega]$, while the shading in the first price auction implies bidding below $\omega$ even when drawing $x=\omega$. In other words \textbf{the spread of revenues is larger in second price auctions than in first price auctions.}
+
+
+\subsection{The revenue equivalence theorem}
+From the realization that expected revenues are identical in first and second price sealed bid auctions we imediately also learn that this must also be true for English and Dutch auctions, as these are strategic equivalent to one of the two sealed formats.
+
+\begin{proposition}{Revenue equivalence:}
+Consider any standard\footnote{Standard auctions are roughly auctions in which it is guaranteed that the highest bidder wins.} auction in which 1) values are identically distributed and 2) bidders are risk neutral. Then any symmetric and increasing equilibrium where the expected payment of a bidder with value 0 is 0 yield the same expected revenue.
+\end{proposition}
+
+\begin{proof}{Expected payment in "nice" auctions does not depend on the auction format:}
+Consider a standard auction $A$ and the expected payoff for a bidder with valuation $x$ who bids as if his valuation were $z$
+\begin{equation}
+  \Pi(z,x) = \underbrace{G(z)x}_{P(win)\cdot value} - \underbrace{m^A(z)}_{\text{expected payment}}
+\end{equation}
+The bidder will want to maximise his payoff w.r.t the type he plays, so taking
+\begin{equation}
+  \frac{\partial \Pi(z,x)}{\partial z} = g(z)x - \frac{\partial m^A(z)}{\partial z}
+\end{equation}
+stating that in optimum the bidder will seek to equate the marginal costs of changing the bid $\partial m^A(z)/\partial z$ to the marginal gains in expected value of winning $g(z)x$. Taking the integral on $[0,x]$ we get
+\begin{equation}
+  \begin{split}
+  m^A(z) &= \int_0^x yg(y) \ dy \\
+  &= G(x) E[Y_1 |Y_1 < x]
+\end{split}
+\end{equation}
+where we have used the fact that $m^A(0)=0$. This shows that expected payment is the same in any auction satisfying the above assumptions.
+\end{proof}
+\textcolor{red}{The intuition in this result is that ...}
+
+
+\subsection{Reserve prices}
+Reserve prices are a way to ensure a minimal selling price of items. Implementing a reserve price produces some additional mathematical notation, but the intuition in bidding strategies remain unchanged. In the second price auction it is still optimal to bid $x$, and in the first price auction it is still optimal to shade to the expected value of the second highest bid. The only complication is that if ones valuation is below $r$ one should not bid, and in the first price auction there will for some bidders be a binding lower limit to their shading, forcing them to bid $\max\{r, E[Y_1 | Y_1 < r]\}$.
+\\ \\
+From the sellers perspective the expected profit from the auction when setting a reserve price $r$ is
+\begin{equation}
+  \Pi_0 = N \cdot E[m^A(X,r)] + F(r)^{N} x_0
+\end{equation}
+where $m^A$ is a modified expected payment function, that takes into account that some bidders will be constrained in their bidding by the reserve price and $F(r)^N$ is the probability that all $N$ \textit{independent} bidders draw valuations below $r$. $x_0$ is the value of the item to the seller if unsold. To show that it is optimal to set a positive reserve price we will study the sign of the derivative of this expession when $r=x_0$. Krishna shows (this is just a bunch of algebra) that
+\begin{equation}
+  \frac{\partial \Pi_0}{\partial r} = N\left[1 - (r- x_0)\frac{f(r)}{1-F(r)}\right](1-F(r))G(r)
+\end{equation}
+Now when $r=x_0$ this collapses to
+\begin{equation}
+  \frac{\partial \Pi_0}{\partial r}\bigg|_{r=x_0} = N(1-F(r))G(r) > 0
+\end{equation}
+showing that it is optimal to set a reserve price larger than $0$. We can further deduce that the optimal reserve price reached when
+\begin{equation}
+  1 = (r^* - x_0) \frac{f(r^*)}{1-F(r^*)}
+\end{equation}
+This principle that it is optimal to set a positive reserve price in almost all auctions is known as the \textit{exclusion principle}.
+\\ \\
+The intuition to take away is that a) reserve prices only matter for the seller when 1 or 0 individuals draws above $r$, if more than 2 individuals draw valuations above $r$, the usual auction mechanism kicks in. Thus the seller needs to weight the risk of nobody drawing above $r$ (and thus being stuck with a value of $x_0$) against the chance that only one individual draws above $r$, in which case the reserve price becomes a binding minimum payment, increasing the salesprice. Since it is more likely that one individuals draws above $r$, than that nobody does, it is benefitial to set the reserve price above $x_0$.
+
+\paragraph{Note:} the exclusion principle does not hold with private affiliated values.
+
+\paragraph{Note:} Challenges for reserve prices - it requires that sellers are credibly commited to not reauctioning the auction if nobody bids above $r$. Bidders behavior might (in the real world) be affected by the reserve price, as it could be perceived as a signal that the item for sale is valuable.
+
+\paragraph{Note:} in the derivation we use $m^A$ as the expected payment in an arbitrary auction. For this proof to hold we need the auction we consider to be revenue equivalent with first and second price auctions with reserve prices. Look at Krishna p. 22 for math.
+
+
+\subsection{Key action tradeoffs}
+Auctioneers might care for more than earning a high profit, especially when there is some element of repetition in the auction setting. Auctioneers might care for maximizing revenue, efficent allocation, simlicity of auction format, long run competition (if auctions are repeated), fairness, public perception etc. In this list are some common tradeoffs.
+\\ \\
+The reserve price prevents efficient allocation, as some bidders are excluded even though their valuation is higher than $x_0$, but increases revenue.
+\\ \\
+Efficency is often sought for, but in more complex markets auctions might easily become to complicated for bidders to fully understand, making it difficult to arrive at the efficient equilibrium.
+
+\subsection{Key takeaways}
+\begin{itemize}
+\item The equilibirum in second price auctions is very simple, and therefore most likely a good prediction of actual auction outcomes. The equilibrium in first price auctions relies on assumptions about valuations being independent to actually predict anything we also need to assume known form of the value-distributions (and more?).
+\item in first price auctions the degree of shading is decreasing in the number of bidders $N$.
+\item  Expected revenue is the same in all \textit{standard auctions}
+\item The variance on realized revenue is higher in second price auctions than in first price auctions (as shading implies never bidding above $E[Y_1 | Y_1 < \omega] < \omega$).
+\item More bidders implies a higher expected revenue (less shading, more probability of someone drawing a high $x$).
+\item Reserve prices can increase the expected revenue (at the cost of potentially not being efficient, c.f. the two-state model). 
+\end{itemize}

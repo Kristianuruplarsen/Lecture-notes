@@ -2,9 +2,9 @@
 \usepackage{marginnote}
 \usepackage[top=2.5cm, bottom=2.5cm, left=3.3cm, right=3.3cm, marginparwidth = 2.8cm]{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage[english]{babel} 
-\usepackage[T1]{fontenc} 
-\usepackage{amsmath,amssymb} 
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
 \usepackage[table]{xcolor}
 \usepackage{verbatim}
 \usepackage{graphicx}
@@ -57,7 +57,7 @@
 \begin{document}
 \begin{spacing}{1.213}
 
-\title{ MACROECONOMICS \textbf{III} \\ \Large Winter 2016/2017 exam notes \\ \large \textit{University of Copenhagen - Department of Economics}  \\ 
+\title{ MACROECONOMICS \textbf{III} \\ \Large Winter 2016/2017 exam notes \\ \large \textit{University of Copenhagen - Department of Economics}  \\
 \normalsize Kristian Urup Olesen Larsen \\
 \normalsize Last updated \today  } % Supply information
 %\author{} % for the title page.
@@ -86,18 +86,18 @@ Optimal control theory is essentially a two step procedure, similar to the lagra
 These apply both in finite and infinite horizon settings and with a number of variations (below). OC problems consist of the following building blocks
 \begin{itemize}
 \item A \textbf{state} variable - the variables whose evolution is given by the LOM, most often $\dot{k}$, the state is always the dotted variable. Below this is called $y_t$
-\item A \textbf{control} variable: the variable we make choices about, and the one we maximize w.r.t, in most cases $c(t)$. Below $u(t)$ is the control variable. 
+\item A \textbf{control} variable: the variable we make choices about, and the one we maximize w.r.t, in most cases $c(t)$. Below $u(t)$ is the control variable.
 \item A \textbf{Law of Motion} (LOM) An equation describing the evolution of the state variable over time. Below given by $f(t,y,u)$
 \item An \textbf{objective function}, which is the function which is to be optimized over. Below $F(t,y,u)$
 \item A set of \textbf{boundary conditions}. In the general case below, these are $y_0$ given and $y_T$ free.
 \end{itemize}
-Formally we can write this as 
+Formally we can write this as
 \begin{align*}
 &\underset{u(t)}{\textrm{max }} \int_0^{T} \overbrace{F(t,y,\underbrace{u}_{\mathclap{\textrm{control}}})}^{\textrm{objective}} \textrm{d}t \\
-& \textrm{s.t. } \dot{y} = \overbrace{f(t,\underbrace{y}_{\mathclap{\textrm{state}}},u)}^{\textrm{LOM}} \\ 
+& \textrm{s.t. } \dot{y} = \overbrace{f(t,\underbrace{y}_{\mathclap{\textrm{state}}},u)}^{\textrm{LOM}} \\
 &y_0 \textrm{ given}, y_t \textrm{ free}, u(t) \in U, \forall t \in [0;T]
 \end{align*}
-To solve this we write up the hamiltonian 
+To solve this we write up the hamiltonian
 \begin{equation}
 H(t,y,u,\lambda) = F(t,y,u) + \lambda(t) f(t,y,u) \quad (= \textrm{objective} + \lambda(t) \cdot \textrm{LOM})
 \end{equation}
@@ -117,7 +117,7 @@ The model is essentially a microfounded version of the Solow model. It was propo
 
 %\paragraph{Setup of the Ramsey model} consists of two groups: Households (HH) and firms. HH receive income from labor and renting out capital). They spend money on consumption and savings - these markets must clear. To begin with, only physical capital and no growth.
 
-%\paragraph{HH} are infinitely lived, with a budget constraint of 
+%\paragraph{HH} are infinitely lived, with a budget constraint of
 %\begin{equation}
 %\dot{k} = r(t)k(t) + w_t - s_t
 %\end{equation}
@@ -156,21 +156,21 @@ U(0) &= \int_0^{\infty} e^{-\rho t} u(c_t) e^{nt} \textrm{ d}t \\
 \end{align*}
 where it is standard to assume $\rho > n$ so that $U(0)$ is finite. The intuition behind this is that total (potential) consumption grows, even with constant $c$ because of population growth so if HH's are to impatient they'll be infinitely happy waiting forever before beginning to consume.
 
-HH maximize utility subject to a budget constraint for each point in time, the standard budget constraint is 
+HH maximize utility subject to a budget constraint for each point in time, the standard budget constraint is
 \begin{equation}
 c(t) + \dot{a}(t) + n a(t) = r(t)a(t) + w(t)
 \end{equation}
 Here $c$ and $w$ are standard - $a$ denotes assets. The $na(t)$ term originates from the growing population. Note that households are restricted by asset - not capital - holdings. This is because HH's could theoretically borrow from themselves through bonds, so that $A(t) = K(t) + B(t)$. Because HH's are identical, in equilibrium we'll have $B(t) = 0$ though. The budget constraint changes depending of the setup. Common modifications are taxes on $w_t$, $r_ta_t$ or financial intermediaries.
 
-\paragraph{The no-ponzi-game (NPG) condition} is a restriction we impose to prevent infinite borrowing. Unlike the TVC it's not necessary for solving the problem, but we use it to enforce nice properties on the solution. It can be stated as 
+\paragraph{The no-ponzi-game (NPG) condition} is a restriction we impose to prevent infinite borrowing. Unlike the TVC it's not necessary for solving the problem, but we use it to enforce nice properties on the solution. It can be stated as
 \begin{equation}
 \lim_{t \rightarrow \infty} a(t) e^{- \int_0^t (r(s)-n) \textrm{ d} s} \geq 0
 \end{equation}
 
-Thus it states that the present value of all further assets must be positive and not infinite (the "$\geq$" sign indicates that the value is in $\mathbb{R}^+$ with zero). 
+Thus it states that the present value of all further assets must be positive and not infinite (the "$\geq$" sign indicates that the value is in $\mathbb{R}^+$ with zero).
 
 \subsection{The Ramsey model - setup for firms }
-For firms the procedure is standard profit maximization with constant returns to scale giving 
+For firms the procedure is standard profit maximization with constant returns to scale giving
 \begin{align*}
 &R(t) = \frac{\partial F(K,L)}{\partial K} = \frac{\partial L \cdot F(\frac{K}{L},1)}{\partial K} = \frac{\partial F(\frac{K}{L},1)}{\partial \frac{K}{L}} = f'(k) \\
 &w(t) =  \frac{\partial F(K,L)}{\partial L} = \frac{\partial L \cdot F(\frac{K}{L},1)}{\partial L} =\underbrace{F(\frac{K}{L},1) + L\frac{\partial F(\frac{K}{L},1)}{\partial \frac{K}{L}} \frac{\partial \frac{K}{L}}{\partial L}}_{\textrm{using the product rule}} =  f(k) - kf'(k)
@@ -182,42 +182,42 @@ The only thing to take note of is that the profit function is sometimes modified
 whereby the result for the real interest rate changes slightly, because of the $-\delta$.
 
 \subsection{Solving the Ramsey model}
-with the above we can state the HH problem as 
+with the above we can state the HH problem as
 \begin{align*}
-&\qquad\underset{c_t}{\textrm{max }} \int_0^{\infty} e^{-(\rho-n) t} u( c_t ) \textrm{ d}t 
+&\qquad\underset{c_t}{\textrm{max }} \int_0^{\infty} e^{-(\rho-n) t} u( c_t ) \textrm{ d}t
 \\
-&\textrm{s.t.  } c(t) + \dot{a}(t) + n a(t) = r(t)a(t) + w(t) 
+&\textrm{s.t.  } c(t) + \dot{a}(t) + n a(t) = r(t)a(t) + w(t)
 \\
-&\textrm{\&  }  \lim_{t \rightarrow \infty} a(t) e^{- \int_0^t (r(s)-n) \textrm{ d} s} \geq 0 
+&\textrm{\&  }  \lim_{t \rightarrow \infty} a(t) e^{- \int_0^t (r(s)-n) \textrm{ d} s} \geq 0
 \\
 & \qquad a_0 \textrm{ given}
 \end{align*}
 This can be solved with optimal control by following the below standard procedure in 6 steps:
 \begin{itemize}
 \item[1)] Set up the hamiltonian $H = e^{-(\rho -n)t}u(c_t) - \lambda(t)(r_t a_t + w_t - n a_t - c_t)$
-\item[2)] Find derivatives w.r.t the state $a_t$, the costate $\lambda$ and the control $c_t$ 
+\item[2)] Find derivatives w.r.t the state $a_t$, the costate $\lambda$ and the control $c_t$
 \begin{align}
 &\frac{\partial H}{\partial c_t} = e^{-(\rho -n)t}u'(c_t) - \lambda(t) &&(=0) \label{eq: H1}
-\\ 
+\\
 &\frac{\partial H}{\partial a_t} = \lambda(t)[r_t -n] && (= - \dot{\lambda}(t) ) \label{eq: H2}
 \\
 & \frac{\partial H}{\partial a_t} = r_t a_t + w_t - n a_t - c_t && (=\dot{a}_t) \label{eq: H3}
 \end{align}
 \item[3)] differentiate (\ref{eq: H1}) w.r.t $t$ to get $-\dot{\lambda}_t = -(\rho-n)e^{-(\rho -n)t}u'(c_t) +e^{-(\rho -n)t}u''(c_t) \dot{c}_t$
-\item[4)] Insert step 3 in (\ref{eq: H2}) so that 
+\item[4)] Insert step 3 in (\ref{eq: H2}) so that
 \begin{align*}
-&\lambda(t)[r_t -n] = -(\rho-n)e^{-(\rho -n)t}u'(c_t) +e^{-(\rho -n)t}u''(c_t) \dot{c}_t 
+&\lambda(t)[r_t -n] = -(\rho-n)e^{-(\rho -n)t}u'(c_t) +e^{-(\rho -n)t}u''(c_t) \dot{c}_t
 \end{align*}
 \item[5)] Insert (\ref{eq: H1}) in step 4
 \begin{align*}
-&e^{-(\rho -n)t}u'(c_t)[r_t -n] = -(\rho-n)e^{-(\rho -n)t}u'(c_t) +e^{-(\rho -n)t}u''(c_t) \dot{c}_t 
+&e^{-(\rho -n)t}u'(c_t)[r_t -n] = -(\rho-n)e^{-(\rho -n)t}u'(c_t) +e^{-(\rho -n)t}u''(c_t) \dot{c}_t
 \end{align*}
 \item[6)] Reaarange the expression to get the Euler equation
 \begin{align*}
 & \frac{\dot{c(t)}}{c(t)} = \overbrace{\frac{-u'(c_t)}{c_t u''(c_t)}}^{\textrm{IES}}(r(t) - \rho)
 \end{align*}
 \end{itemize}
-by assuming CRRA utility $u = \frac{c(t)^{1-\sigma)}}{1-\sigma}$ the Euler equation becomes even simpler, because of the constant IES 
+by assuming CRRA utility $u = \frac{c(t)^{1-\sigma)}}{1-\sigma}$ the Euler equation becomes even simpler, because of the constant IES
 \begin{equation}
 \frac{\dot{c(t)}}{c(t)} = \frac{1}{\sigma}(r(t) - \rho)
 \end{equation}
@@ -274,12 +274,12 @@ The final phase-diagram. Note that the saddle path can be constructed from the d
 \paragraph{Changes in parameters} \marginpar{\footnotesize Add graphs with examples} are analysed simply by looking at the Euler equation, and the budget constraint with $\dot{k}_t = 0$ imposed. In case a tax or similar is changed, it often shift one or both curves.
 \begin{itemize}
 \item For permanent changes in period $0$ capital is fixed, so household jump vertically to the new saddle path at $t_0$, and then converge along the saddle path to the new equilibrium.
-\item For temporary changes, households only move some of the distance to the new saddle path, before begining to converge back to the old saddle path. Again remember that $k_0$ is fixed to begin with (they start with a vertical jump) and be careful that in $t_0$ the arrows for motions outside of equilibrium are changed. 
+\item For temporary changes, households only move some of the distance to the new saddle path, before begining to converge back to the old saddle path. Again remember that $k_0$ is fixed to begin with (they start with a vertical jump) and be careful that in $t_0$ the arrows for motions outside of equilibrium are changed.
 \end{itemize}
 
 \section{The OLG model}
 \subsection{OLG - setup for Households}
-The OLG model is a discrete time model, where agent live for two periods. The population is thus the sum of $L_t$ and $L_{t-1}$ where $L_t = (1+n)L_{t-1}$ describes the number of births in period $t$. They derive utility from consumption so that the lifetime utility of an individual born in period $t$ is 
+The OLG model is a discrete time model, where agent live for two periods. The population is thus the sum of $L_t$ and $L_{t-1}$ where $L_t = (1+n)L_{t-1}$ describes the number of births in period $t$. They derive utility from consumption so that the lifetime utility of an individual born in period $t$ is
 \begin{equation}
 U_t = u(c_{1t}) + \frac{1}{1+ \rho} u(c_{2t+1})
 \end{equation}
@@ -299,7 +299,7 @@ like in the Ramsey model firms seek to maximize profit. It is standard to assume
 &r_t = f'(k) \\
 &w_t = f(k) - kf'(k)
 \end{align*}
-It's worth noting that in order to derive a simple expression for $k_{t+1}(k_t)$ one typically arrives at an expression similar to $\frac{f(k_{t+1})}{1+f(k_{t+1})- \delta}$ - which requires $\delta =1$ to reduce further. 
+It's worth noting that in order to derive a simple expression for $k_{t+1}(k_t)$ one typically arrives at an expression similar to $\frac{f(k_{t+1})}{1+f(k_{t+1})- \delta}$ - which requires $\delta =1$ to reduce further.
 \subsection{Solving the OLG model}
 The model can be solved with the Lagrange method, giving the OLG equivalent of the Euler-equation from Ramsey, begin by setting up the lagrange equation
 \begin{align*}
@@ -315,7 +315,7 @@ u'(w_t - s_t) = \frac{1 + r_{t+1}}{1+ \rho}u'( (1+r_{t+1})s_t)
 \end{equation}
 By assuming a "nice" utility function (i.e. $\log(\cdot))$ one can derive an actual expression for $s_t=s_t(w_t, r_{t+1})$.
 
-\paragraph{A LOM for capital} can be derived after a short digression about aggregates in OLG. The aggregate capital accumulation in the economy is 
+\paragraph{A LOM for capital} can be derived after a short digression about aggregates in OLG. The aggregate capital accumulation in the economy is
 \begin{align*}
 &K_{t+1} = \underbrace{S_t -K_t}_{\mathclap{\textrm{total savings of the young minus the dissaving of the old}}} + (1-\delta)K_t && \Leftrightarrow \\
 & k_{t+1}(1+n) = s_t - \delta k_t
@@ -328,11 +328,11 @@ k_{t+1} &= \frac{1}{1+n} (s_t(w_t, r_{t+1}) - \delta k_t ) \\
 
 \subsection{Analysis of the OLG model}
 An important note to make is the concept of \textit{dynamic efficiency} (it's sometimes asked in exams). An economy is dynamically efficient if $r_t >n$. When this is not the case, the government can redistribute wealth between generations with a return of $1+n$ thus beating the market for savings. These situations arise in OLG because living generations cannot enter into contracts with the unborn.
-\paragraph{Golden rule savings} (The maximum consumption on the BGP) can be determined from the $\dot{k}=0$ locus. Simply see that $c^* = f'(k^*)-nk^*$, which implied $f(k^G) = n$. For the actual level, start by plugging in $k_{t+1} = k_t = k^*$ in the capital accumulation function $k_{t+1} (k_t)$ which gives a level of $k^*$ as a function of parameters. With log-utility and CD production this becomes 
+\paragraph{Golden rule savings} (The maximum consumption on the BGP) can be determined from the $\dot{k}=0$ locus. Simply see that $c^* = f'(k^*)-nk^*$, which implied $f(k^G) = n$. For the actual level, start by plugging in $k_{t+1} = k_t = k^*$ in the capital accumulation function $k_{t+1} (k_t)$ which gives a level of $k^*$ as a function of parameters. With log-utility and CD production this becomes
 \begin{align*}
 k^* = \left(\frac{1-\alpha}{(1+n)(2+ \rho)}\right)^{\frac{1}{\alpha-1}}
 \end{align*}
-and since $f'(k_t) = \alpha k_t ^{\alpha-1}$ we can derive that households choose savings so that 
+and since $f'(k_t) = \alpha k_t ^{\alpha-1}$ we can derive that households choose savings so that
 \begin{align*}
 f'(k^*) = \frac{\alpha}{1-\alpha}(1+n)(2+\rho)
 \end{align*}
@@ -357,17 +357,17 @@ The output is produced with the production function which obey INADA conditions.
 \begin{align*}
 Y_t = A_t F(K_t, L_t)
 \end{align*}
-There's assumed to be an upward trend in factor productivity $X_t = \gamma X_{t-1}$ - this ensures long run growth. Capital evolves as is standard $K_{t-1} = I_t + (1-\delta) K_t$. Further because output is for either consumption or investment 
+There's assumed to be an upward trend in factor productivity $X_t = \gamma X_{t-1}$ - this ensures long run growth. Capital evolves as is standard $K_{t-1} = I_t + (1-\delta) K_t$. Further because output is for either consumption or investment
 \begin{align*}
 & Y_t = C_t + I_t
 \end{align*}
 
 \subsection{RBC - setup for households}
-HH's split their time between leisure $L_t$ and labor $N_t$: $L_t + N_t = H$ (this implies endogenous labor supply in the model), normally normalized to 
+HH's split their time between leisure $L_t$ and labor $N_t$: $L_t + N_t = H$ (this implies endogenous labor supply in the model), normally normalized to
 \begin{align*}
 L_t + N_t = 1
 \end{align*}
-Each individual lives forever and thus maximized \textit{expected} utility from a utility function of the from 
+Each individual lives forever and thus maximized \textit{expected} utility from a utility function of the from
 \begin{align*}
 U_0 = E_0 \sum_{t=0}^{\infty} b^t U(C_t, L_t), \qquad 0<b<1
 \end{align*}
@@ -379,7 +379,7 @@ Most often the problem is scaled to per-capita variables, and the conditions col
 
 
 \subsection{Solving the RBC model}
-The model is solved with (a modified version of) the Lagrange method. 
+The model is solved with (a modified version of) the Lagrange method.
 \begin{itemize}
 \item[1)] Begin by writing the Lagrange function (note the parentheses)
 
@@ -387,12 +387,12 @@ The model is solved with (a modified version of) the Lagrange method.
 \mathcal{L} = E_0 \left\{ \sum_{t=0}^{\infty} \beta^t \left[ u(c_t, L_t) + \lambda_t (w_t N_t + (1+R_t - \delta)k_t + \Pi_t - c_t - \gamma k_{t+1}) \right] \right\}
 \end{equation*}
 
-\item[2)] Now expand the lagrange function over two periods, for example $T$ and $T+1$ 
+\item[2)] Now expand the lagrange function over two periods, for example $T$ and $T+1$
 \small
 \begin{align*}
 \mathcal{L} &= E_T \left\{  \beta^{T} \left[ u(c_{T}, L_{T}) + \lambda_{T} (w_{T} N_{T} + (1+R_{T} - \delta)k_{T} + \Pi_{T} - c_{T} - \gamma k_{T+1}) \right] \right\} \\
 & \quad + E_T \big\{  \beta^{T+1} [ u(c_{T+1}, L_{T+1}) + \lambda_{T+1} (w_{T+1} N_{T+1}  \\
-& \qquad + (1+R_{T+1} - \delta)k_{T+1} + \Pi_{T+1} - c_{T+1} - \gamma k_{T+2}) ] \big\} 
+& \qquad + (1+R_{T+1} - \delta)k_{T+1} + \Pi_{T+1} - c_{T+1} - \gamma k_{T+2}) ] \big\}
 \end{align*}
 \normalsize
 \item[3)] Now this expression shows that for the choice of $k_{t+1}$ there are effects from both period $T$ and $T+1$, but no further periods. Thus we can find first order conditions (note we can drop $E_{T}$ on period $T$ variables - also the derivative w.r.t $\lambda_T$ is left out because it just produces the budget constraint)
@@ -416,26 +416,26 @@ The model is solved with (a modified version of) the Lagrange method.
 
 \section{The nominal rigidity model(s)}
 \subsection{Deriving a Philips curve (the Lucas way)}
-Imagine a situation where producers observe prices $P_i$ in the economy, along with some average price level $P$, but they cannot separate price changes from changing demand, and price changes from changes in $P$.Then how will firms react to changes in level price level? We begin by deriving a Philips curve, assume that each household is also a producer, which maximizes 
+Imagine a situation where producers observe prices $P_i$ in the economy, along with some average price level $P$, but they cannot separate price changes from changing demand, and price changes from changes in $P$.Then how will firms react to changes in level price level? We begin by deriving a Philips curve, assume that each household is also a producer, which maximizes
 \begin{equation}
 U_i = C_i - \frac{1}{\gamma}L_i^{\gamma}
 \end{equation}
-Where $C_i$ is consumption, $Y_i$ is demand for good $i$ and $L_i$ is labor supply. Also assume linear production technology $Y_i = L_i$ and $P = \bar{P}_i$. Lastly note that total (real) revenues of a good is $\frac{P_i}{P}Y_i$ which must be equal to consumer $i$'s total consumption $C_i$, thus 
+Where $C_i$ is consumption, $Y_i$ is demand for good $i$ and $L_i$ is labor supply. Also assume linear production technology $Y_i = L_i$ and $P = \bar{P}_i$. Lastly note that total (real) revenues of a good is $\frac{P_i}{P}Y_i$ which must be equal to consumer $i$'s total consumption $C_i$, thus
 \begin{align*}
 &\underset{Y_i}{\textrm{max }} U_i && \Rightarrow
-&&& \frac{\partial }{\partial Y_i} \frac{P_i}{P}Y_i - \frac{1}{\gamma}Y_i^{\gamma}  = 0 &&&& \Rightarrow \\ 
+&&& \frac{\partial }{\partial Y_i} \frac{P_i}{P}Y_i - \frac{1}{\gamma}Y_i^{\gamma}  = 0 &&&& \Rightarrow \\
 &\frac{P_i}{P} = Y_i^{\gamma-1}
 \end{align*}
-Taking log's of this (note $p = \log(P)$ etc) and rearranging gives us  
+Taking log's of this (note $p = \log(P)$ etc) and rearranging gives us
 \begin{align*}
 y_i = \frac{1}{\gamma -1 }(p_i - p) = \frac{1}{\gamma -1 }r_i
 \stepcounter{equation}\tag{\theequation}\label{eq: ybasic}\
 \end{align*}
-Further not that from the quantity theory of money $y = m-p$, so (\textcolor{red}{how?}) aggregate demand on logarithmic form is given by \marginpar{\footnotesize Figure out how/ why questions} 
+Further not that from the quantity theory of money $y = m-p$, so (\textcolor{red}{how?}) aggregate demand on logarithmic form is given by \marginpar{\footnotesize Figure out how/ why questions}
 \begin{align*}
 y_i = y + z_i - \eta (p_i - p) = m-p + z_i - \eta (p_i - p)
 \end{align*}
-$z_i$ is a taste shock and $\eta>0$. Since each producer only observes $p_i$ and $p$ and not their decomposition $= p + (p_i - p)$, they have to guess the size of $r_i = p_i - p$ (the relative prices). We can derive $E[r_i | p_i ]$ by assuming $m \sim N(E(m),V_m)$ and $z \sim N(0,V_z)$ (\textcolor{red}{why?}), and using the rule \marginpar{\footnotesize Rasmus derives variance in a different (possibly more correct) way} 
+$z_i$ is a taste shock and $\eta>0$. Since each producer only observes $p_i$ and $p$ and not their decomposition $= p + (p_i - p)$, they have to guess the size of $r_i = p_i - p$ (the relative prices). We can derive $E[r_i | p_i ]$ by assuming $m \sim N(E(m),V_m)$ and $z \sim N(0,V_z)$ (\textcolor{red}{why?}), and using the rule \marginpar{\footnotesize Rasmus derives variance in a different (possibly more correct) way}
 \begin{align*}
 \begin{pmatrix}
 x \\
@@ -454,11 +454,11 @@ E(y)
 \Rightarrow
 E(x|y) = E(x) + \frac{\sigma_1^2}{\sigma_2^2}(y - E(y))
 \end{align*}
-by which it follows that 
+by which it follows that
 \begin{align*}
 E(r_i|p_i) = E(r_i) + \frac{V_r}{V_r + V_p}(p_i - E(p))
 \end{align*}
-where the nominator is simply the variance of $r_i$ and the denominator can be found from $p_i = p + (p_i -p) = p+ r_i$ which implies $var(p_i) = V_p + V_r$. Now recall the previous expression for $y_i$ in (\ref{eq: ybasic}) and assume \textit{certainty equivalence} to replace $r_i$ with $E(r_i|p_i)$ 
+where the nominator is simply the variance of $r_i$ and the denominator can be found from $p_i = p + (p_i -p) = p+ r_i$ which implies $var(p_i) = V_p + V_r$. Now recall the previous expression for $y_i$ in (\ref{eq: ybasic}) and assume \textit{certainty equivalence} to replace $r_i$ with $E(r_i|p_i)$
 \begin{align*}
 y_i = \frac{1}{\gamma -1}r_i = \frac{1}{\gamma -1}\frac{V_r}{V_r + V_p} (p_i - E(p))
 \end{align*}
@@ -486,31 +486,31 @@ From these equations we can analyse the effects of known and unknown shocks to $
 & z_i = (b+ \eta)r_i \\
 & r_i = \frac{z_i}{b+ \eta} \rightarrow V_r = \frac{V_z}{(b+ \eta)^2}
 \end{align}
-Likewise from the $p(m, E[m])$ expression we have 
+Likewise from the $p(m, E[m])$ expression we have
 \begin{align*}
 V_p = \frac{V_m}{(1+b)^2}
 \end{align*}
-and thus we can finally insert these in the expression for $b$ 
+and thus we can finally insert these in the expression for $b$
 \begin{equation}
 b = \frac{1}{\gamma -1 } \frac{ \frac{V_z}{(b+\eta)^2)} }{ \frac{V_z}{(b+\eta)^2} + \frac{V_m}{(1+b)^2} } = \frac{V_z}{V_z + \frac{(b + \eta)^2}{(1+b)^2} V_m}
 \end{equation}
 
-\paragraph{Deriving a Philips curve} requires assuming some LOM for $m$, if we take $m_t = m_{t-1} + c + u_t$ we have $E(m_t)=m_{t-1}+c$ and thus 
+\paragraph{Deriving a Philips curve} requires assuming some LOM for $m$, if we take $m_t = m_{t-1} + c + u_t$ we have $E(m_t)=m_{t-1}+c$ and thus
 \begin{align*}
 &p_t  = E[m_t] + \frac{b}{1+b}(m_t- E[m_t]) = m_{t-1} + c + \frac{b}{1+b} u_t \\
 & y_t  = \frac{b}{1+b} u_t
 \end{align*}
-Now taking the first difference of $p_t$ will yield inflation 
+Now taking the first difference of $p_t$ will yield inflation
 \begin{align*}
-\pi_t &= m_{t-1} - m_{t-2} + \frac{b}{1+b}(u_t -u_{t-1}) = \underbrace{c + u_{t}}_{\mathclap{m_{t-1}-m_{t-2}}} + \frac{b}{1+b}(u_t -u_{t-1} ) 
+\pi_t &= m_{t-1} - m_{t-2} + \frac{b}{1+b}(u_t -u_{t-1}) = \underbrace{c + u_{t}}_{\mathclap{m_{t-1}-m_{t-2}}} + \frac{b}{1+b}(u_t -u_{t-1} )
 \\
 &= c + \frac{1}{1+b}u_t + \frac{b}{1+b}u_{t-1}
 \end{align*}
-Now use that $y_t  = \frac{b}{1+b} u_t \Rightarrow \frac{1}{b}y_t = \frac{1}{1+b}u_t$ and $E_{t-1}[\pi_t] = c +\frac{b}{1+b}u_{t-1}$ to get 
+Now use that $y_t  = \frac{b}{1+b} u_t \Rightarrow \frac{1}{b}y_t = \frac{1}{1+b}u_t$ and $E_{t-1}[\pi_t] = c +\frac{b}{1+b}u_{t-1}$ to get
 \begin{equation}
 \pi_t = \frac{1}{b}y + E_{t-1}[\pi_t]
 \end{equation}
-This shows that output and inflation is positively correlated again, which is a proper Philips curve. We see that only unobserved shocks affect real variables. Imagine a shift in the average money growth at period $t$: $c \rightarrow c_t$, if the change is unobserved $E_{t-1}[\pi_t] = c + \frac{b}{1+b}u_{t-1}$ and thus 
+This shows that output and inflation is positively correlated again, which is a proper Philips curve. We see that only unobserved shocks affect real variables. Imagine a shift in the average money growth at period $t$: $c \rightarrow c_t$, if the change is unobserved $E_{t-1}[\pi_t] = c + \frac{b}{1+b}u_{t-1}$ and thus
 \begin{align*}
 \pi_t = c_t - \underbrace{c + E_{t-1}[\pi_t]}_{= \frac{b}{1+b}u_{t-1}} + \frac{1}{b}y_t
 \end{align*}
@@ -519,16 +519,16 @@ If the change is observed, however $E_{t-1}[\pi_t] = \textcolor{purple}{c_t} + \
 \subsubsection{Next step: modeling price setting behavior}
 The Lucas model predicts that high demand volatility $V_m$ should reduce the real effects of changes in aggregate demand. This hypothesis however has less explanatory power compared to the nominal rigidities hypothesis. Again log-demand is given by $y_i = y - \eta(p_i - p)$ also the price set by a producer will be positively related to aggregate demand (because higher output drives up wages through the assumption of increasing disutility of labor)
 \begin{align*}
-&p_i - p = \phi(m - p), \qquad \phi \geq 0 
-  \stepcounter{equation}\tag{\theequation}\label{eq: phiandy}\ 
+&p_i - p = \phi(m - p), \qquad \phi \geq 0
+  \stepcounter{equation}\tag{\theequation}\label{eq: phiandy}\
 \\
 & p_i = \phi m + (1-\phi) p
 \end{align*}
-If prices are set every period, assume that $m$ is random, prices must be set conditional on the available information $I$. 
+If prices are set every period, assume that $m$ is random, prices must be set conditional on the available information $I$.
 \begin{align*}
 p_i = \phi E[m|I] + (1-\phi) E[p|I]
 \end{align*}
-Assuming that everyone behaves in the same way $p_i = p$ and thus $E[p|I]= E[m|I]$. Equilibrium condtions are then 
+Assuming that everyone behaves in the same way $p_i = p$ and thus $E[p|I]= E[m|I]$. Equilibrium condtions are then
 \begin{align*}
 &p = p_i = E[p|I] = E[m|I] \\
 & y = m-p = m- E[m|I]
@@ -542,7 +542,7 @@ In the Fischer model each firm/HH sets prices for more than one (typically two) 
 \begin{minipage}{0.8\textwidth} % choose width suitably
 \def\svgwidth{\columnwidth}
 \input{drawing.pdf_tex}
-{\footnotesize 
+{\footnotesize
 \\
 Outline of how the equilibrium values of $p_t$ and $y_t$ are derived in the Fischer model - the actual derivation can be found below.
 \par}
@@ -551,11 +551,11 @@ Outline of how the equilibrium values of $p_t$ and $y_t$ are derived in the Fisc
 \marginpar{\footnotesize Redo figure?}
 \FloatBarrier
 
-Let $p_t^i$ be the price set at period $t$ conditional on the information available in period $t-i$. Thus 
+Let $p_t^i$ be the price set at period $t$ conditional on the information available in period $t-i$. Thus
 \begin{align*}
-&p_t = \frac{1}{2}(p_t^1 + p_t^2) 
+&p_t = \frac{1}{2}(p_t^1 + p_t^2)
 \end{align*}
-Using the fact that $p_i = \phi m + (1-\phi) p$ 
+Using the fact that $p_i = \phi m + (1-\phi) p$
 \begin{align*}
 & p_t^* = \phi m_t + (1-\phi)\frac{1}{2}(p_t^1 + p_t^2)
 \end{align*}
@@ -564,20 +564,20 @@ Price setters are rational and use all information, so $p_t^1 = E_{t-1}[p_t^*]$ 
 &p_t^1 = \phi E_{t-1}[m_t] + (1-\phi) \frac{1}{2} \underbrace{(p_t^1 + p_t^2)}_{\textrm{known at time }t-1} \label{eq: p1org} \\
 & p_t^2 = \phi E_{t-2}[m_t] + (1-\phi) \frac{1}{2} (E_{t-2}[p_t^1] +\underbrace{ p_t^2}_{\mathclap{\textrm{known at time }t-2}}) \label{eq: p2org}
 \end{align}
-\paragraph{Solving the model} begins with solving for $p_t^1$ in (\ref{eq: p1org}) above which will give 
+\paragraph{Solving the model} begins with solving for $p_t^1$ in (\ref{eq: p1org}) above which will give
 \begin{align*}
 &p_t^1 = \phi E_{t-1}[m_t] + (1-\phi) \frac{1}{2} (p_t^1 + p_t^2) \\
 & p_t^1 \left[
 1- (1-\phi)\frac{1}{2}
 \right] = E_{t-1}[m_t] + (1-\phi) \frac{1}{2}  p_t^2 \\
 & p_t^1 = \frac{2\phi}{1+\phi} E_{t-1}[m_t] + \frac{1-\phi}{1+\phi} p_t^2
-  \stepcounter{equation}\tag{\theequation}\label{eq: p1mod}\ 
+  \stepcounter{equation}\tag{\theequation}\label{eq: p1mod}\
 \end{align*}
-Likewise for $p_t^2$ we get from (\ref{eq: p2org}) 
+Likewise for $p_t^2$ we get from (\ref{eq: p2org})
 \begin{align*}
-p_t^2 = \frac{2\phi}{1+\phi} E_{t-2}[m_t] + \frac{1-\phi}{1+\phi} E_{t-2}[p_t^1]   \stepcounter{equation}\tag{\theequation}\label{eq: p2mod}\ 
+p_t^2 = \frac{2\phi}{1+\phi} E_{t-2}[m_t] + \frac{1-\phi}{1+\phi} E_{t-2}[p_t^1]   \stepcounter{equation}\tag{\theequation}\label{eq: p2mod}\
 \end{align*}
-Now take $E_{t-2}[p_t^1]$ in (\ref{eq: p1mod}) 
+Now take $E_{t-2}[p_t^1]$ in (\ref{eq: p1mod})
 \begin{align*}
 E_{t-2}[p_t^1] = E_{t-2}
 \left[
@@ -591,7 +591,7 @@ Plug in this in original expression for $p_t^2$ in (\ref{eq: p2org})
 &p_t^2 = \phi E_{t-2}[m_t] + (1-\phi) \frac{1}{2} (E_{t-2}[p_t^1] + p_t^2) \\
 & = \phi E_{t-2}[m_t] + (1-\phi) \frac{1}{2} \left( \frac{2\phi}{1+\phi} E_{t-2}[m_t] + \frac{1-\phi}{1+\phi} p_t^2 + p_t^2\right) \\
 & = \phi E_{t-2}[m_t] +  \frac{(1-\phi)\phi}{1+\phi} E_{t-2}[m_t] + (1-\phi) \frac{1}{2}\left( \frac{1-\phi}{1+\phi}+1 \right) p_t^2 \\
-& = \phi E_{t-2}[m_t] +  \frac{(1-\phi)\phi}{1+\phi} E_{t-2}[m_t] +\left( \frac{1-\phi}{1+\phi} \right) p_t^2 \\ 
+& = \phi E_{t-2}[m_t] +  \frac{(1-\phi)\phi}{1+\phi} E_{t-2}[m_t] +\left( \frac{1-\phi}{1+\phi} \right) p_t^2 \\
 &p_t^2 \left(1- \frac{1-\phi}{1+\phi} \right) = E_{t-2}[m_t]\left( \frac{2\phi}{1+ \phi} \right) \\
 &p_t^2 = E_{t-2}[m_t]
 \end{align*}
@@ -599,41 +599,41 @@ Now plug this into (\ref{eq: p1mod})
 \begin{align*}
  p_t^1 &= \frac{2\phi}{1+\phi} E_{t-1}[m_t] + \frac{1-\phi}{1+\phi} p_t^2 \\
 &  = \frac{2\phi}{1+\phi} E_{t-1}[m_t] + \frac{1-\phi}{1+\phi} E_{t-2}[m_t] \\
-& = \frac{2\phi}{1+\phi} E_{t-1}[m_t] + \overbrace{\left(1 - \frac{2\phi}{1+ \phi} \right)}^{\frac{1+\phi-2\phi}{1+\phi}}  E_{t-2}\\ 
+& = \frac{2\phi}{1+\phi} E_{t-1}[m_t] + \overbrace{\left(1 - \frac{2\phi}{1+ \phi} \right)}^{\frac{1+\phi-2\phi}{1+\phi}}  E_{t-2}\\
 & = E_{t-2}[m_t] + \frac{2\phi}{1+\phi} \left( E_{t-1}[m_t] - E_{t-2}[m_t] \right)
 \end{align*}
-To derive the equilibrium values recall the definition $p^*_t = \frac{1}{2}(p_t^1 + p_t^2)$ and that $y = m-p$, thus 
+To derive the equilibrium values recall the definition $p^*_t = \frac{1}{2}(p_t^1 + p_t^2)$ and that $y = m-p$, thus
 \begin{align*}
-p_t^* &= \frac{1}{2} \left(\overbrace{E_{t-2}[m_t]}^{p_t^2} + \overbrace{ E_{t-2}[m_t] + \frac{2\phi}{1+\phi} \left( E_{t-1}[m_t] - E_{t-2}[m_t] \right)}^{p_t^1} \right) 
+p_t^* &= \frac{1}{2} \left(\overbrace{E_{t-2}[m_t]}^{p_t^2} + \overbrace{ E_{t-2}[m_t] + \frac{2\phi}{1+\phi} \left( E_{t-1}[m_t] - E_{t-2}[m_t] \right)}^{p_t^1} \right)
 \\
-& = E_{t-2}[m_t] + \frac{\phi}{1+\phi} (\textcolor{purple}{ E_{t-1}[m_t] - E_{t-2}[m_t]}) 
+& = E_{t-2}[m_t] + \frac{\phi}{1+\phi} (\textcolor{purple}{ E_{t-1}[m_t] - E_{t-2}[m_t]})
 \\
 y^* &= m_t - \left( \overbrace{E_{t-2}[m_t]  + \underbrace{\frac{\phi}{1+\phi}}_{=1-\frac{1}{1+\phi}} (E_{t-1}[m_t] - E_{t-2}[m_t])}^{p_t^*} \right)
 \\
-& = m_t  - \left( E_{t-2}[m_t] + (E_{t-1}[m_t] -E_{t-2}[m_t]) - \frac{1}{1+\phi}(E_{t-1}[m_t] - E_{t-2}[m_t])  
-\right) 
+& = m_t  - \left( E_{t-2}[m_t] + (E_{t-1}[m_t] -E_{t-2}[m_t]) - \frac{1}{1+\phi}(E_{t-1}[m_t] - E_{t-2}[m_t])
+\right)
 \\
 & = \textcolor{blue}{m_t - E_{t-1}[m_t]} + \frac{1}{1+ \phi}(\textcolor{purple}{E_{t-1}[m_t] -E_{t-2}[m_t]})
 \end{align*}
 Which we can interpret as dividing shocks in \textcolor{blue}{unanticipated} shocks that have real effect just like in the Lucas model and \textcolor{purple}{anticipated} shocks (they're anticipated in the sense they're "discovered between $t-2$ and $t-1$ and thus half the firms have time to react). The anticipated shocks only affected prices in Lucas, but now, due to nominal rigidities they also affect the real economy.
 
-\textbf{Note} that a higher $\phi$ implies that anticipated shocks are increasingly affecting prices, and less so $y$ - this is because $\phi$ measures the degree of real rigidity - if $\phi$ is large, prices are very responsive to demand shocks. 
+\textbf{Note} that a higher $\phi$ implies that anticipated shocks are increasingly affecting prices, and less so $y$ - this is because $\phi$ measures the degree of real rigidity - if $\phi$ is large, prices are very responsive to demand shocks.
 
 \paragraph{Stabilization in the Fischer model}
 is based on the postulation that $y_t = m_t - p_t + v_t$. Here $m_t$ represents policy effects on aggregate demand, $v_t$ is non-policy shocks (so we simply split up the old $m_t$ in two, $m_t^{\textrm{old}} = m_t^{\textrm{new}} + v_t$). With this the equilibrium conditions naturally become
 \begin{align*}
-p_t^* &= E_{t-2}[m_t + v_t] + \frac{\phi}{1+\phi} ( E_{t-1}[m_t + v_t] - E_{t-2}[m_t + v_t]) 
+p_t^* &= E_{t-2}[m_t + v_t] + \frac{\phi}{1+\phi} ( E_{t-1}[m_t + v_t] - E_{t-2}[m_t + v_t])
 \\
 y^* &= m_t + v_t - E_{t-1}[m_t + v_t] + \frac{1}{1+ \phi}(E_{t-1}[m_t+ v_t] -E_{t-2}[m_t+ v_t])
 \end{align*}
-The non-policy shocks are assumed to follow a random walk $v_t = v_{t-1} + \epsilon_t$. When the government chooses $m_t$ they use all available information, and sets $m_t$ as 
+The non-policy shocks are assumed to follow a random walk $v_t = v_{t-1} + \epsilon_t$. When the government chooses $m_t$ they use all available information, and sets $m_t$ as
 \begin{align*}
-m_t = a_1 \epsilon_{t-1} + a_2 \epsilon_{t-2} + ... + a_{n} \epsilon_{t-n} + ... 
+m_t = a_1 \epsilon_{t-1} + a_2 \epsilon_{t-2} + ... + a_{n} \epsilon_{t-n} + ...
 \end{align*}
 Note the rule for $m_t$ assumes a linear function of $\epsilon$'s - implicitly this gives a specific form of preferences for society. Now do the following: 1) rearrange the expression for $y^*_t$, 2) write up $m_t+v_t$, 3) derive $E_{t-1}[m_t + v_t]$ and 4) derive $E_{t-2}[m_t + v_t]$.
 
 \begin{itemize}
-\item[1)] We first rewrite $y_t^*$ by collecting the $E_{t-1}$'s that is 
+\item[1)] We first rewrite $y_t^*$ by collecting the $E_{t-1}$'s that is
 \begin{align*}
 y_t^* &= m_t + v_t - E_{t-1}[m_t + v_t] + \frac{1}{1+ \phi}E_{t-1}[m_t+ v_t] - \frac{1}{1+ \phi}E_{t-2}[m_t+ v_t] \\
 &= m_t + v_t - \frac{\phi}{1+ \phi} E_{t-1}[m_t + v_t] - \frac{1}{1+ \phi} E_{t-2}[m_t + v_t]
@@ -658,7 +658,7 @@ E_{t-2}[m_t + v_t] &= E_{t-2}[v_{t-1} + \epsilon_t +  a_1 \epsilon_{t-1} + a_2 \
 & = E_{t-2}[\overbrace{v_{t-2}+ \epsilon_{t-1}}^{v_{t-1}} + \epsilon_t +  a_1 \epsilon_{t-1} + a_2 \epsilon_{t-2} + ... + a_{n} \epsilon_{t-n} + ...] \\
 & = v_{t-2} -a_1 \epsilon_{t-1} + \overbrace{a_1 \epsilon_{t-1} + a_2 \epsilon_{t-2} + ... + a_{n} \epsilon_{t-n} + ...}^{m_t} \\
 & = \overbrace{v_{t-1} - \epsilon_{t-1}}^{v_{t-2}} -a_1 \epsilon_{t-1} + m_t \\
-& = v_t - \epsilon_t - (1+a_1)\epsilon_{t-1} + m_t 
+& = v_t - \epsilon_t - (1+a_1)\epsilon_{t-1} + m_t
 \end{align*}
 \end{itemize}
 With these results we can go back to step 1, and insert the derived expectations. Note that $1- \frac{\phi}{1+\phi}-\frac{1}{1+\phi} = 0$ thus we're left with
@@ -669,27 +669,27 @@ y_t^* &= m_t + v_t - \frac{\phi}{1+ \phi} E_{t-1}[m_t + v_t] - \frac{1}{1+ \phi}
 \end{align*}
 
 \subsection{The Calvo model}
-The Calvo model makes price setting stochastic, so that firms set new prices with probability $\alpha$ each period. Let $x_t$ be the updated prices in period $t$ (these are not optimal prices because firms take into account the risk of having fixed prices in the future). Thus the overall price level is 
+The Calvo model makes price setting stochastic, so that firms set new prices with probability $\alpha$ each period. Let $x_t$ be the updated prices in period $t$ (these are not optimal prices because firms take into account the risk of having fixed prices in the future). Thus the overall price level is
 
 \begin{align} \label{eq: calvoaggprice}
 p_t = \alpha x_t + (1-\alpha) p_{t-1}
 \end{align}
-Whenever a firm can set new prices, they set $x_t$ as a discounted average of future optimal $p^*_{t+i}$'s, weighted with the probability that the firms still haven't changed prices $i$ periods ahead, that is 
+Whenever a firm can set new prices, they set $x_t$ as a discounted average of future optimal $p^*_{t+i}$'s, weighted with the probability that the firms still haven't changed prices $i$ periods ahead, that is
 \begin{align} \label{eq: calvo1}
 x_t = [1- \beta(1-\alpha)] \sum_{j=0}^{\infty} \beta^j(1-\alpha)^j E_t [p_{t+j}^*]
 \end{align}
-Write out the first period where $j=0$ ("scorporate") to get 
+Write out the first period where $j=0$ ("scorporate") to get
 \begin{align*}
 x_t = [1- \beta(1-\alpha)]p_t^* + \underbrace{[1- \beta(1-\alpha)] \sum_{j=1}^{\infty} \beta^j(1-\alpha)^j E_t [p_{t+1+j}^*]}_{E_t[x_{t+1}] \textrm{ by comparison with (\ref{eq: calvo1})}}
 \end{align*}
-Now subtract $p_t$ from both sides. On the LHS add and subtract $p_{t-1}$ and on the RHS add and subtract $\beta(1-\alpha)p_t$ to get 
+Now subtract $p_t$ from both sides. On the LHS add and subtract $p_{t-1}$ and on the RHS add and subtract $\beta(1-\alpha)p_t$ to get
 \begin{align*}
-(x_t-p_{t-1})-(p_{t}-p_{t-1}) &= [1- \beta(1-\alpha)](p_t^*- p_t) \\ 
+(x_t-p_{t-1})-(p_{t}-p_{t-1}) &= [1- \beta(1-\alpha)](p_t^*- p_t) \\
 & + [1- \beta(1-\alpha)] \sum_{j=1}^{\infty} \beta^j(1-\alpha)^j (E_t [p_{t+1+j}^*] - p_t)
 \end{align*}
-Subtract $p_{t-1}$ on both sides of (\ref{eq: calvoaggprice}) to get an expression for inflation $p_t - p_{t-1} = \pi_t = \alpha(x_t - p_{t-1}) \Rightarrow x_t - p_{t-1} = \frac{\pi_t}{\alpha}$. Furthermore (\ref{eq: phiandy}) states that $p_t^* - p_t = \phi y_t$, so we have 
+Subtract $p_{t-1}$ on both sides of (\ref{eq: calvoaggprice}) to get an expression for inflation $p_t - p_{t-1} = \pi_t = \alpha(x_t - p_{t-1}) \Rightarrow x_t - p_{t-1} = \frac{\pi_t}{\alpha}$. Furthermore (\ref{eq: phiandy}) states that $p_t^* - p_t = \phi y_t$, so we have
 \begin{align*}
-&(\frac{\pi_t}{\alpha})-(\pi_t) = [1- \beta(1-\alpha)](\phi y_t) \\ 
+&(\frac{\pi_t}{\alpha})-(\pi_t) = [1- \beta(1-\alpha)](\phi y_t) \\
 & + [1- \beta(1-\alpha)] \sum_{j=1}^{\infty} \beta^j(1-\alpha)^j (E_t [p_{t+1+j}^*] - p_t) \\
 &\pi_t = \frac{\alpha}{1-\alpha}[1- \beta(1-\alpha)]\phi y_t + \beta E_t[\pi_{t+1}]
 \end{align*}
@@ -702,41 +702,41 @@ This is the \textit{new Keynesian Philips curve}. A number of variations of the 
 
 
 \subsection{The Blanchard- Kiyotaki model for monopolistic price setting}
-The slides run through a graphical analysis of monopoly price setting with menu costs - the conclusion is essentially that the costs of changing prices might force monopoly producers to keep prices fixed and out of optimum, see slides for a more in depth analysis. 
-\\ \\ 
-Assume a static model where a finite number of firms $m$ produce $m$ differentiable goods. These goods are imperfect substitutes, and firm $i$ is price setter for good $i$. 
+The slides run through a graphical analysis of monopoly price setting with menu costs - the conclusion is essentially that the costs of changing prices might force monopoly producers to keep prices fixed and out of optimum, see slides for a more in depth analysis.
+\\ \\
+Assume a static model where a finite number of firms $m$ produce $m$ differentiable goods. These goods are imperfect substitutes, and firm $i$ is price setter for good $i$.
 
 \paragraph{Households} solve a utility maximization problem of choosing consumption of each good. Note that $X_{(X_i)}$ is notation to indicate $X=f(X_i)$.
 \begin{align*}
 &\textrm{max } U = C_{(C_i)}^{\gamma} \left( \frac{M}{P_{(P_i)}} \right)^{1-\gamma} - \frac{1}{\beta}N^{\beta} \\
 & \textrm{s.t. } \sum P_i C_i + M = M_0 + WN + \sum \Pi_i
 \end{align*}
-where otherwise notes $\sum = \sum_{i=1}^m$. Further the total consumption is set as a CES function of $C_i$'s (similarly for $P_i$'s). Thus 
+where otherwise notes $\sum = \sum_{i=1}^m$. Further the total consumption is set as a CES function of $C_i$'s (similarly for $P_i$'s). Thus
 \begin{align*}
-&C_{(C_i)} = m^{\frac{1}{1-\theta}} \left( \sum C_i^{\frac{\theta-1}{\theta}} \right)^{\frac{\theta}{\theta -1}} \\ 
+&C_{(C_i)} = m^{\frac{1}{1-\theta}} \left( \sum C_i^{\frac{\theta-1}{\theta}} \right)^{\frac{\theta}{\theta -1}} \\
 & P_{(P_i)} = \left( \frac{1}{m} \sum P_i^{1-\theta} \right)^{\frac{1}{1-\theta}}
 \end{align*}
 
-\paragraph{Solving this model for HH's} can be done with lagrange (and some finesse with derivatives of sums), begin with 
+\paragraph{Solving this model for HH's} can be done with lagrange (and some finesse with derivatives of sums), begin with
 \begin{align*}
 \mathcal{L} = C_{(C_i)}^{\gamma} \left( \frac{M}{P_{(P_i)}} \right)^{1-\gamma} - \frac{1}{\beta}N^{\beta} + \lambda \left( M_0 + WN + \sum \Pi_i - \sum P_i C_i - M \right)
 \end{align*}
-The derivative of $\mathcal{L}$ w.r.t $C_i$ is thus 
+The derivative of $\mathcal{L}$ w.r.t $C_i$ is thus
 \begin{align*}
 \frac{\partial \mathcal{L}}{\partial C_i} &= \gamma C_{(C_i)}^{\gamma -1 }C'_{(C_i)} \left( \frac{M}{P_{(P_i)}}\right)^{1 - \gamma} - \lambda \underbrace{P_i}_{\mathclap{\substack{\textrm{remember } \sum P_i C_i = P_1C_1 + P_2C_2 +  ... ) \\  \textrm{ so the derivative w.r.t some } i \textrm{ is just } P_i}}} \qquad (=0)
 \\
 &= \gamma \left( \frac{M}{P_{(P_i)}C_{(C_i)}} \right)^{1-\gamma} C'_{(C_i)} - \lambda P_i
 \end{align*}
-Now see that $C'(C_i)$ is 
+Now see that $C'(C_i)$ is
 \begin{align*}
-C'_{(C_i)} &= m^{\frac{1}{1-\theta}} \frac{\theta}{\theta -1} \left( \sum C_i^{\frac{\theta -1 }{\theta}} \right)^{\frac{\theta}{\theta-1}-1} \frac{\theta-1}{\theta} C_i^{\frac{\theta -1}{\theta} -1} 
+C'_{(C_i)} &= m^{\frac{1}{1-\theta}} \frac{\theta}{\theta -1} \left( \sum C_i^{\frac{\theta -1 }{\theta}} \right)^{\frac{\theta}{\theta-1}-1} \frac{\theta-1}{\theta} C_i^{\frac{\theta -1}{\theta} -1}
 \\
-& = m^{\frac{1}{1-\theta}} \left( \sum C_i^{\frac{\theta -1 }{\theta}} \right)^{\frac{1}{\theta-1}} C_i^{\frac{-1}{\theta}} 
+& = m^{\frac{1}{1-\theta}} \left( \sum C_i^{\frac{\theta -1 }{\theta}} \right)^{\frac{1}{\theta-1}} C_i^{\frac{-1}{\theta}}
 \\
 &= \underbrace{m^\frac{-1}{\theta}}_{\mathclap{ \substack{
 \textrm{b.c. } C^{\frac{1}{\theta}} \textrm{ gives } m^{\frac{1}{(1-\theta)\theta}} \\
 \textrm{and } m^{\frac{1}{(1-\theta)\theta}}m^{\frac{-1}{\theta}} = m^{\frac{1}{1-\theta}}
-}}} 
+}}}
 C_{(C_i)}^{\frac{1}{\theta}} C_i^{\frac{-1}{\theta}}
 \\
 & = \left( \frac{C_{(C_i)}}{m C_i} \right)^{\frac{1}{\theta}}
@@ -760,22 +760,22 @@ and lastly the third FOC is w.r.t $N$
 &P_i^{-1}\gamma \left( \frac{M}{PC}\right)^{1- \gamma} \left(\frac{C}{m C_i}\right)^{\frac{1}{\theta}} = (1-\gamma)\left( \frac{M}{PC}\right)^{-\gamma} P^{-1} \\
 & P_i = \frac{\gamma}{1-\gamma} \frac{M}{C} \left(\frac{C}{m C_i}\right)^{\frac{1}{\theta}}
 \end{align*}
-To aggregate, recall that $\left( \frac{C}{mC_i}\right)^{\frac{1}{\theta}}$ is $C'(C_i)$. If we aggregate the change-contributions of all $C_i$'s of course the total change of consumption is $1$, in the sense that $C$ changes $1:1$ with changes in $C_i$'s. Thus 
+To aggregate, recall that $\left( \frac{C}{mC_i}\right)^{\frac{1}{\theta}}$ is $C'(C_i)$. If we aggregate the change-contributions of all $C_i$'s of course the total change of consumption is $1$, in the sense that $C$ changes $1:1$ with changes in $C_i$'s. Thus
 \begin{align*}
-&P = \frac{\gamma}{1-\gamma}\frac{M}{C} && \Rightarrow &&& M= \frac{\gamma-1}{\gamma} PC 
+&P = \frac{\gamma}{1-\gamma}\frac{M}{C} && \Rightarrow &&& M= \frac{\gamma-1}{\gamma} PC
 \end{align*}
-By plugging $M$ back into the expression for $P_i$ we thus have 
+By plugging $M$ back into the expression for $P_i$ we thus have
 \begin{align*}
 P_i = P \left( \frac{C}{mC_i} \right)^{\frac{1}{\theta}} \\
 C_i = \left( \frac{P_i}{P} \right)^{-\theta} \frac{C}{m}
 \end{align*}
-which gives the demand for good $i$. Further we can derive labor supply etc. which except for a lot of algebra simply involves imposing the equilibrium condition $Y=C$. 
+which gives the demand for good $i$. Further we can derive labor supply etc. which except for a lot of algebra simply involves imposing the equilibrium condition $Y=C$.
 
-\paragraph{Firms solve} a somewhat non-standard profit maximization problem where their maximization problem is given by 
+\paragraph{Firms solve} a somewhat non-standard profit maximization problem where their maximization problem is given by
 \begin{align*}
 &\underset{P_i, N_i, Y_i}{\text{max }} \Pi_i = P_i Y_i - W N_i \\
 &\textrm{s.t. } Y_i = C_i = \left( \frac{P_i}{P} \right)^{-\theta} \frac{C}{m} \\
-& \ \   \quad Y_i = N_i^{\alpha}, \qquad 0 < \alpha < 1 
+& \ \   \quad Y_i = N_i^{\alpha}, \qquad 0 < \alpha < 1
 \end{align*}
 Inserting the constraints reduces the problem to one-dimensional optimization, which is simply a matter of solving
 \begin{align*}
@@ -783,17 +783,17 @@ Inserting the constraints reduces the problem to one-dimensional optimization, w
 \end{align*}
 
 \section{The optimal policy rule model}
-These models are concerned with endogenizing policy decisions chosen by a government or a central bank. They consider the policy maker to be a rational agent constrained by private sector actions and institutions. 
+These models are concerned with endogenizing policy decisions chosen by a government or a central bank. They consider the policy maker to be a rational agent constrained by private sector actions and institutions.
 
 \paragraph{Perrson and Tabellini}'s model is given by two equations, a reduced form demand curve and a new-keynesian philips curve, respectively
 \begin{align*}
 &\pi = m + v + \mu \\
 & x = \theta + \pi - \pi^e - \epsilon
 \end{align*}
-where $v, \epsilon$ and $\mu$ are white noise processes. The timing is as follows 
+where $v, \epsilon$ and $\mu$ are white noise processes. The timing is as follows
 \begin{itemize}
 \item A monetary policy rule is set
-\item All agents observe $\theta$ 
+\item All agents observe $\theta$
 \item $\pi^e$ is formed by the private sector
 \item agents observe $v$ and $\epsilon$
 \item $\mu, \pi$ and $x$ are realized
@@ -803,11 +803,11 @@ First notice that due to the timing, we have from the demand equation $E[\pi| \t
 x &= \theta + m + v -\mu - E[m|\theta] - \epsilon \\
 & = \theta + \underbrace{m - E[m]}_{\mathclap{\text{only unanticipated shocks have real effects}}} + v + \mu - \epsilon
 \end{align*}
-We then introduce a social loss function, describing societys preferences for stabilization in $x$ and/or $\pi$. Let $\bar{x}, \bar{\pi}$ be target values, and assume the loss function takes a quadratic form 
+We then introduce a social loss function, describing societys preferences for stabilization in $x$ and/or $\pi$. Let $\bar{x}, \bar{\pi}$ be target values, and assume the loss function takes a quadratic form
 \begin{align*}
 L(x, \pi) = \frac{1}{2}[(\pi - \bar{\pi})^2 + \lambda (x - \bar{x})^2 ]
 \end{align*}
-where $\lambda$ measures societys relative preferences for output shocks relative to shocks in inflation. It can be shown that if societys preferences are quadratic, the optimal policy for $m$ is linear, so lets assume 
+where $\lambda$ measures societys relative preferences for output shocks relative to shocks in inflation. It can be shown that if societys preferences are quadratic, the optimal policy for $m$ is linear, so lets assume
 \begin{align*}
 m = \psi + \psi_{\theta} \theta + \psi_{\epsilon} \epsilon + \psi_v v
 \end{align*}
@@ -833,14 +833,14 @@ E[L(x, \pi)] &= \frac{1}{2} [ \psi^2 + \psi_{\theta}^2 \sigma^2_{\theta} + \psi_
 \\
 & \quad + \lambda(\sigma^2_{\theta} + (\psi_{\epsilon} -1)^2 \sigma^2_{\epsilon} + (\psi_v +1 )^2\sigma^2_v + \sigma^2_{\mu} + \bar{x}^2)  ]
 \end{align*}
-Now to find optimal parameters for the policy rule, simply find first order conditions 
+Now to find optimal parameters for the policy rule, simply find first order conditions
 \begin{align*}
 &\frac{\partial E[L]}{\partial \psi} = \frac{1}{2} (2\psi - 2 \bar{\pi}) &&\rightarrow \psi = \bar{\pi} \\
 & \frac{\partial E[L]}{\partial \psi_{\theta}} = \psi_{\theta}\sigma^2_{\theta} && \rightarrow \psi_{\theta} = 0 \\
 & \frac{\partial E[L]}{\partial \psi_{\epsilon}} = \psi_{\epsilon}\sigma^2_{\epsilon} + \lambda(\psi_{\epsilon}-1)\sigma^2_{\epsilon} && \rightarrow \psi_{\epsilon} = \frac{\lambda}{1+ \lambda} \\
 & \frac{\partial E[L]}{\partial \psi_{v}} = (1+\psi_v )\sigma^2_v + \lambda(1+ \psi_v)\sigma^2_v && \rightarrow \psi_v = -1
 \end{align*}
-With these we can state the optimal policy rule by replacing the generic parameters with the optimal ones, that is 
+With these we can state the optimal policy rule by replacing the generic parameters with the optimal ones, that is
 \begin{align*}
 m^{\text{opt}} = \bar{\pi} - v + \frac{\lambda}{1+ \lambda} \epsilon
 \end{align*}
@@ -851,11 +851,11 @@ Inserting the optimal $m$ in the expressions for $x$ and $\pi$ gives the actual 
 \end{align*}
 
 \subsection{Solution without credibility}
-When the government conducts discretionary monetary policy, it can observe private sector expectations and $\theta$ before announcing $m$ - this effectively allows the government to select inflation directly. This implies a new timing 
+When the government conducts discretionary monetary policy, it can observe private sector expectations and $\theta$ before announcing $m$ - this effectively allows the government to select inflation directly. This implies a new timing
 \begin{itemize}
 \item Private agents observe $\theta$
 \item $\pi^e$ is formed in the private sector as $\pi^e = E[\pi|\theta]$
-\item $\epsilon$ is observed 
+\item $\epsilon$ is observed
 \item The government sets $m$, and thereby realizes $\pi$ and $x$
 \end{itemize}
 Because the private sector forms expectations before knowing what $m$ will be, they will internalize the governments ex post (after timeline) incentives. Now the private sector and the government is playing a game, and the solution will be a Nash equilibrium where
@@ -868,24 +868,24 @@ Because the government can wait, it doesn't have to take expectations of the los
 x&= \theta + \pi - \pi^e - \epsilon \\
 \pi &= m
 \end{align*}
-To solve the model, begin by deriving the socially optimal $\pi$, plug $x$ into the loss function and find the FOC w.r.t $\pi$ 
+To solve the model, begin by deriving the socially optimal $\pi$, plug $x$ into the loss function and find the FOC w.r.t $\pi$
 \begin{align*}
 \frac{\partial L}{\partial \pi} &= \frac{\partial }{\partial \pi} \left(  \frac{1}{2}[(\pi - \bar{\pi})^2 + \lambda(\overbrace{\theta + \pi - \pi^e - \epsilon}^{x} - \bar{x})^2 ] \right) \\
 & = \pi - \bar{\pi} + \lambda(\theta + \pi - \pi^e - \epsilon - \bar{x}) && (=0) \\
 \end{align*}
-Which reduces to 
+Which reduces to
 \begin{equation} \label{eq: optuncredpi}
 \pi = \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \pi^e + \epsilon + \bar{x})
 \end{equation}
 Now find the private sectors expected value of $\pi$ by taking conditional expectations of (\ref{eq: optuncredpi})
 \begin{align*}
-&\pi^e = E(\pi|\theta) = \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \pi^e + \bar{x}) && \Leftrightarrow \\ 
+&\pi^e = E(\pi|\theta) = \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \pi^e + \bar{x}) && \Leftrightarrow \\
 &\pi^e \left( \frac{1}{1+ \lambda} \right)= \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \bar{x}) && \Leftrightarrow \\
-& \pi^e =\bar{\pi} + \lambda(\bar{x} - \theta) 
+& \pi^e =\bar{\pi} + \lambda(\bar{x} - \theta)
 \end{align*}
 Now we can derive the equilibrium inflation and output under discretionary policy. To get inflation insert $\pi^e$ in the expression for the optimal inflation
 \begin{align*}
-\pi^D &= \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \pi^e + \epsilon + \bar{x}) \bigg|_{\pi^e =\bar{\pi} + \lambda(\bar{x} - \theta) } \\ 
+\pi^D &= \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \pi^e + \epsilon + \bar{x}) \bigg|_{\pi^e =\bar{\pi} + \lambda(\bar{x} - \theta) } \\
 & = \frac{1}{1+ \lambda} \bar{\pi} + \frac{\lambda}{1+ \lambda}(- \theta + \bar{\pi} + \lambda(\bar{x} - \theta) + \epsilon + \bar{x}) \\
 & = \bar{\pi} + \underbrace{\lambda(\bar{x}- \theta)}_{\textrm{inflation bias}} + \frac{\lambda}{1+ \lambda} \epsilon
 \end{align*}
@@ -895,31 +895,31 @@ x^D &= \theta + \pi - \pi^e - \epsilon \big|_{\pi^D, \pi^e} \\
 &= \theta +  \overbrace{\bar{\pi} + \lambda(\bar{x}- \theta) + \frac{\lambda}{1+ \lambda} \epsilon}^{\pi^D} - \overbrace{(\bar{\pi}+ \lambda(\bar{x} - \theta))}^{\pi^e} - \epsilon \\
 & = \theta - \frac{1}{1+\lambda} \epsilon
 \end{align*}
-Notice that the discretionary policy inflicts an inflation bias, but disregarding $\mu$ (which cannot be controlled by policy) $x^C = x^D$. Thus the discretionary policy increases inflation without benefiting the attempts of output stabilization. We can interpret the results as a government trying to boost output with "surprise inflation" which clearly isn't possible.  
+Notice that the discretionary policy inflicts an inflation bias, but disregarding $\mu$ (which cannot be controlled by policy) $x^C = x^D$. Thus the discretionary policy increases inflation without benefiting the attempts of output stabilization. We can interpret the results as a government trying to boost output with "surprise inflation" which clearly isn't possible.
 
 
 \subsection{Characterizing the optimal central banker}
-Instead of conducting it's own discretionary policy, the government has the choice of hiring an independent central banker. The banker has to be hired ex ante, and thus losses must be evaluated in expected values. The central banker conducts his/her own discretionary policy. Further the choice of banker depends on his/her parameter $\lambda^B \in [0;\lambda]$ and the "value" of the banker should be evaluated against the governments preferences $\lambda$. This implies the government wants to solve 
+Instead of conducting it's own discretionary policy, the government has the choice of hiring an independent central banker. The banker has to be hired ex ante, and thus losses must be evaluated in expected values. The central banker conducts his/her own discretionary policy. Further the choice of banker depends on his/her parameter $\lambda^B \in [0;\lambda]$ and the "value" of the banker should be evaluated against the governments preferences $\lambda$. This implies the government wants to solve
 \begin{align*}
 \underset{\lambda^B}{\textrm{min }} E[L(\pi^D, x^D, \lambda^B)] &= \frac{1}{2}E \bigg[ \left(
 \bar{\pi} + \lambda^B(\bar{x}- \theta) + \frac{\lambda^B}{1+ \lambda^B} \epsilon - \bar{\pi} \right)^2 \\
-& \qquad + \lambda \left( 
+& \qquad + \lambda \left(
  \theta - \frac{1}{1+\lambda^B} \epsilon - \bar{x}
 \right)^2
 \bigg] \\
 & = \frac{1}{2}\bigg[ (\lambda^B)^2(\bar{x}^2 + \sigma^2_{\theta}) + \left(\frac{\lambda^B}{1+ \lambda^B}\right)^2 \sigma^2_{\epsilon}  \\
-& \qquad + \lambda \left(\sigma^2_{\theta} + \frac{1}{(1+\lambda^B )^2}\sigma^2_{\epsilon} + \bar{x}^2 \right) \bigg] 
+& \qquad + \lambda \left(\sigma^2_{\theta} + \frac{1}{(1+\lambda^B )^2}\sigma^2_{\epsilon} + \bar{x}^2 \right) \bigg]
 \end{align*}
-that is- minimize the social loss evaluated with the governments preferences $\lambda$, under discretionary rule by the independent central bank. The first derivative w.r.t to $\lambda^B$ will be 
+that is- minimize the social loss evaluated with the governments preferences $\lambda$, under discretionary rule by the independent central bank. The first derivative w.r.t to $\lambda^B$ will be
 \begin{align*}
 \frac{\partial E[L(\pi^D, x^D, \lambda^B)]}{\partial \lambda^B} = \lambda^B(\bar{x}^2 + \sigma^2_{\theta}) + \frac{\lambda^B}{(1+\lambda^B)^3} \sigma^2_{\epsilon} - \lambda \frac{1}{(1+ \lambda^B)^3} \sigma^2_{\epsilon} \qquad (= 0)
 \end{align*}
-which has no analytic solution. Instead of deriving the optimal $\lambda^B$ we'll characterize the solution by evaluating the derivative in different values, namely $0$ and $\lambda$, see 
+which has no analytic solution. Instead of deriving the optimal $\lambda^B$ we'll characterize the solution by evaluating the derivative in different values, namely $0$ and $\lambda$, see
 \begin{align*}
 &\frac{\partial E[L(\pi^D, x^D, \lambda^B)]}{\partial \lambda^B} \bigg|_{\lambda^B = 0} = \lambda \sigma^2_{\epsilon} && >0 \\
-& \frac{\partial E[L(\pi^D, x^D, \lambda^B)]}{\partial \lambda^B} \bigg|_{\lambda^B = \lambda} = \lambda(\bar{x}^2 + \sigma^2_{\theta}) && <0 
+& \frac{\partial E[L(\pi^D, x^D, \lambda^B)]}{\partial \lambda^B} \bigg|_{\lambda^B = \lambda} = \lambda(\bar{x}^2 + \sigma^2_{\theta}) && <0
 \end{align*}
-It can be shown that $E[L(\pi^D, x^D, \lambda^B)]$ has only one minimum between $0$ and $\lambda$, this this shows that the optimal central banker (optimal $\lambda^B$) lies between $\lambda^B= 0$ and to governments own preferences $\lambda^B = \lambda$. 
+It can be shown that $E[L(\pi^D, x^D, \lambda^B)]$ has only one minimum between $0$ and $\lambda$, this this shows that the optimal central banker (optimal $\lambda^B$) lies between $\lambda^B= 0$ and to governments own preferences $\lambda^B = \lambda$.
 
 \begin{figure}[h]
 \centering
@@ -941,5 +941,3 @@ Characterization of the optimal central banker - note how the sign of the deriva
 
 \end{spacing}
 \end{document}
-
-
