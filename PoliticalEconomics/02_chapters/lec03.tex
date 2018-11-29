@@ -1,0 +1,139 @@
+So far we've studied a version of the downsian model with full policy convergence which implies that the median voter theorem also applies to representative voting democracies. This has revealed an important mechanism which forces politicians to run on popular platforms, often called the \textit{affect} mechanism.
+\\ \\ 
+There are however good arguments against the downsian model. First of it's conclusions are mainly based on the discontinuity in probability of winning, disregarding any uncertainty about voters preferences. Additionally the model must obviously be incomplete, as other things than the preferences of the median voter surely must matter to some degree. 
+
+\subsection{Probabilistic voting} 
+We will now relax the assumption about perfect information about voters preferences. We do this by introducing a candidate specific trait (e.g. ideology) which voters have preferences about. Importantly we assume uncertainty on the distribution of voter preferences with regards to this dimension. 
+\\ \\ 
+We depart from exactly the same point as last time, so the modelling framework is identical. This time however we assume there are three population groups $J=R,M,P$. Within groups income is identical at $y^J$ and they therefore also have the same indirect utility function $W^J$. Each groups share of the total population is given by $\alpha^J=\alpha^R,\alpha^M, \alpha^P$, and we assume that $y^R>y^M>y^P$. The average income in the population is 
+\begin{equation}
+    y = \sum_J \alpha^J y^J
+\end{equation}
+The voters care about $g$ as well as ideology, captured by the two bias-parameters $\sigma^{iJ}$ and $\delta$ which capture bias in direction of candidate $B$ (w.l.o.g.). Thus voters in group $J$ prefer candidate $A$ iff 
+\begin{equation} \label{eq: probabilityChoice}
+    W^J(g_A) > W^J(g_B) + \sigma^{iJ} + \delta
+\end{equation}
+We assume that
+\begin{equation}
+    \sigma^{iJ} \sim U\left(\frac{-1}{2\phi^J},\frac{1}{2\phi^J} \right) \qquad 
+   \delta \sim U\left(\frac{-1}{2\psi},\frac{1}{2\psi} \right)
+\end{equation}
+The bounds of the distributions are simply chosen to simplify calculations. The important parts are that a) bias parameters are equally likely to be positive or negative, so the bias can be both in favor and disfavor of candidate $B$ with equal probability. And b) a higher $\phi^J$ (or $\psi$) implies more moderate voters, in the sense their votes are less likely to be tilted by ideology. 
+
+In this setup $\sigma^{iJ}$ measures varying degrees of ideological focus within each income group, while $\delta$ measures an aggregate bias across the whole population, e.g. from scandals, campaigning etc.
+
+\paragraph{Probability of winning} The parties want to maximize the probability of winning. Notice first that within each group $J$ we can identify the swing voter by the $\sigma^{iJ}$ that solves the equation in (\ref{eq: probabilityChoice}) with equality, that is the swing voter will have 
+\begin{equation}
+    \sigma^J \equiv  W^J(g_A) - W^J(g_B)  - \delta
+\end{equation}
+As all voters in $J$ with $\sigma^{iJ} < \sigma^J$ will vote for candidate $A$. Since $\sigma^{iJ}$ is uniformly distributed we can calculate the share that votes for candidate $A$ as\footnote{Recall in the uniform distribution on $[a,b]$, $F(x)=\frac{x-a}{b-a}$} 
+\begin{equation}
+    \begin{split}
+        F^J(\sigma^J) &= \frac{\sigma^J + (2\phi^J)^{-1}}{2(2\phi^J)^{-1}} \\ 
+        &= \phi^J\left(\sigma^J + \frac{1}{2\phi^J} \right) \\ 
+        &= \phi^J \sigma^J + \frac{1}{2}
+    \end{split}
+\end{equation}
+Aggregating this vote share over all three groups we then find 
+\begin{equation}
+    \begin{split}
+    \pi_A &= \sum_J \alpha^J \left(\phi^J \sigma^J + \frac{1}{2}\right) \\
+    &=  \sum_J \alpha^J \left(\phi^J (W^J(g_A) - W^J(g_B)  - \delta) + \frac{1}{2}\right)
+    \end{split}
+\end{equation}
+This expression is continuous and we have thus been able to alleviate the discontinuous nature of the simple model by introducing the stochastic preferences for ideology. Now candidate $A$ wins whenever $\pi_A\geq1/2$, which happens with probability $p_A$. This probability is w.r.t $\delta$ which is the final stochastic term we haven't done anything with yet. We can write 
+\begin{equation}
+    \begin{split}
+        p_A &= Pr[\pi^A \geq 1/2] \\ 
+        &=Pr\left[
+            \sum_J \alpha^J \left(\phi^J (W^J(g_A) - W^J(g_B)  - \delta) + \frac{1}{2}\right) \geq 1/2
+            \right] \\ 
+        &= Pr\left[
+            \sum_J \alpha^J \phi^J \left(W^J(g_A) - W^J(g_B)\right) \geq \sum_J\alpha^J \phi^J \delta
+            \right] \\ 
+            &= Pr\left[
+                \delta \leq 
+                \frac{1}{\sum_J \alpha^J \phi^J} 
+                \sum_J \alpha^J 
+                    \phi^J \left(W^J(g_A) - W^J(g_B)
+                \right)       
+                \right]            
+    \end{split}
+\end{equation}
+where the third step can be reached by writing out the sum in additive parts, and seeing that $\sum_J \alpha^J \frac{1}{2} = \frac{1}{2}$. Now using the distribution of $\delta$ we have that 
+\begin{equation}
+    \begin{split}
+    p_A &= \psi \left[
+        \frac{1}{\sum_J \alpha^J \phi^J} 
+        \sum_J \alpha^J 
+            \phi^J \left(W^J(g_A) - W^J(g_B)
+        \right) - \left(- \frac{1}{2\psi}\right)
+    \right] \\ 
+    &= 
+    \frac{1}{2} + 
+    \frac{\psi}{\phi} 
+    \sum_J \alpha^J 
+        \phi^J \left(W^J(g_A) - W^J(g_B)
+    \right) 
+    \end{split}
+\end{equation}
+where $\phi \equiv \sum_J \alpha^J \phi^J$. Once again here we are reaffirmed that this model does not feature the discontinuous jump we had in the simple model. 
+
+\paragraph{Politicians proposed $\bm{g}$} Having derived the probability of winning we can now find a Nash equilibrium between the two politicians. Assume like before that each of them gets a rent from holding office $R$, so the best response function of party $A$ is to maximize $p_A \cdot R$, i.e. 
+\begin{equation}
+    \max_{g_A} p_A \cdot R
+\end{equation}
+which has first order condition 
+\begin{equation}
+    \frac{\psi}{\phi} \left(
+    \sum_J \alpha^J 
+        \phi^J W^J_g(g_A) 
+    \right) \cdot R = 0
+\end{equation}
+Clearly this expression is only 0 when $\sum_J \alpha^J 
+\phi^J W^J_g(g_A)=0$. This expression represents the best response of $A$ given some fixed $g_B$. In a parallel way we can solve the best response of party $B$ given any $g_A$. This is the solution to 
+\begin{equation}
+    \max_{g_B} \ (1-p_A) \cdot R
+\end{equation}
+Taking the derivative of this w.r.t $g_B$ will quite easily yield a similar expression to the one for $g_A$, namely $\sum_J \alpha^J 
+\phi^J W^J_g(g_B)=0$. Now since these two equations are symmetric the solutions must be as well, so we can conclude that $g_A = g_B = g^S$ where $g^S$ is simply shorthand for the symmetric equilibrium policy. 
+\\ \\ 
+The problem politicians solve is essentially maximizing a weighted social welfare function, where both population shares $\alpha^J$ and ideological parameters $\phi^J$ are important. In particular a higher $\phi^J$ implies less ideological dispersion in group $J$ and this in turn implies a higher weight to this groups preferences $W^J$. The intuition in this is that for highly ideological groups (low $\phi$) changes in $g$ are less important for tipping votes, meaning it requires large changes in proposed $g$ to gain additional votes in these groups. If a group is moderate (high $\phi^J$) $g$ is important in determining what they vote and many voters will flip if $g$ is modified. 
+
+\paragraph{Equilibrium policies} In equilibrium the implemented $g$ will be one which solves 
+\begin{equation}
+    \sum_J \alpha^J \phi^J W_g^J(g^S) = 0
+\end{equation}
+Recalling the definition of $W^J$ from (\ref{eq: indirectutilityDowns}) we have that $W^J_g = -\frac{y^J}{y} + H_g(g)$ which we can insert in the FOC above to get
+\begin{equation}
+    \begin{split}
+    &\sum_J \alpha^J \phi^J \left(
+        -\frac{y^J}{y} + H_g(g^S)
+    \right) = 0 \qquad \Leftrightarrow
+    \\ 
+    & \sum_J \alpha^J \phi^J H_g(g^S) = \frac{1}{y} \sum_J \alpha^J \phi^J y^J
+    \end{split}
+\end{equation}
+using once again that $\phi\equiv \sum_J \alpha^J \phi^J$ and defining $\tilde{y} = \frac{1}{\phi}\sum_J \alpha^J \phi^J y^J$ which is essentially a weighted average of group incomes, we can rearrange to derive 
+\begin{equation}
+    H_g(g^S) = \frac{\tilde{y}}{y}
+\end{equation}
+as a characteristic of the equilibrium, from which we can directly derive the equilibrium strategy as being 
+\begin{equation}
+    g^S = H_g^{-1}(\frac{\tilde{y}}{y})
+\end{equation}
+This is immediately similar to the result we derived in the simple case. Now notice that if either $\alpha^J$ or $\phi^J$ increases $\tilde{y}$ will move closer to $y^J$, meaning politicians will propose policies that are more favorable to that group of voters. 
+\\ \\ 
+In this model we have a single policy dimension and single peaked preferences, so the median voter theorem tells us that a condorcet winner exists, and this is equal to the median voters preferred policy $g^m \neq g^S$. The inequality might seem odd, but recall that the median voter theorem addresses the existence of a condorcet winner, it does not state that this will be the implemented policy. 
+
+\paragraph{Reflections on testing model predictions} The central prediction of this new model is that politicians align their policies with large and moderate voter groups. One way to get good variation in the population groups is to study changes in voter eligibility legislation which at an instant changes the relative sizes of voting groups, although one could argue that changes in voters legislation is endogenous to the political process. To get variations in the voter heterogeneity one could consider cases where voting district boundaries are redrawn.
+
+\subsection{On the vote-purchasing behavior of incumbent governments, \cite{dahlberg_vote-purchasing_2002}}
+The central question posed in \cite{dahlberg_vote-purchasing_2002} is whether incumbent government use their position to increase spending in districts with many swing voters as the probabilistic voting model suggests (or in districts with many party supporters, as suggested by alternative theories). They find that the number of swing voters increase the likelihood of getting the grant; evidence that incumbent politicians does use grants to target swing voters. 
+
+To show this they use a special Swedish grant administered by the central government to municipalities in 1997. The nature of the grant is suitable to study their question because, unlike most other government funding, there are no clearly stated purpose of the funds (except for furthering "ecological" development, which was a quite new idea in 1997). The grant was awarded close to an election further increasing the incentive to misuse the grant. 
+\\ \\
+The authors regress a binary variable for a municipality getting the grant on two variables indicating there are many swing voters in a municipality: a) an estimate of the density of "cutpoint voters" (voters close to $\sigma^J$) and b) the vote difference between blocs in the previous election (small distance$\Rightarrow$close election). 
+The authors find evidence that many swing voters does increase the probability of getting the grant, while the number of core voters does not. These findings are in line with the probabilistic voting model.
+\\ \\ 
+Another piece of evidence is from \cite{stromberg_radios_2004} which investigates the distribution of New Deal relief funds throughout the USA in the period after the great depression. \citeauthor{stromberg_radios_2004} finds evidence that the number of radio listeners in a county increased the amount of funds received while controlling for county poverty and unemployment. This indicates politicians target "well informed" counties, suggesting this too is an example of spending targeted at areas with non-ideological voters (the reasoning is that radio access gives people information about $g$, making it more important than $\sigma$).  

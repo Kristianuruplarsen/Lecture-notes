@@ -1,0 +1,30 @@
+In this and the next lecture we will shift to another important question, namely what determines the level of redistribution in society, and why this differs so much across time and countries. In this section we discuss the Meltzer-Richard model. This is a classical economists model which assumes rational voters with their own utility in mind when they vote. Naturally this approach yields a conclusion along the lines of an income-based theory for preferences to redistribution in which the relative income determines ones preferences for redistribution. Combining this with the median voter theorem, the difference between mean and median income becomes important for determining the level of redistribution.
+
+\paragraph{Model setup}
+The model setup follows the one in section \ref{seq: lecture1}, voters occupy a continuum and each has utility $w^i = c^i + V(x^i)$ subject to the budget constraint $c^i = (1-\tau)I^i + f$ and the time constraint $1+e^i=I^i + x^i$\footnote{Here we add $e^i$, in section \ref{seq: lecture1} we subtracted $\alpha^i$ so the sign is flipped.}. $e^i\sim F(\cdot)$ with mean $e$ and median $e^m$. Just like in section \ref{seq: lecture1} we can solve the voters utility maximization by inserting the constraints in the utility and maximizing w.r.t $I^i$.
+\\ \\ 
+Once again we can derive a FOC of $I^i = 1 + e^i - V_x^{-1}(1-\tau)$ and we can define the average labor supply of the average individual as 
+\begin{equation}
+    L(\tau) = 1 + e - V_x^{-1}(1-\tau)
+\end{equation}
+implying the FOC can be rewritten $I^i = L(\tau)+(e^i - e)$. The government follows a budget constraint $f=\tau I=\tau L(\tau)$ and the indirect utility is then given by 
+\begin{equation}
+    W^i(\tau) = L(\tau) + (1-\tau)(e^i - e) + V(1-L(\tau) + e)
+\end{equation}
+
+Taking the derivative of this and setting equal to 0 we can then solve for $\tau$ to derive the individuals bliss point $\tau^i$, first take the derivative 
+\begin{equation}
+    \frac{\partial W^i}{\partial \tau} = L_{\tau}(\tau) - (e^i - e) - V'(1-L(\tau) + e)L_{\tau}(\tau)
+\end{equation}
+From the FOC we have that in equilibrium $V'(1-L(\tau) + e) = 1- \tau$. Using this and rearranging gives us the bliss point 
+\begin{equation}
+    \tau^i = \frac{e-e^i}{-L_{\tau}(\tau)}
+\end{equation}
+Since $L_{\tau}(\tau)<0$ this expression is decreasing in $e^i$. For all individuals with $e^i>e$ therefore prefer negative taxes while those with $e^i<e$ prefers positive taxes. 
+
+\paragraph{Downsian voting} As we saw in section \ref{seq: lecture1} this model satisfies the single crossing property, so pure majority voting will ensure that the condorcet winner is chosen, and this will be the preferred tax rate of the median voter $\tau^m=\frac{e-e^m}{-L_{\tau}(\tau)}$. This expression shows the main conclusion; more inequality increases the difference between $e$ and $e^m$ yielding a higher tax rate. Notice this is not the same as saying income inequality causes more redistribution, if for example the income distribution skews because the middle class gains income, this raises $e$ along with $e^m$. Oppositely if the rich get extremely rich, this changes $e^m$ without affecting $e$ a lot. Also note that the denominator $|L_{\tau}(\tau)|$ is the change in labor supply as a consequence of taxation, i.e. the deadweight loss of taxation. A higher cost of taxation reduces the desire for redistribution because individuals forego personal income in a tradeoff with the size of the public transfer. 
+\\ \\ 
+Also take note that like before $e^m$ is the median productivity of the average voter while $e$ is the average income of the average \emph{tax payer}. As a consequence extending voting rights to poorer citizens will decrease $e^m$ but not affect $e$, resulting in more redistribution.
+
+\subsection{Empirical results}
+A first consideration is that our model assumes that higher income leads to lower desired taxes. However when regressing preferences for distribution on log income we observe a significant but not very predictive relationship, showing that many other variables also matter. With this in mind let us consider some empirical evidence investigating the conclusions from our model.

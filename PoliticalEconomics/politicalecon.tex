@@ -1,0 +1,54 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass{01_preamble/report}
+\input{01_preamble/packages.tex}
+\usepackage{amsmath}
+% SET TITLE SECTION INFORMATION 
+\title{Political Economics - Lecture notes}
+
+\author[1]{Kristian Urup Olesen Larsen}
+\affil[1]{Department of Economics, University of Copenhagen} 
+
+\dates{\today}
+	
+% REFERENCES SETUP
+\usepackage[round, authoryear, sort&compress]{natbib}
+\bibliographystyle{unsrtnat}
+
+% SET TITLES OF CONTENTS AND REFERENCES
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {Table of Contents}%
+}
+\renewcommand{\refname}{References}
+    
+\numberwithin{equation}{section}
+
+\begin{document}
+\maketitle
+\vskip24pt
+\begin{abstract}
+    \input{02_chapters/abstract.tex}
+\end{abstract}
+\vskip24pt
+% COMMENT NEXT LINE TO REMOVE TABLE OF CONTENTS
+\tableofcontents\vskip48pt
+\input{02_chapters/introduction.tex}
+
+%=================
+\section{Lecture 1 - Introduction}\label{seq: lecture1}
+\input{02_chapters/lec01.tex}
+
+\section{Lecture 2 - Electoral competition I}
+\input{02_chapters/lec02.tex}
+
+\section{Lecture 3 - Electoral competition II}
+\input{02_chapters/lec03.tex}
+
+\section{Lecture 4 - Redistributive politics I}
+\input{02_chapters/lec04.tex}
+%=================
+\newpage
+% CHANGE THIS IF YUOR BIBFILE HAS A DIFFERENT NAME
+\bibliography{references.bib}
+
+\end{document}

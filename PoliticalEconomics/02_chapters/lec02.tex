@@ -1,0 +1,104 @@
+In this lecture we will begin studying a model of electoral competition, that is a model for how politicians propose platforms in the competition to be elected. We consider two party competition where there is one policy objective (e.g. the size of the public sector) and politicians are opportunistic i.e. they have only one goal, which is getting elected. Politicians must commit to a proposal before the election and must provide this policy after being elected (this doesn't matter to much when their only goal is getting elected). 
+
+\paragraph{Model setup} Consider a continuum of citizens with quasi-linear utility from consumption $c_i$ and a public good $g$ so 
+\begin{equation} \label{eq: downsutility}
+    w^i = c^i + H(g)
+\end{equation}
+Individuals are taxed and accordingly have a budget constraint of  
+\begin{equation}
+    c^i=(1-\tau)y^i
+\end{equation}
+Here $y^i$ is distributed according to $F(\cdot)$ so that $E[y^i]=y$, the median income is $y^m$ so $F(y^m)=1/2$ and we assume that $y^m < y$ implying a right skewed distribution of income. 
+
+The government earns taxes $\tau$ and uses these to provide the public good $g$ so 
+\begin{equation}
+    g = \int \tau y^i f(y^i) \ dy^i = \tau y
+\end{equation} 
+The \textit{indirect utility} can then be found by inserting the governments budget constraint in (\ref{eq: downsutility}):
+\begin{equation} \label{eq: indirectutilityDowns}
+    \begin{split}
+    W^i(g) &= \left(1 - \frac{g}{y}\right)y^i + H(g) \\ 
+    &= (y-g)\frac{y_i}{y} + H(g)
+    \end{split}
+\end{equation}
+This equation shows the central tradeoff in the model, namely that individuals gain utility from increasing $g$ but then face paying a higher tax reflected in the fact that higher $g$ decreases the utility from private consumption. The loss of private consumption is more costly for individuals with a higher income.
+
+\paragraph{Prefered policy} We can solve for an agents preferred policy by maximizing the indirect utility w.r.t. $g$, 
+\begin{equation}
+    \frac{\partial W^i}{\partial g} = -\frac{y^i}{y} + H_g(g) \qquad (=0)
+\end{equation}
+where $H_g$ is the derivative of $H$ w.r.t. $g$. Solving for $g$ shows that the individuals optimal policy level is 
+\begin{equation} \label{eq: downsequi}
+    g^i = H_g^{-1}\left( \frac{y^i}{y} \right)
+\end{equation}
+By assumption $H$ is strictly concave and since the first term in $W^i$ is linear, we can infer that this too is strictly concave. This in turn tells us that \textit{preferences are single peaked} in this model. By this logic we can also infer that $H_g^{-1}$ is decreasing in $y^i$. So higher income individuals prefer less of the public good, intuitively this is because high income implies a large marginal cost of increased taxes, while the marginal benefit of $g$ is identical across all individuals. 
+
+\subsection{A benchmark for election performance}
+Before we study how elections affect the choice of $g$, let's first consider what level a benevolent social planner (i.e. a good dictator) would choose. The utilitarian welfare function is simply 
+\begin{equation}
+    SWF^U = \int_{y^i} W^i(g)f(y^i) \d y^i
+\end{equation}
+i.e. the aggregated indirect utility over all individuals. Inserting in this equation we can simplify the expression quite a bit 
+\begin{equation}
+    \begin{split}
+        SWF^U &= \int_{y^i} \underbrace{\left( (y-g)\frac{y^i}{y} + H(g)  \right)}_{W^i(g)}f(y^i) \ dy^i \\ 
+        &= W(g)
+    \end{split}
+\end{equation}   
+where $W(g)$ is the average indirect utility, or equivalently the indirect utility of the individual with $y^i=y$. The social planner accordingly would provide a level of $g$ equal to 
+\begin{equation}
+    g^* = H_g^{-1}(1)
+\end{equation}
+which is simply (\ref{eq: downsequi}) evaluated for the average voter (we get the 1 from dividing $y/y$).
+
+\subsection{Downsian electoral competition}
+Now instead of a social planner let us consider a situation where there is held an election for the political position to choose $g$. There are two parties $P=A,B$ and the probability that candidate $P$ wins the election we denote $p_P$. Candidates receive an "ego-rent" $R$ from holding office and get 0 if they loose, consequentially they seek to maximize $p_P \cdot R$. The share of votes each candidate receive we denote $\pi_P$, and using this we can write $p_A$ and $p_B$ as 
+\begin{equation}
+    \begin{split}
+        p_A &= Pr[\pi_A > 1/2 | g_A, g_B] \\ 
+        p_B &= 1-p_A
+    \end{split}
+\end{equation}
+Once again we assume that voters vote sincerely. The proposals $g_A, g_B$ are announced before the election. 
+
+\paragraph{Simple example} Let us first assume that all voters have the same income so $y^i=y$ and $W^i(g)=W(g)$ for all $i$. In this case 
+\begin{equation}
+ p_A =  
+    \begin{cases}
+       1, \qquad \text{if } W(g_A) > W(g_B) \\ 
+       1/2, \quad \text{if } W(g_A) = W(g_B) \\
+       0, \qquad \text{if } W(g_A) < W(g_B) 
+    \end{cases}
+\end{equation}
+and of course $p_B=1-p_A$. In this case there is an unique Nash equilibrium where $g_A=g_B=g^*$. To see this notice that $g^*$ maximizes $W(g)$ by definition. Any deviation from this level by either candidate will therefore immediately set $p_P=0$ which gives the politician utility $0<\frac{1}{2}R$. In this case we can thus say that political competition induces politicians to propose good policies.
+
+\paragraph{Adding variation in $\bm{y^i}$} Now let us assume that $y^i\sim F(y^i)$. Because voters preferences are single peaked we know from the median voter theorem that the median voters preferred policy will be a condorcet winner and have majority support. Therefore we now have
+\begin{equation}
+    p_A =  
+       \begin{cases}
+          1, \qquad \text{if } W^m(g_A) > W^m(g_B) \\ 
+          1/2, \quad \text{if } W^m(g_A) = W^m(g_B) \\
+          0, \qquad \text{if } W^m(g_A) < W^m(g_B) 
+       \end{cases}
+\end{equation}
+Where $W^m$ is the indirect utility of the median voter. Following a similar argumentation as before the Nash equilibrium will therefore be for both politicians to propose $g_A = g_B = g^m$.
+
+Now because of the skewness in the income distribution we have that $y^m/y<1$. Because $H_g^{-1}$ is decreasing this implies
+\begin{equation}
+    g^m = H_g^{-1}(y^m/y) > H_g^{-1}(1) = g^*
+\end{equation}
+which is to say with varying income politicians propose a higher level of $g$ than what is optimal. This is because every voters vote counts equally so politicians can disregard the fact that taxation is extremely costly to those with the highest income. The social planner on the other hand takes this into account. This model gives us a testable prediction, which is that a more skewed income distribution should produce larger public sectors. 
+
+\paragraph{Voters vs. tax payers} Notice that politicians only care about the part of their population that is eligible to vote. So the relevant measure of $y^m$ should be calculated only within the voters. Notice that $y$ should be calculated within the full population as this enters the equations through the taxes, which we assume you must pay regardless of your voting status. 
+If some of the population is not eligible to vote we have to take this into account. One way to test the consequences of a more skewed distribution is thus to consider changes to voter eligibility laws which allow poor people to vote. These purely affect $y^m$ while leaving $y$ unaffected. 
+
+\subsection{Beyond the median, \cite{gerber_beyond_2004}}
+The paper by \citeauthor{gerber_beyond_2004} gather data from 2.8 million individuals votes from Los Angeles county in the 1992 general election. The data contains information on individuals voters choices in elections on all levels and includes votes on concrete policy proposals. From these data they estimate a county-level distribution of voters policy preferences. This lets the authors infer the policy position of the median candidate in each district. 
+
+The authors also measure politicians behavior in whatever chamber they are elected to. This allows them to estimate the position on the liberal-conservative axis of each politician (both elected in LA and not). 
+\\ \\
+With these informations the authors can ask whether the position of the median voter in the local district affects the position of politicians. According to the median voter theorem politicians should vote in accordance with their local median voter, but it is obvious that peer and party effects can be competing explanations. The authors regress the preferred policy of LA politicians on the local median voters position as well as the median position of the own-party delegation in whatever chamber the politician has been elected to. 
+\\ \\ 
+The authors also investigate the role of district heterogeneity by interacting the median voters preferred policy with the variance of voters positions within the district. 
+\\ \\ 
+The authors find a significant role of median voters preferences \textit{in districts with homogeneous voters}. In heterogeneous districts this effect doesn't seem to exist to nearly the same degree. The authors also find evidence from peer effects in political stances.

@@ -1,0 +1,141 @@
+This course is about political \textit{economics}, i.e. studying how political systems affect outcomes. The course is not about political \textit{economy} which is the old-school Marx/Smith economics. Also this course is not about international political economics, which is concerned with the functions of international organizations and regimes.
+
+What we want to do is to understand and explain differences and similarities in economic policy across time, varying political regimes and geography. 
+
+\subsection{Political preferences and majority voting (the median voter model)}
+The median voter model is a workhorse of the field, and we will use it throughout the course. In it we assume that policy is determined by simple majority voting. 
+
+Consider a society with $N$ agents, who each have quasi-linear utility $w^i$ of consumption $c^i$ and leisure $x^i$ such that 
+\begin{equation}
+  w^i = c^i + V(x^i), \quad V'> 0, V''<0
+\end{equation}
+Individuals are all taxed by some fixed share $(1-q)$ of their income $I^i$, and in return receive a fixed transfer $f$, meaning we can write an individuals budget constraint as 
+\begin{equation}
+  c^i = (1-q)I^i + f
+\end{equation}
+Normalizing the wage to $1$ across all individuals we can simply read $I^i$ as the labor supply. A simple way to introduce agent heterogeneity with singular wages is to let the available time for labor be heterogeneous, so instead of having $1=I^i + x^i$, i.e. total time is fully spent either on labor or leisure we induce some variation in the total time available $\alpha^i$ 
+\begin{equation}
+  1- \alpha^i = I^i + x^i
+\end{equation}
+We denote the mean of $\alpha^i$'s in the population by $\alpha$ and the median by $\alpha^m$. 
+
+\subsubsection{Agent maximization problem}
+From the perspective of a single agent the tax rate $q$ is fixed, so they simply solve 
+\begin{equation}
+  \begin{split}
+    & \max_{I^i} c^i + V(x^i) \\
+    & \quad \text{s.t. } c^i = (1-q)I^i + f \\ 
+    & \quad \text{and } 1-\alpha^i = I^i + x^i
+  \end{split}
+\end{equation}
+Inserting the constraints and taking the derivative w.r.t $I^i$ we get a first order condition of  
+\begin{equation}
+  (1-q) = V'(1-\alpha^i - I^i)
+\end{equation}
+That is agents choose their labor supply to balance the net income gain from supplying an additional unit of labor with the marginal increase in utility from having one more unit of leisure. Isolating the labor supply we find that 
+\begin{equation}
+  \begin{split}
+  I^{i*} &= 1- \alpha^i -V'^{-1}(1-q) \\ 
+  &= 1- \alpha^i -V'^{-1}(1-q) - \alpha + \alpha \\ 
+  &= L(q) - (\alpha^i - \alpha)
+  \end{split}
+\end{equation}
+where $L(q) \equiv 1- \alpha - V'^{-1}(1-q)$ can be shown to be the average labor supply in the population (in equilibrium). To see this notice 
+\begin{equation}
+  I \equiv \frac{1}{N} \sum_{i=1}^N I^i = \sum_{i=1}^N \left[ L(q) - (\alpha^i - \alpha) \right] = L(q)
+\end{equation}
+
+\subsubsection{Indirect utility}
+Let us assume that the government runs a balanced budget, meaning the transfer individual must be equal to the taxes raised from the average individual, that is 
+\begin{equation}
+  f = qL(q)
+\end{equation}
+The indirect utility of an agent is then utility which is achieved by optimally setting the labor supply given $q$, put intuitively: now we know how agents behave for any given $q$ and we know how the government sets $q$, so we can write the indirect utility each agent gets for any choice of $q$: 
+\begin{equation} \label{eq: indirectutility}
+  \begin{split}
+    W(q, \alpha^i) &= c^i + V(x^i) \\ 
+    &= (1-q)I^i + f + V(1-\alpha^i - I^i) \\ 
+    &= (1-q)\underbrace{\left[L(q) - (\alpha^i - \alpha) \right]}_{\text{optimal $I^i$ given } q} + \underbrace{qL(q)}_{\text{GBC}} + \underbrace{V(1 - L(q) - \alpha)}_{\text{insert } I^{i*}}
+  \end{split}
+\end{equation}
+This expression shows us how each agents utility will be in optimum given some $q$ and some preferences $V(\cdot)$. Now in an election individuals recognize that they should not simply vote for the $q$ that optimizes their utility given static labor supply, instead they should vote for the $q$ that yields the highest utility after making changes to ones labor supply. The policy which satisfies 
+\begin{equation}
+  q(\alpha^i) = \text{arg max}_q W(q, \alpha^i)
+\end{equation}
+is called the \textit{bliss point} of agent $i$, as this is the ideal choice of policy for this agent. In general this will depend on $\alpha^i$ (imagine someone with $\alpha^i=1$, they have no change of earning labor income and might as well prefer a very high $q$). 
+
+\subsection{Majority rule voting}
+Now knowing how each individual would prefer the tax rate to be set we need a way to aggregate individual wishes into a single global tax rate which applies to everyone. One option is to implement pure majority voting, that is a system with
+\begin{enumerate}
+\item Direct democracy, whatever citizens vote for will be the outcome. 
+\item Sincere voting, agents vote for the policy that is their bliss point (no strategic voting).
+\item Open agenda voting, for all possible pairs $q_1, q_2$ citizens vote for their prefered option untill all combinations have been tried against each other.   
+\end{enumerate}
+
+This naturally is not exactly how democracies work, but it serves as a useful framework for modelling the dynamics at play in voting systems. 
+
+\paragraph{Arrows imposibility theorem}
+Arrows impossibility theorem states that there is three or more choices for voters to choose from, no ranked voting system (i.e. majority voting) can convert individual votes into a community choice which fulfils 
+
+\begin{enumerate}
+  \item Unrestricted domain: all preferences are allowable, there is no requirement for consistency in policy preferences. 
+  \item non-dictatorship: Voters actually matter for the final choice (it is not simply a benevolent social planner who chooses the best option).
+  \item Pareto efficency: there is no pareto improvements to be made. 
+  \item Independence of irrelevant alternatives: if some given policy is prefered, it should still be prefered in an election with only a subset (including $q$) of the options available.
+\end{enumerate}
+
+\paragraph{Condorcet winners} Without any restriction on the election it is possible to have condorcet cycles, which is essentially a set of preferences that is cyclic over some set of alternatives, so $a>b$, $b>c$ and $c>a$ would constitute a condorcet cycle.
+
+A \textit{condorcet winner} on the other hand is a policy $q^*$ which can beat any alternative $q$ in a pairwise vote of $(q^*, q)$. It can be shown that under majority voting, with $q\in\mathbb{R}$ a condorcet winner exists if voters preferences are single peaked, that is if
+\begin{equation}\label{eq: singlepeak}
+  q'' \leq q' \leq q(\alpha^i) \text{ or } q'' \geq q' \geq q(\alpha^i) \Rightarrow W(q'', \alpha^i) \leq W(q', \alpha^i)
+\end{equation}
+This equation essentially states that for each individual the indirect utility is monotonically decreasing on both sides of $q(\alpha^i)$. This assumption is strong - it is the indirect utility that must behave nicely, not the direct utility. 
+The condorcet winner will furthermore be equal to the median voters prefered policy $q^m$. To see this see that any $q'<q^m$ will have support from less than half the population and so $q^m$ would win in a pairwise vote. This argument is then identical for $q'>q^m$.
+\\ \\ 
+Returning to the indirect utility derived in (\ref{eq: indirectutility}) we can show that this does not satisfy single peakedness as defined in (\ref{eq: singlepeak}) for sufficiently large $\frac{\partial^2}{\partial q \partial q} L(q)$. To see this note that a positive second derivative corresponds to an graph that is convex implying at least no equilibrium, or of this property is only piecewise that there are multiple equilibria. The second derivative is straight forward to derive as 
+\begin{equation}
+\frac{\partial^2}{\partial q \partial q} = (1+V'(\cdot))L''(q) + V''(\cdot)L'(q)^2  
+\end{equation}
+By assumption $V'>0$ and $V''<0$ so we loose single peakedness when the first term is larger than the second, or with a bit of rearranging: 
+\begin{equation}
+  L''(q) > \frac{V''(\cdot)}{1 + V'(\cdot)} L'(q)^2
+\end{equation}
+
+\paragraph{Single crossing preferences} An alternative to the single peaked preferences assumption is to assume the \emph{single crossing} property. This is different form single peakedness as it not only involves assumptions about the shape of individual agents utility functions, but makes assumptions about the distribution of voter types, specifically assume $\alpha^i \in \upsilon$ where $\upsilon$ is some set of voters. The single crossing property is then that if
+
+\begin{equation}\label{eq: singlecrossing}
+  \begin{split}
+&  (\alpha^i < \alpha^{i'} \text{ and } q > q') \text{ or } (\alpha^i > \alpha^{i'} \text{ and } q<q') \\ 
+&  \text{then } W(q, \alpha^i) \geq W(q', \alpha^i) \Rightarrow 
+  W(q, \alpha^{i'}) \geq W(q', \alpha^{i'}) 
+  \end{split}
+\end{equation}
+That is, if we consider two agents and two possible policies such that a) the "stronger" agent prefers the highest tax or b) the "weaker" agent prefers the lower tax, then we can infer that a) the "weaker" agent also prefers the highest tax or b) The "stronger" agent also prefers the lower tax. In other words relatively more extreme individuals prefer policies that are also more extreme. Notice how this is an assumption on the distribution of preferences across $\alpha^i$'s while single-peakedness was an assumption about the individual preferences for a given $\alpha^i$. When individuals satisfy the single crossing asusmption the median policy $q^m$ will be the condorcet winner and equilibrium policy. 
+
+\paragraph{Proof that single crossing leads to $q^m$:} Think of the median type $\alpha^m$ who naturally has prefered policy $q^m$. Any $q<q^m$ will be dismissed by $\alpha^m$ and any agents with $\alpha^i > \alpha^m$ giving a majority to $q^m$. Likewise for any $q>q^m$.    
+
+We can show that the expression in (\ref{eq: indirectutility}) does satisfy the single crossing property in (\ref{eq: singlecrossing}). To see this notice that when adding and subtracting $(1-q)\alpha^i$ to (\ref{eq: indirectutility}) we get 
+\begin{equation} \label{eq: indirectrewriten}
+  \begin{split}
+    W(q, \alpha^{i'}) &= L(q) - V(1-L(q)-\alpha) -(1-q)(\alpha^{i'} - \alpha^i) - (1-q)(\alpha^i - \alpha) \\ 
+  &= W(q, \alpha^i) - (1-q)(\alpha^{i'} - \alpha^i)    
+  \end{split}
+\end{equation}
+So consider a case where individual $\alpha^{i'}$ prefers $q$ to $q'$, i.e.
+\begin{equation}
+  W(q, \alpha^{i'}) \geq W(q', \alpha^{i'})
+\end{equation}
+From the rewrite in (\ref{eq: indirectrewriten}) this directly implies 
+\begin{equation}
+  W(q, \alpha^{i}) - (1-q)(\alpha^{i'}- \alpha^i) \geq 
+  W(q', \alpha^{i}) - (1-q')(\alpha^{i'}- \alpha^i)
+\end{equation}
+Rearanging we then have 
+\begin{equation}
+  W(q, \alpha^i) \geq W(q', \alpha^i) - (q'-q)(\alpha^{i'} - \alpha^i)
+\end{equation}
+Now notice that if $(q'-q)(\alpha^{i'} - \alpha^i) \geq 0$ we have shown that $W(q, \alpha^{i'}) \geq W(q', \alpha^{i'})$ implies $W(q, \alpha^i) \geq W(q', \alpha^i)$. Since $(q'-q)(\alpha^{i'} - \alpha^i) \geq 0$ is logically identical to the requirements posed in the single crossing definition, and the implication is exactly what the single crossing property entails, we have shown that our model does have the single crossing property. 
+
+\subsection{Reflections on the median voter theorem}
+Everything above relies on the policy being single dimensional, which is probably a poor fit for the real world. However we could consider this single dimension to not be as conrete as a tax rate, but rather a "left-right" leaning, in which case one could argue for some kind of single-dimensionality. Without a single dimensional policy, it is however not generally possible to find a condorcet winner. 
