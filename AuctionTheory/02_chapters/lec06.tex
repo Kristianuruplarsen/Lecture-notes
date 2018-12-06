@@ -1,0 +1,46 @@
+This lecture focuses on extensions similar the ones studies in lectures \ref{section: 2} and \ref{section: 3}, but in the setting of common value auctions. 
+
+\subsection{The role of public information}
+A central question we have not yet touched upon is what the seller should do with any private information about the item being sold. In tenders for oil fields or large infrastructure projects the seller (often a state) might have private information about the future plans for legislation governing the area or have specialty knowledge about the ground on which to build. To the seller it might be tempting to keep this information private in some cases and release it in others. We will assume that the seller must commit to either strategy across all auctions, which seems reasonable when considering the seller needs credibility for the (lack of) information to be trusted.
+
+\subsubsection{Public information in the symmetric model} Let $S$ denote private information available to the seller. The information affects bidders valuations such that 
+\begin{equation}
+    V_i = v_i(S,X_1, ..., X_N)
+\end{equation}
+we still have that $v_i(0)=0$ and $v_i$ is symmetric so $v_i(S,X)=u(S,X_i, X_{-i})$. We assume that $(S, X_1, ...X_N)$ are affiliated and distributed according to the joint density $f$.
+
+We augment our model with two versions of valuations. If no public information is available we define 
+\begin{equation}
+    v(x,y) = E[V_i |X_i = x, Y_1 = y]
+\end{equation}
+If public information is made available this changes to 
+\begin{equation}
+    \hat{v}(s,x,y) = E[V_i | S=s, X_i = x, Y_1 = y]
+\end{equation}
+Now to study the consequence of information on revenues define a function $W^A(z,x)$ such that 
+\begin{equation}
+    W^A(z,x) = E[p(x) | X_i = x, Y_1 < z]
+\end{equation}
+which is the expected price paid when winning. 
+
+\paragraph{Public information in the first price model}
+Notice in the first price model we have that $W^I(z,x)=\beta(z)$ without any public information (the winner pays his bid). However if public information is available $W^I(z,x) = E[\hat{\beta}(S,z)|X_i = x]$. Clearly the derivative of the first expression w.r.t. $x$ is 0, while it is positive for the second expression because of affiliation between $X_i$ and $S$. Thus by the linkage principle expected revenue is higher when releasing the information.
+
+\subsection{Reserve prices with affiliated signals}
+In the private value case we have seen that reserve prices are optimal under very weak assumptions (the exclusion principle) and we learned that they are only effective in the case where a single bidder draws a signal above the limit. 
+
+If signals are affiliated the exclusion principle does not hold. This is because affiliation implies signals are less spread out than in the independent case, why the chance of a reserve price becoming effective are lower. The higher the degree of affiliation the lower the likelihood of only one bidder bidding above $r$. At the same time it becomes more likely that all bids fall below $r$ in which case the reserve price causes a loss for the seller. So with strong affiliation setting $r=0$ will be better than $r>0$.
+
+This does not mean reserve prices are never useful. In cases with few bidders, or if the seller assigns some value to the item sold (or incurs a "shitstorm cost" at low prices), the reserve price might still be benefitial. (discuss the ambulance tender case).
+
+\subsection{Asymmetries in auctions with affiliated signals}
+We have seen three key features of symmetric equilibria in common value auctions namely 
+\begin{itemize}
+    \item They can be ranked in revenue, so $E[R^{Eng}]\geq E[R^{II}] \geq E[R^I]$.
+    \item They are all efficient under "reasonable" assumptions.
+    \item Releasing public information increases revenue because of affiliation. 
+\end{itemize}
+If bidders are asymmetric the revenue ranking no longer holds, and releasing public information might actually decrease revenue. One way to understand this in the case of ascending auctions is that if one bidder has a slight edge, this bidder will bid slightly more aggressively. This means all other bidders risk of the winners curse increases (beating the strong bidder is really bad news about your own signals accuracy). Because other bidders correct for this increased risk of winners curse, the strong bidder in turn will bid even more aggressively (if other bidders shade their bids, seeing them drop out is not that bad for the expected value of $v$). This shows how even a small advantage can lead to relatively large differences in outcome. 
+
+\paragraph{Asymmetries in information} In many real worlds tenders an incumbent participant probably have more information about the true value of winning the tender than other bidders. In these cases information is asymmetrically distributed. In the case where some bidders are completely uninformed Krishna shows it is optimal to follow an mixing strategy bidding some random number between 0 and the expected value of the informed bidders signals. 
+

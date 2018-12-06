@@ -61,9 +61,58 @@ In the second price auction with affiliated signals the symmetric equilibrium is
 \begin{equation}
   v(x,y) = E[V_1 | X_1=x, Y_1 = y]
 \end{equation}
-The equilibrium is then to bid as if the second highest bid $y=x$, i.e. you are just tied with the second highest bidder. \textcolor{red}{The intuition in this result is that ...} (Slide 24).
+The equilibrium is then to bid as if the second highest bid $y=x$, i.e. you are just tied with the second highest bidder. The intuition in this result is that in the second price auction the worst off a bidder will be, before dropping out of the auction, is to be tied with the second highest bid (this yields a payoff of 0). Bidding higher than this does not influence the price (but can lead to "over-winning"), bidding lower risks not winning the auction. 
 
-One technque for solving these, often complicated models, is to assume a diffuse prior on the signals, in particular we typically assume that $X_i \sim U(0.75\cdot v, 1.25\cdot v)$ giving some bound on the distance from $x$ to $v$.
+One technque for solving these, often complicated models, is to assume a diffuse prior on the signals. This technique involves assuming that $v\sim U(-\infty, \infty)$ and then bounding the signals around the actual $v$. In particular we typically assume that $X_i \sim U(0.75\cdot v, 1.25\cdot v)$ giving some bound on the distance from $x$ to $v$.
+
+Notice this format is not ex-post optimal (as is the case in private value auctions), as the bidders do not know the signals of all the non-winning bidders, which influence the value $v$.
 
 \subsubsection{English auction with affiliated signals}
-In the english auction with affiliated signals bidders should remain in the auction until the prices reaches the bidders valuation, but with the added twist that the valuation changes whenever another bidder exits the auction.
+In the english auction with affiliated signals bidders should remain in the auction until the prices reaches the bidders valuation just like in the private value examples, but with the added twist that the valuation changes whenever another bidder exits the auction. This is because the price at which other bidders drop out provide information about their valuation, and thus the density of estimates of $v$. This also means the English and second price auctions are no longer strategically equivalent. 
+
+\paragraph{English auction using a diffuse prior} Consider the auction for skolekridt as an English auction. We will assume a diffuse prior on the signals, namely that 
+\begin{equation}
+  X_i \in [0.75 \cdot v, 1.25\cdot v]
+\end{equation}
+imagine now a case where all bidders share their signals, in this case the expected value of $v$ will be $E[v|X] = \frac{1}{2}(X_{(1)} + X_{(n)})$ where $X_{(n)}$ is the lowest signal and $X_{(1)}$ the highest signal. (That is $v$ is expected to be right in the middle of the draws). At the beginning of the auction all bidders are active and the price $p$ has some low value. The only way a bidder would win at this price is if all other bidders decided to drop out immediately, implying $X_{(n)}=X_{(1)}=v$. Thus as $p$ increases the first bidder will drop out when the price is equal to his own signal.
+
+The remaining bidders update their belief as they now know $X_{(n)}$. Conditional on winning their estimate of $v$ is then $\frac{1}{2}(X_i + X_{(n)})$, and they drop out when $p$ is equal to this value. This continues until the second last bidder drops out at $p=\frac{1}{2}(X_{(2)} + X_{(n)})$ which is the price at which the bidder with the highest signal wins the item.
+\\ \\
+This reasoning leads us to a statement of the general equilibrium in an common value English auction with affiliated signals. 
+\begin{proposition}{Equilibrium in the English auction}
+The symmetric equilibrium strategies in an common value english auction $\beta$ are given by
+\begin{equation}
+  \beta^N(x) = u(x,...,x)
+\end{equation}
+when all bidders are active and 
+\begin{equation}
+  \beta^{k}(x) = u(x, p_{k+1}, p_{k+2}, ..., p_N) = u(x, ...,x, x_{k+1}, ..., x_{N})
+\end{equation}
+when there are $k<N$ bidders active.
+\end{proposition}
+The reasoning behind this proposition is outlined above. Essentially the loosing bidders drop out when the price reaches a level where winning would be a break-even situation, and remaining in the auction would imply a cost if winning. The winning bidder cannot affect the price himself, and is guaranteed a positive payoff by winning. This equilibrium is also ex-post optimal as no bidders risk regretting their bid.
+
+\subsubsection{First price auctions with affiliated signals}
+The equilibrium strategy in a first price auction with common value and affiliated signals can be shown to be 
+\begin{equation}
+  \beta^I(x) = \int_0^x v(y,y) \ d L(y|x), \quad L(y|x)=\exp\left(
+      - \int_y^x \frac{g(t|t)}{G(t|t)} \ dt
+    \right)
+\end{equation}
+Which essentially states to bid ones expectation of the second highest bidders expected value conditional on winning. If values are private $v(y,y)=y$ and $L(y|x) = G(x)/G(y)$. Using this information it is straight forward to return to the private value expression of $E[Y_1|Y_1 < x]$.
+
+\subsection{Revenue comparison}
+With affiliated signals revenue equivalence does \textit{not} hold. Instead it can be shown that 
+\begin{equation}
+  E[R^{Eng}] \geq E[R^{II}] \geq E[R^I]
+\end{equation}
+Thus the English auction yields the highest payoffs. It is also a very strong equilibrium as it is ex-post optimal while the first and second price equilibria are bayesian nash equilibria.
+
+\subsection{Efficiency}
+All three auction formats have increasing equilibrium functions, but as these are formulated in terms of the \textit{signals}, not the \textit{value} this does not imply efficiency. In general neither of the three formats are thus efficient. 
+
+It can be shown that if the valuation functions satisfy the \textit{single crossing property} all three formats will be efficient. The single crossing property is simply that 
+\begin{equation}
+\forall x,i, j\neq i: \qquad  \frac{\partial v_i}{\partial x_i}(x) \geq  \frac{\partial v_j}{\partial x_i}(x)
+\end{equation}
+That is every bidders signal matters most to the bidder himself. 

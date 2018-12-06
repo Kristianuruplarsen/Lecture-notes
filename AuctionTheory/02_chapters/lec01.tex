@@ -26,11 +26,13 @@ An important thing to note about nash equilibria is that they dont express anyth
 Consider an auction in which a single unit of some item is to be sold. Assume there are $N$ bidders who each draw \textit{private} values $x_i$ from $X_i \sim F_i$. Assume further that all bidders are risk neutral and face no liquidity or budget constraints.
 \\ \\
 There are four obvious way such an auction could be run; either one of the two open auction formats
+
 \begin{enumerate}[align=left]
   \item[\textit{English auctions:}] An open ascending auction in which the seller repeatedly raises the price until only one bidder is left. The price paid will be the price at which the second last bidder dropped out.
   \item[\textit{Dutch auction:}] An open decending auction in which the seller initially sets a high price and then lowers it until the first bidder raises a hand to signal willingness to buy, at which point the item is sold.
 \end{enumerate}
 Or one of the sealed auction formats
+
 \begin{enumerate}[align=left]
   \item[\textit{Sealed bid first price:}] in which all bidders submit an envelope containing their bid. The seller then ranks bids from highest to lowest and sells the item to the highest bidder at the price this individual bid.
   \item[\textit{Sealed bid second price:}] which is similar to the first price model as the highest bid will still win the auction, but only pay the price of the second highest bid.

@@ -17,4 +17,36 @@ Plotting actual and perceived GINI index against each other shows little or no c
 \paragraph{Life in transition survey} The authors main point, that knowledge about ones position in the income distribution is very limited is however quite strong, as it seems people at both the top and bottom of the income distribution tend to estimate their position closer to the center than they are. In LiTS respondents are asked if they believe government should redistribute income between people, a measure which the authors regress using their "perceived position" measure while controlling for actual country GINI. They find that perceived GINI is significant in explaining respondents attitude towards redistribution, implying that a perceived higher inequality is associated with an increased interest in government redistribution.
 
 \subsection{How elastic are preferences for redistribution? \citep{kuziemko_how_2015}}
-The next paper by \citeauthor{kuziemko_how_2015} digs deeper into the \textit{causal} link between perceived inequality and preferences for redistribution.
+The next paper by \citeauthor{kuziemko_how_2015} digs deeper into the \textit{causal} link between perceived inequality and preferences for redistribution. Their main point is that as the US has become more unequal due to income concentration at the top of the income rank, one would from the Meltzer-Richard model expect the demand for redistribution to increase. 
+\\ \\
+Opposite to the expectation \citeauthor{kuziemko_how_2015} note that top income taxes have actually been decreasing, and they find no increased demand for redistribution in survey questions. To explain this puzzle authors propose three explanations
+\begin{itemize}
+    \item Americans might not care about rising inequality. 
+    \item Americans might not know that inequality is rising.
+    \item Americans dont believe the government can effectively redistribute income.
+\end{itemize}
+The central question for the authors is then to understand how knowledge about US income inequality and policies to change this affect peoples views. To do this the authors set up a randomized control trial experiment using Amazons Mechanical Turk. Using 4000 respondents they randomly assign either a treatment of interactive personalized information about US income inequality etc, while the control group receive no such information. Both groups are then asked to complete a questionnaire on their views on inequality, redistribution and their general view on government. The authors also conduct a followup survey with about 6000 respondents to analyze mechanisms behind the first results. 
+
+Their results show a strong effect from treatment on attitudes towards inequality (treatment individual perceive it as a more serious issue), but at the same time only a weak effect in favor of inequality reducing policies (except for the estate tax for which the effect is quite large). The treatment reduces participants trust in government but does not alter their voting intent in the coming election. The authors suspect two competing effects, 1) treatment increases concern about income inequality but also 2) reduces trust in government. To study these two competing effects the authors run a second experiment in which the treatment forces people to reflect on aspects of government that they dislike. This treatment reduces trust in government, while leaving views on income inequality unchanged. The authors also show that the reduces trust in government directly reduces support for government transfers to the poor. 
+\\ \\ 
+In conclusion the authors find that more information can increase concern for an issue, but that there are complicated counteracting effects from learning about inequality. While the RCT is well carried out, the use of AmTurk most likely induces heavy skew in the sampled population towards low income or unemployed individuals, implying external validity might be low.
+
+
+\subsection{Causal Inference I}
+As a slight deviation from the main topic of political economics we will also study basic causal inference theory beginning with the potential outcomes framework. Consider a situation where individuals either receive treatment in which case their outcome is described by $Y_{1i}$ or no treatment, resulting in an outcome of $Y_{0i}$. These variables describe potential outcomes, but naturally only one of the variables are observed. Let $D_i$ be an indicator variable for being in the treatment group, the observed outcome is then 
+\begin{equation}
+    Y_i = \begin{cases}
+        &Y_{1i}  \text{ if } D_i = 1 \\
+        &Y_{0i}  \text{ if } D_i = 0
+    \end{cases}
+    = Y_{0i} - D_i (Y_{1i} - Y_{0i}) 
+\end{equation}
+We can never learn about this expression by studying a single unit, that is we can never observe the individual causal effect directly, instead we need to estimate the effect by comparing average observed outcomes for the treated with average observed outcomes for the untreated. In particular let us consider the expression 
+\begin{equation}
+    \underbrace{E[Y_i|D_i = 1] - E[Y_i|D_i = 0]}_{\text{observed difference}} = 
+    \underbrace{E[Y_{1i}|D_i = 1] - E[Y_{0i}|D_i = 1]}_{ATET} +
+    \underbrace{E[Y_{0i}|D_i=1] -E[Y_{0i}|D_i = 0]}_{\text{Selection bias}}
+\end{equation}
+Here the first term measures the ATET $E[Y_{1i} - Y_{0i}|D_i = 1]$ which measures the causal effect of treatment on those who are actually receiving treatment. Note this is not the ATE $E[Y_{1i} - Y_{0i}]$. 
+
+The second term is the selection bias, which measures the difference in average in baseline outcome between the two groups. If we assume this selection bias is 0, that is groups are expected on average to fare equally well without treatment, OLS can estimate the ATET. Assuming that we achieve a selection bias of 0 further implies that the ATE is equal to the ATET.
