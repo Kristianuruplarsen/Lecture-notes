@@ -1,0 +1,16 @@
+Consider a case where there are two policies $0$ and $1$ of which one must be chosen in an election. On top of this the world can also be in one of two states $0$, $1$ which occur as random with probability $\alpha=1/2$. For notation we denote the chosen policy $x$ and the realized state $z$. There are $N=2n+1$, $n\in \mathbb{N}$ voters with utility 
+\begin{equation}
+    U(x,z) = \begin{cases}
+        -1 \text{ if } x \neq z \\ 
+        0  \text{ if } x = z 
+    \end{cases}
+\end{equation}  
+To begin with assume voters \textit{must} vote and that this is cost free. 
+\\ \\ 
+This setup models a scenario in which voters does not per-se prefer any politician but only care about matching the policy outcome to the observed state of the world. For example we can think of the state as measuring the size of the dead weight loss of taxation, and people preferring a left wing politician when this is low, and vice versa. 
+
+Voters receive a signal $m_i\in[0,1]$ which conditional on the true state $z$ independent of other voters signals. With probability$r>\frac{1}{2}$ the signal is correct and $m=z$. 
+\\ \\
+Prior to receiving the signal the rational expectation of voters is that $P(z=1)=\alpha$ and after the signal $P(z=1|m=1)=P(z=0|m=0)=r$, so the signal is effective. 
+
+CONT. slide 8

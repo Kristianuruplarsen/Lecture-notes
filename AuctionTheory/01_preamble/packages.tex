@@ -15,3 +15,45 @@
 \usepackage{bm}
 \usepackage{bookmark}
 \usepackage{enumitem}
+
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+% \usepackage{3dplot}
+\usepackage{pgfcalendar}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{
+  arrows,
+  positioning,
+  matrix,
+  calc,
+  decorations.pathreplacing,
+  decorations.pathmorphing,
+  decorations.markings,
+  decorations.text,
+  shapes,
+  backgrounds,
+  shadows,
+  trees,
+  fit,
+  snakes,
+  patterns,
+  mindmap,
+  intersections,
+  calendar,
+  plotmarks,
+  spy}
+
+
+\newcommand{\tm}[1]{\tikz[overlay, anchor=base] \node[red] (#1) {};}
+\tikzstyle{every picture}+=[remember picture]
+\tikzset{ 
+  >=stealth,
+  every path/.style={->, color=darkgreen, thin},
+  every node/.style={color=black},
+  node distance=0.5cm
+}
+
+\definecolor{darkgreen}{rgb}{0.13,0.53,0.53}

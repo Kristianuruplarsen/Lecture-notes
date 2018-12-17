@@ -1,0 +1,47 @@
+So far we've seen two main models for political competition. The Downsian model which takes its starting point in a simple utility based model of consumption of private and public goods(/policy) and assumes politicians goals are to be elected. In this model voters know what policies politicians propose and only care about policy. Politicians furthermore know what policy voters would prefer. The Downsian element is the way politicians compete by proposing policy to be elected. Because of the perfect information the model has a large discontinuity in probability of election whenever a politician deviates from the equilibrium, which is to propose the preferred policy of the median voter.
+
+In other words in the downsian model which politician is elected doesn't matter, as both politicians propose the same policy, which is the median voters preferred policy. 
+
+The second model we've seen is the probabilistic voting model in which voters not only care for policy but also have intrinsic preferences for either candidate. In this model politicians also fully converge, but not at the median voters prefered policy, but rather at a policy that weights the optimal policy of voter groups with their "importance" in being elected. (that is very ideological groups are difficult to persuade with policy, so they get little weight when setting the politicians proposal).
+\\ \\ 
+Both of these models show full policy convergence \textit{before} the election takes place. This does not mean the election is not important, but does mean that the primary purpose of an election is not to choose the best politician, but to influence all running politicians before the election takes place.
+
+Much of these results is driven by the assumption that politicians only goal is to be elected. Naturally when this is the case they dont have any incentives not to fully optimize their chance of being elected, but if instead politicians have ideological or partisan goals, they might be willing to risk loosing if the alternative is to big of a political compromise.
+
+\subsection{Model setup}
+Once again we begin with a version of the simple Downsian setup. Consider a continuum of voters indexed by $i$ with incomes $y^i$. The elected politician will implement policy $g$ and votes get different indirect utilities from this depending on their income $W^i=W^i(g;y^i)$. Voters preferred $g^i$ is decreasing in $y^i$.
+
+Whats new this time is that candidates now only care about policy, and give no weight to actually winning. Assume for this purpose that two candidates $R,L$ are drawn from the pool of voters. W.l.o.g. we assume that $y^L < y^m < y^R$ meaning $R$ has high income and prefers a low amount of public spending $g^R$ etc. so $g^*_L > g^m > g^*_R$. Just like in the standard downsian model voters choose their preferred candidate to vote for and it is the median voter who is pivotal so the probability that $L$ wins is
+\begin{equation}
+    p_L = \begin{cases}
+    &    0 \qquad \text{if } W^m(g_L) < W^m(g_R) \\ 
+    &    \frac{1}{2} \qquad \text{if } W^m(g_L) = W^m(g_R) \\ 
+    &    1 \qquad \text{if } W^m(g_L) > W^m(g_R)
+    \end{cases}
+\end{equation}
+In this scenario we can then solve for a Nash equilibrium between the candidates, the expected utility for candidate $L$ is 
+\begin{equation}
+    E[W^L(g)] = p_L W^L(g_L) + (1-p_L)W^L(g_R)
+\end{equation}
+from which we see the core tradeoff that is moving $g_L$ towards $g_L^*$ increases the benefit of being elected, but lowers the probability of being elected $p_L$. Similarly 
+\begin{equation}
+    E[W^R(g)] = (1-p_L) W^R(g_R) + p_L W^R(g_L)
+\end{equation}
+Now once again because of the discontinuous nature of $p_L$, if $R$ is playing $g_R=g^m$ either $L$ also plays $g^m$ and gets $E[W^L(g)]=W^L(g^m)$, if $L$ deviates towards $g_L^*$ then immediately $p_L=0$ and $L$ is worse off. Naturally the same is true for deviating in direction of $g_R^*$. Thus in the Nash equilibrium both politicians propose $g_L=g_R=g^m$ and we again have full policy convergence like in the simple downsian model.
+
+The driving effects in this conclusion is the balance between the discontinuously changing probabilities and the continuously changing benefit of policy. In summary this model captures an interesting, probably realistic mechanism by which politicians are pulled towards the center simply by balancing their personal gains of winning office with their probability of getting elected. However the full convergence is a result driven by the knifeedge probability so an augmented model is likely to predict less than complete convergence. 
+
+\paragraph{(lack of) commitment} One way to implement this augmentation is to remove politicians commitment to policy after they are elected. The only change from the above is that now politicians choose which policy $g$ to implement after they're elected. Assuming this is a one-shot game, the proposed policy during election becomes unimportant as voters knows politicians are uncredible. Therefore the win-probabilities become
+\begin{equation}
+    p_L = \begin{cases}
+    &    0 \qquad \text{if } W^m(g_L^*) < W^m(g_R^*) \\ 
+    &    \frac{1}{2} \qquad \text{if } W^m(g_L^*) = W^m(g_R^*) \\ 
+    &    1 \qquad \text{if } W^m(g_L^*) > W^m(g_R^*)
+    \end{cases}
+\end{equation}
+So the winning candidate will still be the one most aligned with the median voter, but whoever wins fully implement their desired policy $g_L^*$ or $g_R^*$. This prediction is completely opposite to the previous one. In this case elections only alter policy outcomes through the ability to elect the most desired candidate.
+\\ \\
+In summary we've seen how two almost identical setups can predict both complete convergence (affect) and no convergence at all (elect). The probabilistic voting model is an example of an in-between of these two extremes we've already studied. Another example is a no-commitment repeated game model where previous policy affect the probability of being reelected.
+
+
+

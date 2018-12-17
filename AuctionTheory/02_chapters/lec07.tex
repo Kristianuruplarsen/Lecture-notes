@@ -4,6 +4,55 @@ We consider a case where the subset $\mathcal{I} \in \mathcal{N}$ of all bidders
 \\ \\
 Define also a variable $Y_1^{\mathcal{S}}$ to be the highest valuation in the subset of bidders $\mathcal{S} \in \mathcal{N}$. $Y_1^{\mathcal{I}}$ is thus the highest signal among the bidding ring members. 
 \\ \\ 
-Bidders in the ring needs to coordinate to identify one representative for their ring, who will bid to win the item, while all others submit shill bids. In this way the ring can earn profit from exploiting the difference in perception about the number of bidders in the auction. 
+Bidders in the ring needs to coordinate to identify one representative for their ring, who will bid to win the item, while all others submit shill bids. In this way the ring can earn profit from exploiting the difference in perception about the number of bidders in the auction. The way the ring does this is by identifying the within-ring bidder with the highest value $Y_1^I$ who will represent the ring, and bid according to $\beta(x)=x$. At the same time all other ring-members bid low enough to be certain not to win the auction. To bidders outside the ring seemingly nothing changes so for them it is still optimal to bid according to $\beta(x)=x$.
+\\ \\ 
+Clearly the expected payment $m_i(x_i)$ for members of the ring is lower than it would have been in absence of the ring $\hat{m}_i(x_i)$ (the average is reduced by all those who shade their bids). We can thus define the gain from parttaking in the ring to be 
+\begin{equation}
+    t_i(x_i) = m_i(x_i) - \hat{m}_i (x_i) \geq 0
+\end{equation}
+and we can compute the expected total profit to the ring as 
+\begin{equation}
+    t_I = \sum_{i\in I} E[t_i(x_i)]
+\end{equation}
+To begin with we can notice that given the existence of the ring no members has any incentive to deviate from it, as the ring representative bids with the regular strategy $\beta(x)=x$ as he would have done anyways, while all other members could have participated in the auction but certainly lost. However from this consideration it is not clear why the ring should form in the first place, as there is currently no mechanism for identifying $Y_1^I$ (which could be costly) nor any mechanism for distributing the rings gain from the representative to other members. 
+\\ \\
+To properly function the ring needs a ring-centre which is responsible for identifying the member with the highest value and ensure financing to pay members for participating in the ring.
+\\ \\
+\paragraph{The PAKT} 
+To identify the highest valuing member the ring center arranges a PAKT (Pre Auction Knockout) auction where the members bid to become the ring representative. The PAKT is a second price auction as well, revealing the valuation of all ring members to the centre. With this information as well as observations from the actual auction, the ring centre can calculate the price the representative would have paid in absence of the ring $\hat{p}_i$, and "tax" the representative with $\hat{p}_i - p_i$ to compensate the other ring members. Note that this implies the ring only realizes a surplus if the representative wins the auction, as there is otherwise nothing to "tax".
 
-CONTINUE FROM SLIDE 14
+Like the real auction the PAKT will be a second price auction. This serves both to identify the representing member and later to calculate reimbursements for the remaining member on the basis of their expected gain from participating in the ring. The auction is a second price format ensuring all participants reveal their true preferences. Clearly this ring is incentive compatible, as nobody would be better off by leaving the ring, but only in expectation. (since it is only in the case where the ring representative wins that the ring has anything to pay back to members).
+\\ \\ 
+This in-expectation budget balance makes it unlikely to observe these kinds of bidding rings in the world. Only all inclusive bidding rings can guarantee a profit for all of its members, meaning if we should expect to find collusion in single round auctions it would most likely be of this kind. Typically however bidding collusion is seen in settings with multiple rounds or items. 
+An example of single-ish round collusion is tried in State vs. Pool.
+\\ \\
+\textit{Expanding the ring} increases the per bidder expected profit. This is because it doesn't affect the probability of winning the auction in the end, but the expected price if winning decreases because one less bidder is outside the ring and thus the expected highest out-of-ring bid is decreased. 
+
+Unlike the kind of positive cartel-externalities that sometimes arise in regular markets, there is no benefit for out-of-ring members from a ring, as the distribution if signals is independent and only one item is sold. This gives bidders outside the ring an increased incentive to join the ring. 
+
+\subsection{Collusion from the auctioneers perspective}
+First of, the auction will still yield an efficient outcome when the ring exists, since draws are still the same and the bidder with the highest valuation wins. The expected revenue will be lower. The argument for this is that bidders outside the ring have the same expected payments, while in-ring bidders have lower than normal expected payments so overall the revenue will expectedly be lower. The revenue equivalence theorem does not hold, because the equilibria is no longer symmetric with a ring involved. 
+
+\paragraph{Reserve prices and rings}
+To counter the bidding ring the auctioneer can implement a reserve price (or if there is proof of collusion go to the courts). The ring implies there are only $N-I+1$ de facto bidders, where the ring representatives valuations are distributed differently from the rest. Say valuations are $Y_1^I, X_{I+1},...,X_N$. Now define $Z^{\mathcal{I}}$ to be the second highest value of $Y_1^I, X_{I+1},...,X_N$ and notice that because of the second price structure the price is 
+\begin{equation}
+    \hat{P} = \max \{Z^{\mathcal{I}}, r \}
+\end{equation}
+where $r$ is the reserve price. Letting $H^{\mathcal{I}}$ be the distribution of $Z^{\mathcal{I}}$ (with density $h^{\mathcal{I}}$) we can write the expected selling price as 
+\begin{equation}
+    r \underbrace{\left(
+        H^{\mathcal{I}}(r) - G(r)
+    \right)}_{P(Y_1^{\mathcal{N}} > r,\ Z^{\mathcal{I}} < 0)}
+    +
+    \int_r^{\omega} z h^{\mathcal{I}}(z) \ dz
+\end{equation}
+Taking the derivative of this it can be seen that in optimum it must be that
+\begin{equation}
+    H(r^*) - G(r^*) - r^* g(r^*) = 0
+\end{equation}
+Now consider what happens if the ring grows from $I$ members to $I+1$ members. This can affect $H$ in two ways. Either the new member had the second highest value before, which can lower the second highest value if the bidder does not get to represent the ring. 
+Or the bidder had the previous highest value in which case he will represent the ring and reduce the second highest bid if this was submitted by the ring. The implication is that adding more members can only shift the distribution of second highest values lower, so $H^{\mathcal{I}+1}(r^*)>H^{\mathcal{I}}(r^*)$.
+This implies the optimality condition is not satisfied because the derivative is positive, and (assuming this is a single peaked condition) the optimality condition must therefore require an $r^{**}>r^*$ when considering $H^{\mathcal{I}+1}$.
+
+\subsection{Bidding rings in first price auctions}
+In principle a mechanism similar to the PAKT exists in first price auctions, but here bidders outside the ring will also change their strategy in response to the ring. The reason we are less likely to see collusion is first price auctions is that ring members have an incentive to cheat and bid just above the agreed upon price and thus winning at a low price. Theoretically this is unfixable, so in the world collusion in first price auctions are most likely also associated with some kind of coercion by the ring leader. 

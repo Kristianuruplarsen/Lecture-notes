@@ -14,9 +14,10 @@ When we showed in lecture 1 that the optimal strategy in a first price auction i
 To show this first note that any alternative strategy $\alpha(x)$ can be represented as "pretending" to have valuation $z$ while playing $\beta$ as all strategies are rationally bounded by $\beta(0), \beta(\omega)$ when all other players are following $\beta$. In other words it would never be optimal in the first price setting to bid higher than the highest possible bid from other bidders, nor to bid lower than the lowest possible bid from other bidders. With this information we can then proceed
 
 \begin{proof}{No incentive to deviate under $\beta^{I*}(x)$:} From bidder 1's perspective, lets consider a situation where bidder 1 draws a valuation $x$, but pretends to have valuation $z$ when bidding (so $b = \beta(z)$), thus deviating from the proposed equilibrium, in this case
+
   \begin{equation}
     \begin{split}
-      \Pi(x, b) &= \underbrace{G(z)}_{P(win)} \cdot \underbrace{(x - \beta(z))}^{x - b} \\
+      \Pi(x, b) &= \underbrace{G(z)}_{P(win)} \cdot \underbrace{(x - \beta(z))}_{x - b} \\
       &= G(z) x - G(z)E[Y_1 | Y_1 < z] \\
       &= G(z) x - \int_0^z yg(y) \ dy \\
       &= G(z) x - G(z) z + \int_0^z G(y) \ dy \qquad (\textrm{integrate by parts}) \\

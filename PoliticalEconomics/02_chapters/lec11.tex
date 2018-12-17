@@ -1,0 +1,28 @@
+So far we've been studying models with the implicit assumption that everybody votes build in. The first topic in the second half of the course will be to investigate why voters might not turn out to vote in reality. To motivate studying turnout one could argue a) that turnout in itself is required for a legitimate democracy (although one could argue that the affect mechanism means this is not necessarily the case), b) that elections institute a mechanism of information aggregation in which more voters implies better information or c) that elections serve to discipline politicians and a lack of turnout breaks this mechanism.
+\\ \\
+So far our models have primarily assumed two-candidate races with full turnout. The conclusions naturally hinge on the two-candidate assumption, but also that voters know which candidate they prefer and that voting is costless. To see how costly voting might affect turnout consider the choice for a single individual to vote for either candidate $A$ or $B$. The utility from either candidate winning is $U_A$ and $U_B$ respectively. The probability that $A$ wins depends on whether the individual votes or not. If the voter votes the probability of $A$ winning is $P_{A|vote}$  and otherwise $P_{A|novote}$. We will assume that the voter never wants to vote for $B$. Also there is a cost $c$ of voting. The expected utility when voting is therefore 
+\begin{equation}
+    V_{vote} = P_{A|vote}U_A + (1-P_{A|vote})U_B - c 
+\end{equation}
+and when not voting 
+\begin{equation}
+    V_{novote} = P_{A|novote}U_A + (1-P_{A|novote})U_B      
+\end{equation}
+Naturally the individual votes if 
+\begin{equation}
+    V_{vote} \geq V_{novote} \Rightarrow (P_{A|vote}- P_{A|novote}) (U_A- U_B) \geq c
+\end{equation}
+In other words if the change in probability of $A$ winning from going to vote times the benefit from $A$ winning $B \equiv U_A - U_B$ is greater than the costs, it is worth voting. Notice that $p\equiv P_{A|vote}- P_{A|novote}$ is both the change in probability that $A$ wins and the probability that the voter is pivotal (think of the probabilities as discontinous depending on the state - if $A$ is pivotal $P_{A|vote}=1$ and $P_{A|novote}=0$). Using the summarized terms we then have the inequality
+\begin{equation}
+    pB \geq c
+\end{equation}
+In itself this equation seems unlikely, it is almost never the case that one is pivotal, so the benefit must be very large, even with modest costs to drive voters to vote. The standard way to fix this is to add some independent benefits of voting $D$ and instead postulate 
+\begin{equation}
+    pB + D \geq c
+\end{equation}
+where $D$ could be anything from bragging rights to a sense of civic duty. The only central restriction is that $D$ should not depend on the outcome of the election. 
+
+\subsection{Empirics on turnout \citep{gerber_effects_2000}}
+A central question is what gets people out to vote. \citeauthor{gerber_effects_2000} conduct a large RCT in New Haven where they use canvassing, mail and phonecalls to try and persuade citizens to vote in the 1998 national election. They construct random messages to target different parts of the calculus of voting equation, including aluding to a civic duty ($D$), that some races are close ($p$) and neighborhood solidarity/benefits ($B$).
+
+Their main finding is that personal contact has a larger effect than mail while telephone calls have no or maybe even a negative effect on turnout. They hypothesize on this basis that personal contact is important for turnout, and a reduction in canvassing can explain the reduced turnout in the US.

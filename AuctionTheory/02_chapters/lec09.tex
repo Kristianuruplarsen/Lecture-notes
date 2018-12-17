@@ -1,0 +1,23 @@
+In lecture 8 we saw that the sequential first price auctions with unit demand had the equilibrium 
+\begin{equation}
+    \beta_k(x) = E[Y_K|Y_K < x < Y_{K-1}]
+\end{equation}
+Krishna shows this is equivalent to 
+\begin{equation}
+    \beta_k(x) = E[\beta_{k+1}(Y_K)|Y_K < x < Y_{K-1}]
+\end{equation}
+that is the optimal bid in round $K$ is equal to the expectation of what the second highest bidder would do in the following round. This balances the tradeoff between not wanting to bid to high in the current round with the knowledge that shading of all the other bidders decreases as the auction moves through the rounds. 
+
+\subsection{Repeated second price auctions}
+The single round result in second price auctions is that bidders will bid their valuation. In the last round of a sequential auction this is clearly still the case, as the auction is then just a regular second price auction. To investigate the mechanism in the auctions $k<K$ we can use the revenue equivalence theorem to link the revenue from $K$ sequential first price auctions to the revenue in the sequential second price auction (notice we haven't shown this formally, but RE extends to multi-unit and sequential auctions as well). Thus the sum of expected payments across all $K$ auctions is identical in the two auctions 
+\begin{equation}
+    m^I(x) = \sum_{k=1}^K m_k^I(x) = m^{II}(x) = \sum_{k=1}^K m_k^{II}(x)
+\end{equation} 
+This implies that revenue equivalence also holds for any local $k$ such that $m_k^I(x)=m_k^{II}(x)$. (See slide 9.12). Using this it can be shown that 
+\begin{equation}
+    \beta_k^{II}(x) = \beta_{k+1}^I(x)
+\end{equation}
+meaning the second price auction is in principle like the first price counterpart except bids are shifted one round back. This shows it is optimal to shade in a multiround second price auction, but not as much as in the first price auction. 
+
+\subsection{Overall intuition of sequential auctions}
+Overall we see that across the two investigated formats, the bidders shade in the first rounds of the auction as they can "gamble" on the chance that other bidders have low valuations. Towards the end the auction approaches the regular one-shot auctions from earlier. In the real world we often have sequential auctions without a predetermined number of rounds, i.e. where $K="\infty"$. Here we should expect bidders to shade heavily. Oppositely bidders might also have "infinite" demand meaning they value winning every round, which intuitively will reduce shading. 

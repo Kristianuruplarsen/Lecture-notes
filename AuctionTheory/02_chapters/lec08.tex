@@ -1,0 +1,45 @@
+So far the auctions we have considered have had only one item for sale, with no possibility of acquiring the item when the auction ends. In the real world however many auctions are repeated, either to sell the same item or one identical to the first one, and bidders anticipate this repeatedness. 
+\\ \\
+Consider a case where there is to be held $K$ first price auctions. There are $N$ bidders who only want to buy one item each. Their valuations are distributed according to $F:[0,\omega]\rightarrow [0,1[$ if a bidder wins he drops out of the following rounds. 
+
+From the perspective of bidder 1: let $Y_r$ be the $r$th highest bid among the $n-1$ other bidders, with distribution $F_r$. We will look for a set of symmetric equilibrium strategies $(\beta_1, \beta_2, ..., \beta_K)$ where in each stage the bidder has both his own value and the prices at which items sold in previous rounds as information $\beta_k(x, p_1, p_2,...,p_{k-1})$. 
+\\\\ 
+Consider the case where $K=2$, since $\beta_k$'s are increasing functions we can see that items will be sold in order of descending values. Furthermore because we assume a symmetric equilibrium all bidders can infer $y_1 = \beta^{-1}(p_1)$ where $y_1$ is the value of the first winner. 
+
+Working backwards through the problem begin by considering a bidder in the second round. He knows he shouldn't bid above $\beta(y_1,y_1)$ because the descending order means no bidders have a value above $y_1$ in the second round. The expected payoff from bidding with some $z\leq y_1$ is 
+\begin{equation}
+    \Pi_i(z,x|y_1) = \underbrace{F_2(z|Y_1 = y_1)}_{P(\text{winning round 2})} (x-\beta_2(z, y_1))
+\end{equation}
+maximizing w.r.t $z$ gives 
+\begin{equation}
+    \beta_2'(z, y_1) = \frac{f_2(z|Y_1 = y_1)}{F_2(z|Y_1 = y_1)}(x - \beta_2(z,y_1))
+\end{equation}
+Now use that draws are independent so the only information about $Y_1$ contained in $y_1$ is that $Y_2<y_1$, so $F_2(x|Y_1 = y_1)=\frac{F(x)^{N-2}}{F(y_1)^{N-2}}$. Inserting this above, along with the assumption that $x=z$ in the equilibrium, gives 
+\begin{equation}
+    \beta_2'(x, y_1) = \frac{(N-2)f(x)}{F(x)}(x - \beta_2(x,y_1))
+\end{equation}
+Krishna p.215 shows that solving this differential equation yields 
+\begin{equation}
+    \beta_2(x) = E[Y_2|Y_2< x < Y_1]
+\end{equation}
+i.e. bid your expectation of the highest remaining bidders value (apart from yourself), conditional on you having the actual highest value, both of which are surely smaller than $y_1$. 
+\\ \\
+This solves the second round game, and we can plug in this solution to derive the first round stategies. In the first round we need to consider the two cases $z\geq x$ and $z<x$ separately, because the outcomes in the second round will differ between the two. The expected payoff from bidding $\beta_1(z)$ with $z\geq x$ is 
+\begin{equation}
+    \Pi_i(z,x) = F_1(z)(x-\beta_1(z)) + (N-1)(1-F(z))F(x)^{N-2}(x-\beta_2(x))
+\end{equation}
+which is simply the probability of winning in round 1 times the payoff, plus the probability of winning in round 2 times the payoff here. Winning in round two requires $Y_2 \leq x \leq z \leq Y_1$, giving rise to the probability. 
+
+Similarly if $z < x$ we have 
+\begin{equation}
+    \Pi_i(z,x) = F_1(z)(x-\beta_1(z)) + (F_2(x) - F_1(x))(x- \beta_2(x))  + \int_z^x [x - \beta_2(y_1)]f_1(y_1) \ d y_1    
+\end{equation}
+Which is the probability of winning in the first round times the payoff from this, plus the payoff from loosing the first auction but winning the second, and the third term arises from the probability that the bidder pretends to have value $z$ in the first round and only in the second round realize that his true valuation $x$ is larger than $Y_1$. Solving this (Krishna p.216) it can be shown that 
+\begin{equation}
+    \beta_1(x) = E[Y_2 |Y_1 < x]
+\end{equation}
+In summary the equilibrium strategy when $K=2$ is always to bid your expectation of the second highest value among all the bidders. Generally it can be shown that for $K$ round first price auctions with single-unit demand the symmetric equilibrium strategy is 
+\begin{equation}
+    \beta_k(x) = E[Y_K|Y_k < x <Y_{K-1}]
+\end{equation}
+i.e. your expectation on the $K$'th highest value conditional on your knowledge of the already revealed values. This also implies that bidders bid more aggressively in later rounds until the final round which functions like a regular first price auction with $N-K+1$ bidders. The expected price however does not trend upwards, because the higher bids are relative to their expectations of other the remaining bidders values. 
