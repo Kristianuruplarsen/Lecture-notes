@@ -1,0 +1,37 @@
+In this lecture we will study the equilibrium strategies in multi unit auctions. Last lecture we only saw examples of the allocation and pricing mechanisms, but not how these mechanisms influence the bidders. Consider an auction with $K$ items for sale and $N$ bidders. Each bidder draws a vector of private values 
+\begin{equation}
+    X^I = (X_1^i, X_2^i, ..., X_K^i)
+\end{equation}
+which represent the bidders marginal value of winning $k\in[1,K]$ items. Thus the total value for the bidder from winning $k$ items is $\sum_{l=1}^k X_l^k$. By assumption $X_1^i \geq X_2^i \geq ... \geq X_K^i$. These are drawn on 
+\begin{equation}
+    \mathcal{X} = \{x\in[0, \omega]^K: \ \forall k, x_k \geq x_{k+1} \}
+\end{equation}
+
+\paragraph{The Vickrey auction}
+In the Vickrey auction the total amount paid by a bidder who wins $k^i$ units is equal to the $k^i$ largest \textit{loosing} bids of the opponents, that is 
+\begin{equation}
+    \sum_{k=1}^{k^i} c_{K-k^i + k}^{-i}
+\end{equation}
+where $c^{-i}$ is the vector of sorted highest competitor bids. We can argue to show that in Vickrey auctions it is weakly dominant to bid ones true demand vector. This is because (similar to in second price auctions) the bidder doesn't have any control of the final price paid in the Vickrey auction - it is determined by the competing bidders bids. Pretending a higher or lower demand curve either changes nothing, foregoes winning an item which would yield a positive payout or wins an item at to expensive a price. However Vickrey auctions can in some case appear unfair, because a bidder with high valuations "pushes out" weaker bidders, and thus pay a low price, while weaker bidders have to push out the strong bidder to win anything, meaning they pay high prices. 
+
+\paragraph{Uniform value auctions}
+There is no reduced form expression of the equilibrium in uniform price auctions (although outside the scope of the course it can be shown that a unique one exists with private independent values). Instead it can indirectly be shown that (Krishna p.191-192)
+\begin{itemize}
+    \item[1.] No bids exceeds the marginal value, that is for all elements in the value vector, bids do not exceed this value. The reason is that the bids only matter if they end up setting the price. If a bid is above the marginal value it would be costly if it ended up setting the price. 
+    \item[2.] There is no shading on the first element of the bid vector. This is because the first object cannot be price setting as there is at least one item for sale, and it is the first non-winning bid that sets the price. Thus the only possible effect from shading is to risk loosing the auction. 
+    \item[3.] On the remaining elements in the bid vector there is an incentive to shade ones bid, as these bids may become price-setting. This produces a tradeoff between a low price which reduces the price paid for the items one win, and a high price increasing the chance of winning another item.   
+\end{itemize}
+
+\paragraph{Discriminatory auctions}
+Like the uniform case it is known that the private independent value case has an unique equilibrium, but it has no known reduced form. It is clear that there will be shading on all value as bidding ones value gives a payoff of 0. Furthermore the shading will be strongest for the first items, as it doesn't matter to the bidders if they win the first or last item. In fact it would be preferential to win the last items and let someone else buy the first items at high prices. 
+\\ \\
+Bidders can in some circumstances submit flat demand curves (Krishna 196-197).
+
+\subsection{Efficiency and fairness in multiunit auctions}
+Of the three covered multiunit formats only the Vickrey is generally efficient. In particular because equilibria in standard multiunit auctions are efficient iff the bidders strategies are separable and symmetric both in the objects and bidders, that is 
+\begin{equation}
+\forall i,k : \ \beta_k^i(x^i) = \beta(x_k^i)
+\end{equation}
+The uniform and discriminatory auctions does not satisfy this because the strategies depend on which item of the auction one is bidding for, i.e. the 1'st item requires a different strategy than the 3rd, so the strategies are not separable across items. 
+\\ \\
+As already mentioned the Vickrey auction on the other hand might be perceived as unfair in situations where bidders are not even, because the prices of the strong bidder is set by the weak bidders and oppositely. 
